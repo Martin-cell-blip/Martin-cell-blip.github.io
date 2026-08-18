@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>DJI Mimo「AI 一键成片」PRD · 马准名</title>
+<meta name="description" content="从 8,223 条自采评论定位痛点，到把「什么算剪砸了」写成 84 条可机械判定的验收。" />
+<style>
+:root{
+  --bg:#fbf9f6; --card:#fff; --ink:#1a1714; --mut:#6b6157; --line:#e0d8cd;
+  --accent:#b4541f; --accent-soft:#fdf1e8; --seal:#8a3d16;
+  --ok:#2f6b47; --warn:#8a6d1f; --warn-bg:#fdf7e3;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --maxw:860px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#14120f; --card:#1c1917; --ink:#ece6de; --mut:#a49a8d; --line:#2f2a24;
+    --accent:#e08b4e; --accent-soft:#2a1e14; --seal:#e08b4e;
+    --ok:#6fbf8f; --warn:#d9b859; --warn-bg:#241f10;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#14120f; --card:#1c1917; --ink:#ece6de; --mut:#a49a8d; --line:#2f2a24;
+  --accent:#e08b4e; --accent-soft:#2a1e14; --seal:#e08b4e;
+  --ok:#6fbf8f; --warn:#d9b859; --warn-bg:#241f10;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+  line-height:1.75;font-size:16px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent}
+a:hover{border-bottom-color:currentColor}
+
+.top{border-bottom:1px solid var(--line);padding:14px 0;font-size:13px;
+  position:sticky;top:0;background:color-mix(in srgb,var(--bg) 92%,transparent);
+  backdrop-filter:blur(8px);z-index:10}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.top .back{color:var(--mut)}
+.tag{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--mut);border:1px solid var(--line);border-radius:99px;padding:3px 10px;white-space:nowrap}
+
+header.hd{padding:clamp(44px,8vw,88px) 0 clamp(28px,5vw,52px)}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--seal);margin:0 0 18px}
+h1{font-size:clamp(28px,5.4vw,44px);line-height:1.24;margin:0 0 20px;letter-spacing:-.01em;font-weight:700}
+.stand{font-size:clamp(16px,2.2vw,18px);color:var(--mut);margin:0 0 26px;max-width:62ch}
+.meta{display:flex;flex-wrap:wrap;gap:8px}
+.meta span{font-size:12px;font-family:var(--mono);color:var(--mut);
+  border:1px solid var(--line);border-radius:5px;padding:4px 9px;background:var(--card)}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:32px 0 0}
+.stat{background:var(--card);padding:18px 16px}
+.stat b{display:block;font-size:26px;line-height:1.1;letter-spacing:-.02em}
+.stat small{display:block;color:var(--mut);font-size:12px;margin-top:6px}
+
+section{padding:clamp(30px,5vw,50px) 0;border-top:1px solid var(--line)}
+h2{font-size:clamp(19px,3vw,25px);line-height:1.35;margin:0 0 8px;letter-spacing:-.005em}
+h2 .n{font-family:var(--mono);font-size:12px;color:var(--seal);display:block;
+  margin-bottom:10px;letter-spacing:.12em}
+.sub{color:var(--mut);font-size:14px;margin:0 0 22px;max-width:64ch}
+p{margin:0 0 15px}
+ul{margin:0 0 15px;padding-left:20px}
+li{margin:0 0 7px}
+strong{font-weight:650}
+
+figure{margin:24px 0}
+figure img{width:100%;height:auto;display:block;border:1px solid var(--line);
+  border-radius:9px;background:var(--card)}
+figcaption{font-size:12.5px;color:var(--mut);margin-top:9px;line-height:1.6}
+
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 18px;
+  border:1px solid var(--line);border-radius:9px;background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:520px}
+th,td{text-align:left;padding:10px 13px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:640;font-size:12.5px;color:var(--mut);letter-spacing:.02em;
+  background:color-mix(in srgb,var(--line) 26%,transparent)}
+tr:last-child td{border-bottom:none}
+td code,p code,li code{font-family:var(--mono);font-size:12.5px;
+  background:var(--accent-soft);padding:1.5px 5px;border-radius:4px;color:var(--seal)}
+
+.call{border-left:3px solid var(--accent);background:var(--accent-soft);
+  padding:14px 18px;border-radius:0 8px 8px 0;margin:20px 0}
+.call p:last-child{margin-bottom:0}
+.warn{border-left:3px solid var(--warn);background:var(--warn-bg);
+  padding:14px 18px;border-radius:0 8px 8px 0;margin:20px 0;font-size:14.5px}
+.warn p:last-child{margin-bottom:0}
+.warn b{color:var(--warn)}
+
+.gate{border:1px solid var(--line);border-radius:9px;background:var(--card);
+  padding:16px 18px;margin:0 0 12px}
+.gate h3{margin:0 0 6px;font-size:15px;display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+.gate h3 em{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--seal);
+  border:1px solid var(--line);border-radius:4px;padding:1px 6px}
+.gate p{margin:0;font-size:14px;color:var(--mut)}
+
+.foot{border-top:1px solid var(--line);padding:34px 0 60px;font-size:13.5px;color:var(--mut)}
+.foot a{color:var(--accent)}
+.foot ul{padding-left:18px}
+@media (max-width:560px){ body{font-size:15.5px} .stat b{font-size:22px} }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="wrap">
+    <a class="back" href="../">← 马准名 · 决策系统档案</a>
+    <span class="tag">Product Requirements · 2026</span>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<header class="hd">
+  <p class="kicker">DJI Mimo · AI 一键成片</p>
+  <h1>这条链路得自己建，不能再挂在 LightCut 上</h1>
+  <p class="stand">
+    大疆握着云台电机指令、IMU、逐帧主体轨迹、Highlight 标记和 GPS 速度曲线——这些是纯视觉推断不出来的拍摄现场真值。
+    但这块能力目前由第三方承担。这份 PRD 论证为什么「元数据 → 剪辑决策」这一层必须第一方自建，
+    并把「什么算剪砸了」先写成可机械判定的验收，再谈功能。
+  </p>
+  <div class="meta">
+    <span>个人项目 · 求职作品</span>
+    <span>产品需求文档 V2.2.1</span>
+    <span>一手用户研究</span>
+    <span>评测协议</span>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><b>8,223</b><small>条自采 App Store 评论<br>6 款 App × 9 国</small></div>
+    <div class="stat"><b>706</b><small>条自采 B 站评论<br>补采中国区样本缺口</small></div>
+    <div class="stat"><b>84</b><small>条分层评测用例<br>二元 Pass / Fail</small></div>
+    <div class="stat"><b>1</b><small>个 MVP 场景<br>运动燃片</small></div>
+  </div>
+</header>
+
+<section>
+  <h2><span class="n">01 — 痛点</span>剪辑能力是差评第一名，而大疆的软件几乎没有付费墙民怨</h2>
+  <p class="sub">证据是自己采的：iTunes 公开接口 8,223 条 + B 站官方评论接口 706 条。原始 CSV/JSON 与采集脚本全部留存，可复跑。</p>
+
+  <p>
+    差评中「剪辑/编辑能力」占 <strong>20.5%</strong>，排第一；连接/传输 16.2%，导出/渲染 9.4%。
+    「拍得多、剪得少、发得慢」这条痛苦链在数据上成立。
+  </p>
+
+  <figure>
+    <img src="assets/pains.png" alt="App Store 差评痛点分布柱状图，剪辑/编辑能力占比最高" />
+    <figcaption>图 1　4,621 条差评的痛点分布：「剪辑/编辑能力」20.5% 居首。</figcaption>
+  </figure>
+
+  <p>
+    更有意思的是反面：<strong>剪映 40%、CapCut 31% 的差评在骂收费，DJI Mimo 只有 1.8%。</strong>
+    竞品的付费墙已经激起集中民怨，而大疆软件还没有——这是变现的空位，不是变现的障碍。
+  </p>
+
+  <figure>
+    <img src="assets/heatmap.png" alt="各 App 痛点对比热力图，订阅付费抱怨在剪映与 CapCut 显著高于 DJI Mimo" />
+    <figcaption>图 2　各 App 痛点热力图：订阅/付费抱怨 剪映 40% / CapCut 31% vs DJI Mimo 1.8%。</figcaption>
+  </figure>
+
+  <p>
+    B 站那 706 条给出了另一个信号：用户「在大疆拍、却把素材导去剪映/影石剪」。
+    原话是「既然最后都要用剪映来剪辑…」。工作流在出片这一步断了。
+  </p>
+
+  <div class="warn">
+    <p><b>样本边界，写在结论旁边。</b>评论存在自选偏差。DJI Mimo 中国区 App Store 样本只有 50 条，
+    所以另开 B 站渠道补采——但<strong>两个渠道口径不可直接横比</strong>。剪映差评分母 154 条，
+    不与 GoPro Quik 的 1,472 条做百分比横比。「剪辑是最大时间黑洞」缺权威一手量化，故不引用网络流传比例。</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">02 — 护城河</span>护城河不是「有数据」，是有视觉拿不到的真值</h2>
+  <p class="sub">纯软件可以从像素反推运镜，但有四类判断它做不了。</p>
+
+  <div class="tw">
+  <table>
+    <thead><tr><th>判断任务</th><th>纯视觉（CapCut / 光流）</th><th>DJI 元数据（ground truth）</th></tr></thead>
+    <tbody>
+      <tr><td>主动精心运镜 vs 手抖位移</td><td>像素位移相似，难分意图</td><td>云台<strong>电机指令 + IMU</strong> 直接给出</td></tr>
+      <tr><td>定位真实速度峰值（燃点）</td><td>只能从画面「看起来快」猜</td><td><strong>GPS/IMU 真实速度曲线</strong>，峰值即燃点</td></tr>
+      <tr><td>横转竖逐帧跟随主体</td><td>事后检测，漂移与丢失常见</td><td><strong>拍摄时已写入逐帧轨迹</strong></td></tr>
+      <tr><td>用户意图（哪一刻重要）</td><td>无从反推</td><td><strong>Highlight 标记</strong> = 明确意图信号</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="call">
+    <p>一句话：大疆的护城河是<strong>拍摄当下的意图与物理真值</strong>，视觉只能事后猜。
+    但这句话必须能被检验——所以它在评测里对应一整组判据（见 §04 的 G2）。G2 不过，这句就是空话。</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">03 — 取舍</span>MVP 只留一个场景：运动燃片</h2>
+  <p class="sub">敢砍，比功能齐全更能说明产品判断。</p>
+
+  <p>
+    用 Osmo Action 拍完，一键产出一条 30 秒、卡点燃向、带速度仪表盘的竖版高光片。
+    选这个场景，是因为它同时用满 Highlight + 速度峰值 + 运动模式——
+    「视觉做不到、元数据能做到」的差异在这里最强，价值一眼可见。
+  </p>
+
+  <p><strong>明确不做</strong>：生成式核心引擎、专业时间线编辑器、独立内容社区，MVP 也不追场景广度。</p>
+
+  <p>
+    <strong>混合素材是高频场景，不是边界态。</strong>素材池里常混手机和 GoPro 片段。
+    做法是以 DJI 素材锚定叙事骨架、非 DJI 素材做视觉降级，确保全程不崩——这一条列为 P0 验收，
+    因为一旦 DJI 素材占比过低，差异化就坍缩成又一个普通成片工具。
+  </p>
+
+  <figure>
+    <img src="assets/swimlane.png" alt="AI 一键成片主流程泳道图，含用户、前端、端侧推理、元数据解析、云端与人工干预分层及异常分支" />
+    <figcaption>图 3　主流程泳道图：异常分支（元数据缺失、主体丢失、端侧超时、混合素材）与主干同样画清。</figcaption>
+  </figure>
+</section>
+
+<section>
+  <h2><span class="n">04 — 评测</span>先写死「什么算剪砸了」，再让模型动手</h2>
+  <p class="sub">判定用二元 Pass/Fail，不用五分制——平均分没有意义，也接不了 CI 门禁。三组全过才算 Pass。</p>
+
+  <div class="gate">
+    <h3>G1 可发布性 <em>Blocker · 4 项</em></h3>
+    <p>时长落在 25–35 秒；无黑帧闪帧与相邻重复镜头；切点与节拍网格偏差 ≤ 80 ms；无失焦、过曝、遮挡穿帮。前三项自动判定，第四项 3 人盲评多数决。</p>
+  </div>
+  <div class="gate">
+    <h3>G2 元数据是否真的被用上 <em>Quality · 3 项 · 全自动</em></h3>
+    <p>速度曲线 Top-3 峰值中 ≥ 2 个落入成片；Highlight 标记片段 100% 入选；有轨迹片段的主体落在竖屏安全框内的帧占比 ≥ 90%。<strong>这一组存在的唯一理由，是检验 §02 那个差异化假设。</strong></p>
+  </div>
+  <div class="gate">
+    <h3>G3 会不会发出去 <em>终判 · 1 项 · 人工盲评</em></h3>
+    <p>只问一句：你会不改一帧直接发出去吗？</p>
+  </div>
+
+  <div class="call">
+    <p><strong>最有价值的样本是 G1、G2 全过而 G3 判否的那一类。</strong>
+    它说明自动指标选错了——这时该回去改 rubric，不是改产品。
+    评测标准和产品目标冲突时改哪一边，这是这套体系里最贵的一条判断。</p>
+  </div>
+
+  <p>
+    <strong>为什么是 84 条而不是 200 条。</strong>成片评测每条要人看 30 秒并判 2 项，
+    人工判定量随条数线性上升。84 条是一个人两天内能跑完整一轮的真实上限。
+  </p>
+
+  <div class="warn">
+    <p><b>这是工程理由，不是统计理由。</b>84 条能被执行完，不等于足以检出处理组与基线的差异。
+    本评测定位为 <code>pilot evaluation</code>。<strong>不可写成「N=84，因此具有统计显著性」</strong>；
+    应报告点估计 + 95% 置信区间，样本小则区间宽，如实写宽，不藏。</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">05 — 变现</span>付费墙必须建在只有元数据能做到的能力上</h2>
+  <p class="sub">用护城河建立了差异化，却没把它变成付费理由，是很多方案的断点。</p>
+
+  <div class="tw">
+  <table>
+    <thead><tr><th>层级</th><th>内容</th><th>为什么愿付</th></tr></thead>
+    <tbody>
+      <tr><td>免费</td><td>端侧一键成片、基础模板、分享</td><td>建立「Mimo 出片好」的心智</td></tr>
+      <tr><td><strong>L1 元数据独有</strong></td><td>专业级逐帧主体跟随裁切、云端运镜重构、跨多天智能长片</td><td><strong>拿不到元数据就做不出</strong></td></tr>
+      <tr><td>L2</td><td>云渲染、生成式补帧与超分（按量计费）</td><td>重算力、高毛利</td></tr>
+      <tr><td>L3</td><td>云存储绑定硬件</td><td>与大码率素材天然绑定</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p>
+    关键取舍：<strong>4K 与去水印不作核心付费墙</strong>——CapCut 也免费给。
+    收费点若落在竞品免费的能力上，差异化就无法变现。
+  </p>
+</section>
+
+<section>
+  <h2><span class="n">06 — 边界</span>这份文档证明不了什么</h2>
+  <p class="sub">写在最显眼的位置，而不是附录。</p>
+  <ul>
+    <li><strong>首轮评测尚未执行。</strong>本文档给的是判据与协议，不是战报。真实通过率、与基线的差值、失败频次分布全部待首轮跑完后产出。</li>
+    <li><strong>没有真实用户，没有上线，没有业务收益。</strong>这是一份产品需求文档，不是一个已发布的功能。</li>
+    <li>G2 的三项判据中，只有「速度峰值命中」基于真实遥测；另两项为构造数据，只验证方法链路跑得通，<strong>不构成效果证据</strong>。</li>
+    <li>市场侧的二手数据（短视频用户规模、创作者经济规模、CapCut MAU、运动相机份额）均标注了来源与可信度；估算与口径分歧如实标注，不洗成确定结论。</li>
+    <li>竞品的订阅转化率与 ARPU 为公开价格与第三方估算，非内部数据。</li>
+  </ul>
+  <div class="call">
+    <p>把限制写清楚不是谦虚，是让上面那些结论有可检验的边界。
+    一个说不清自己证明不了什么的方案，也说不清自己证明了什么。</p>
+  </div>
+</section>
+
+</div>
+
+<footer class="foot">
+  <div class="wrap">
+    <p><strong>材料构成</strong></p>
+    <ul>
+      <li>产品需求文档 V2.2.1（完整版与精简版）</li>
+      <li>用户痛点洞察报告 —— 采集方法、原始数据与图表生成脚本</li>
+      <li>评测体系规范 —— rubric、84 条分层测试集、判定协议与对照组设计</li>
+      <li>单位经济测算、系统泳道图与错误分类/兜底规范</li>
+    </ul>
+    <p style="margin-top:18px">
+      完整文档备索　·　<a href="../">返回作品集</a>　·　<a href="mailto:zhunmingm@gmail.com">zhunmingm@gmail.com</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

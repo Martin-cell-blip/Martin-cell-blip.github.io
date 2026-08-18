@@ -1,0 +1,2606 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="atelier" data-lang="zh">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Zhunming Ma 马准名 · The Decision Ledger 决策台账</title>
+<meta name="description" content="马准名的作品集 — 三个代表项目：DecisionOps AI（AI 产品与 Agent）、电商经营决策模拟盘（经营分析与定价）、平台战略行业研究。AI Product × Business Analytics × Platform Strategy." />
+<meta property="og:title" content="Zhunming Ma 马准名 · The Decision Ledger" />
+<meta property="og:description" content="AI product × business analytics × platform strategy — three representative projects; every figure in the work is verifiable." />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="The Decision Ledger" />
+<meta property="og:url" content="https://zhunmingma-portfolio.vercel.app/" />
+<meta property="og:image" content="https://zhunmingma-portfolio.vercel.app/og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="The Decision Ledger — Zhunming Ma's portfolio: 3 projects, 112,650 order lines, 200 agent evals, 60+ cited sources" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Zhunming Ma 马准名 · The Decision Ledger" />
+<meta name="twitter:description" content="Three representative projects — conclusions are verified, not asserted." />
+<meta name="twitter:image" content="https://zhunmingma-portfolio.vercel.app/og.png" />
+<link rel="canonical" href="https://zhunmingma-portfolio.vercel.app/" />
+<meta name="theme-color" content="#f1e8d8" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='29' fill='%23f1e8d8' stroke='%23b4432f' stroke-width='3'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='30' text-anchor='middle' fill='%232a2119'%3E准%3C/text%3E%3C/svg%3E" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Zhunming Ma","alternateName":"马准名","url":"https://zhunmingma-portfolio.vercel.app/","email":"mailto:zhunmingm@gmail.com","sameAs":["https://github.com/Martin-cell-blip","https://linkedin.com/in/zhunming-ma","https://zhunmingma.vercel.app/"],"knowsAbout":["Data Analytics","LLM Agents","Financial Reconciliation","Audit","Industry Research"],"alumniOf":[{"@type":"CollegeOrUniversity","name":"University College Dublin"},{"@type":"CollegeOrUniversity","name":"Johns Hopkins University"},{"@type":"CollegeOrUniversity","name":"Shandong University"}]}
+</script>
+
+<!-- Fonts — 自托管（原为 Google Fonts CDN，在中国大陆被墙会导致整站排版塌回系统字体）
+     woff2 全部本地，@font-face 内联在下方 <style> 顶部，unicode-range 保证按需下载 -->
+<link rel="preload" href="fonts/PlayfairDisplay-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="fonts/SpaceMono-400-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="fonts/NotoSerifSC-500-cjk500.woff2" as="font" type="font/woff2" crossorigin />
+
+<style>
+/* ===== 自托管字体 ===== */
+@font-face{
+  font-family: 'Playfair Display';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/PlayfairDisplay-italic-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face{
+  font-family: 'Playfair Display';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/PlayfairDisplay-italic-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face{
+  font-family: 'Playfair Display';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url(fonts/PlayfairDisplay-italic-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face{
+  font-family: 'Playfair Display';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url(fonts/PlayfairDisplay-italic-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face{
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/PlayfairDisplay-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face{
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/PlayfairDisplay-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face{
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(fonts/PlayfairDisplay-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face{
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(fonts/PlayfairDisplay-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face{
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(fonts/PlayfairDisplay-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face{
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(fonts/PlayfairDisplay-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face{
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(fonts/PlayfairDisplay-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face{
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(fonts/PlayfairDisplay-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face{
+  font-family: 'La Belle Aurore';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/LaBelleAurore-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face{
+  font-family: 'La Belle Aurore';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/LaBelleAurore-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face{
+  font-family: 'Space Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/SpaceMono-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face{
+  font-family: 'Space Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/SpaceMono-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face{
+  font-family: 'Space Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(fonts/SpaceMono-700-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face{
+  font-family: 'Space Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(fonts/SpaceMono-700-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/Inter-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/Inter-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(fonts/Inter-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(fonts/Inter-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(fonts/Inter-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(fonts/Inter-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face{
+  font-family: 'Noto Serif SC';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(fonts/NotoSerifSC-500-cjk500.woff2) format('woff2');
+  unicode-range: U+3001-3002, U+300c-300d, U+4e00, U+4e03, U+4e07, U+4e09-4e0b, U+4e0d-4e0e, U+4e1a, U+4e1c, U+4e24, U+4e2a, U+4e2d, U+4e3a-4e3b, U+4e48-4e49, U+4e4b, U+4e5d, U+4e5f-4e60, U+4e86, U+4e8b, U+4e8e, U+4e92, U+4e94, U+4e9b, U+4ea4, U+4ea7, U+4eba, U+4ebf-4ec1, U+4ec5, U+4eca, U+4ece, U+4ed3, U+4ed8, U+4ee3-4ee5, U+4ef6-4ef7, U+4efb, U+4efd, U+4f01, U+4f19, U+4f46, U+4f4d, U+4f4f, U+4f53, U+4f55, U+4f5c, U+4f60, U+4f8b, U+4fa6, U+4fc3, U+4fdd, U+4fe1, U+4fee, U+5012, U+5019, U+503a, U+503c, U+5047, U+505a, U+507f, U+50cf, U+5143, U+5148, U+515c, U+5165, U+5168, U+516c, U+5171, U+5173-5174, U+5177, U+5185, U+518d, U+5199, U+51b2-51b3, U+51c6, U+51cf, U+51fa-51fb, U+51fd, U+5206-5207, U+5217, U+5219, U+521b, U+5224, U+5229, U+522b, U+5230, U+5236, U+524d, U+5269-526a, U+529b, U+529e, U+52a0-52a1, U+52a8-52a9, U+5316, U+533a, U+5343, U+5347, U+534f, U+5355, U+5370, U+5373, U+5382, U+5386, U+538b, U+53bb, U+53c2, U+53c9-53ca, U+53cc, U+53d1, U+53d6, U+53e0, U+53e3, U+53e5-53e6, U+53ef-53f0, U+53f7-53f8, U+5404, U+5408, U+540c-540e, U+5411, U+544a, U+5468, U+547d, U+548c, U+54a8, U+54c1, U+54cd, U+54ea, U+552e, U+5546, U+56db, U+56de, U+56e0, U+56e2, U+56ed, U+56f4, U+56fa, U+56fd-56fe, U+5728, U+5730, U+573a, U+5747, U+574f, U+5757, U+5782, U+578b, U+57df, U+57f9-57fa, U+5851, U+589e, U+58eb, U+5907, U+590d, U+5916, U+591a, U+5927, U+5929, U+5934, U+5956-5957, U+597d, U+5982, U+59cb, U+5b50, U+5b57-5b58, U+5b63, U+5b66, U+5b83, U+5b89, U+5b8c, U+5b9a, U+5b9d-5b9e, U+5ba1, U+5bb6, U+5bb9, U+5bbd, U+5bf9, U+5bfb-5bfc, U+5c06, U+5c0f, U+5c11, U+5c31, U+5c3d, U+5c42, U+5c45, U+5c4a, U+5c55, U+5c5e, U+5c71, U+5c97, U+5de5, U+5dee, U+5df2, U+5e02, U+5e06, U+5e26-5e27, U+5e38, U+5e73-5e74, U+5e76, U+5e7f, U+5e8f, U+5e93-5e95, U+5ea6-5ea7, U+5efa, U+5f00, U+5f02-5f04, U+5f0f, U+5f15, U+5f20, U+5f3a, U+5f52-5f53, U+5f55, U+5f71, U+5f84, U+5f97, U+5faa, U+5fae, U+5fc3, U+5fc5, U+5fd8, U+6001, U+600e, U+6027, U+60c5, U+60ef, U+610f, U+611f, U+6210-6211, U+6216, U+6218, U+623f-6240, U+624b, U+6253, U+6267, U+6279, U+627e, U+6280, U+628a, U+6295-6296, U+62a5, U+62ab, U+62c5-62c6, U+62cd, U+62d2, U+62df, U+6301-6302, U+6307, U+6309, U+6362, U+636e, U+6388, U+6392, U+63a2, U+63a5, U+63a7-63a8, U+63d0, U+642d, U+643a, U+6444, U+6458, U+6491, U+64ad, U+64b0, U+64c5, U+64ce, U+652f, U+6536, U+653e-653f, U+6548, U+654f, U+6559, U+6563, U+6570, U+6574, U+6587, U+6599, U+65ad, U+65af, U+65b9, U+65c5, U+65e5-65e6, U+65f6, U+660e, U+662f, U+663e, U+666e-666f, U+66b4, U+66f4, U+66fe, U+6700, U+6708-6709, U+671f, U+672a, U+672c, U+672f, U+673a, U+6743, U+675f, U+6761, U+6765, U+677f, U+6784, U+6790, U+6797, U+679c, U+67a2, U+67b6, U+67cf, U+67d3, U+67e5, U+6807, U+680f, U+6821, U+6837-6838, U+683c, U+6848, U+6863, U+695a, U+6982, U+6a21, U+6b21-6b22, U+6b3e, U+6b63, U+6b65, U+6bb5, U+6bcd, U+6bcf, U+6bd4, U+6c14, U+6c42, U+6c61, U+6c70, U+6c89, U+6c9f, U+6ca1, U+6cd5, U+6ce8, U+6d3b, U+6d41, U+6d4b, U+6d4e-6d4f, U+6d88, U+6da6, U+6dd8, U+6e05, U+6e20, U+6e38, U+6e90, U+6eaf, U+6ed1, U+6f14, U+70b9, U+7247, U+7269, U+72b6, U+72ec, U+732e, U+7387, U+73af-73b0, U+7406, U+751f, U+7528, U+7535, U+753b, U+7559, U+7565, U+7684, U+7686, U+76c8, U+76d1, U+76d6, U+76d8, U+76db, U+76df, U+76ee, U+76f4, U+76f8, U+76fe, U+770b, U+771f, U+7740, U+77db, U+7801, U+7814, U+7855, U+786e, U+793a, U+793c, U+79cd, U+79fb, U+7a0b, U+7a76, U+7a7a, U+7a7f, U+7acb, U+7ad9, U+7ae0, U+7aef, U+7b2c, U+7b49, U+7b54, U+7b56, U+7b5b, U+7b80, U+7b97, U+7ba1, U+7bb1, U+7c7b, U+7cbe, U+7cca, U+7cfb, U+7d22, U+7d2f, U+7ea2, U+7ea6-7ea7, U+7ebf, U+7ec4, U+7ec6-7ec8, U+7ecf, U+7ed3, U+7ed5, U+7ed9, U+7edd, U+7edf, U+7eed, U+7f16, U+7f29, U+7f3a, U+7f72, U+7ff0, U+7ffb, U+800c, U+804a, U+804c, U+8054, U+80a1, U+80b2, U+80cc, U+80f6, U+80fd, U+81ea, U+81f3-81f4, U+8206, U+820d, U+8282, U+82f1, U+8303, U+8350, U+83b7, U+8425, U+843d, U+8463, U+85cf, U+884c, U+8868, U+88ab, U+88c1, U+8981, U+8986, U+89c2, U+89c4, U+89c6, U+89c8, U+89d2, U+89e3, U+8a00, U+8b66, U+8ba1-8ba2, U+8ba9, U+8bae, U+8bb2, U+8bb8, U+8bba, U+8bbc, U+8bbe, U+8bc1, U+8bc4, U+8bc6, U+8bc9-8bca, U+8bd1, U+8bdd, U+8be2, U+8bed, U+8bfb, U+8bfe, U+8c01, U+8c03, U+8d1f, U+8d21-8d23, U+8d26, U+8d28, U+8d2f, U+8d37, U+8d39, U+8d44, U+8d70, U+8d77, U+8db3, U+8ddf, U+8de8, U+8def, U+8df3, U+8df5, U+8e2a, U+8f6c, U+8f6e, U+8f7d, U+8f85, U+8f93, U+8fc1, U+8fc7, U+8fce, U+8fd0-8fd1, U+8fd8-8fd9, U+8fdb, U+8fde, U+8fed, U+8ff0, U+9000, U+9002, U+9009, U+900f-9010, U+901a, U+9053, U+90a3, U+90ae, U+90e8, U+90fd, U+914d, U+91c7, U+91ca, U+91cc-91cd, U+91cf, U+91d1, U+94f6, U+94fe, U+9500, U+951a, U+952e, U+957f, U+95e8, U+95ed-95ee, U+95f4, U+9605, U+961f, U+9644, U+964c-964d, U+9650, U+9664, U+9669, U+96c6, U+9700, U+970d, U+9732, U+975e, U+9762, U+97f3, U+9875-9876, U+9879, U+987b, U+9884, U+9886, U+9898, U+989d, U+98ce, U+9a6c, U+9a8c, U+9ad8, U+9f50, U+9f84, U+ff08-ff09, U+ff0c, U+ff1a-ff1b;
+}
+@font-face{
+  font-family: 'Noto Serif SC';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(fonts/NotoSerifSC-600-cjk600.woff2) format('woff2');
+  unicode-range: U+3001-3002, U+300c-300d, U+4e00, U+4e03, U+4e07, U+4e09-4e0b, U+4e0d-4e0e, U+4e1a, U+4e1c, U+4e24, U+4e2a, U+4e2d, U+4e3a-4e3b, U+4e48-4e49, U+4e4b, U+4e5d, U+4e5f-4e60, U+4e86, U+4e8b, U+4e8e, U+4e92, U+4e94, U+4e9b, U+4ea4, U+4ea7, U+4eba, U+4ebf-4ec1, U+4ec5, U+4eca, U+4ece, U+4ed3, U+4ed8, U+4ee3-4ee5, U+4ef6-4ef7, U+4efb, U+4efd, U+4f01, U+4f19, U+4f46, U+4f4d, U+4f4f, U+4f53, U+4f55, U+4f5c, U+4f60, U+4f8b, U+4fa6, U+4fc3, U+4fdd, U+4fe1, U+4fee, U+5012, U+5019, U+503a, U+503c, U+5047, U+505a, U+507f, U+50cf, U+5143, U+5148, U+515c, U+5165, U+5168, U+516c, U+5171, U+5173-5174, U+5177, U+5185, U+518d, U+5199, U+51b2-51b3, U+51c6, U+51cf, U+51fa-51fb, U+51fd, U+5206-5207, U+5217, U+5219, U+521b, U+5224, U+5229, U+522b, U+5230, U+5236, U+524d, U+5269-526a, U+529b, U+529e, U+52a0-52a1, U+52a8-52a9, U+5316, U+533a, U+5343, U+5347, U+534f, U+5355, U+5370, U+5373, U+5382, U+5386, U+538b, U+53bb, U+53c2, U+53c9-53ca, U+53cc, U+53d1, U+53d6, U+53e0, U+53e3, U+53e5-53e6, U+53ef-53f0, U+53f7-53f8, U+5404, U+5408, U+540c-540e, U+5411, U+544a, U+5468, U+547d, U+548c, U+54a8, U+54c1, U+54cd, U+54ea, U+552e, U+5546, U+56db, U+56de, U+56e0, U+56e2, U+56ed, U+56f4, U+56fa, U+56fd-56fe, U+5728, U+5730, U+573a, U+5747, U+574f, U+5757, U+5782, U+578b, U+57df, U+57f9-57fa, U+5851, U+589e, U+58eb, U+5907, U+590d, U+5916, U+591a, U+5927, U+5929, U+5934, U+5956-5957, U+597d, U+5982, U+59cb, U+5b50, U+5b57-5b58, U+5b63, U+5b66, U+5b83, U+5b89, U+5b8c, U+5b9a, U+5b9d-5b9e, U+5ba1, U+5bb6, U+5bb9, U+5bbd, U+5bf9, U+5bfb-5bfc, U+5c06, U+5c0f, U+5c11, U+5c31, U+5c3d, U+5c42, U+5c45, U+5c4a, U+5c55, U+5c5e, U+5c71, U+5c97, U+5de5, U+5dee, U+5df2, U+5e02, U+5e06, U+5e26-5e27, U+5e38, U+5e73-5e74, U+5e76, U+5e7f, U+5e8f, U+5e93-5e95, U+5ea6-5ea7, U+5efa, U+5f00, U+5f02-5f04, U+5f0f, U+5f15, U+5f20, U+5f3a, U+5f52-5f53, U+5f55, U+5f71, U+5f84, U+5f97, U+5faa, U+5fae, U+5fc3, U+5fc5, U+5fd8, U+6001, U+600e, U+6027, U+60c5, U+60ef, U+610f, U+611f, U+6210-6211, U+6216, U+6218, U+623f-6240, U+624b, U+6253, U+6267, U+6279, U+627e, U+6280, U+628a, U+6295-6296, U+62a5, U+62ab, U+62c5-62c6, U+62cd, U+62d2, U+62df, U+6301-6302, U+6307, U+6309, U+6362, U+636e, U+6388, U+6392, U+63a2, U+63a5, U+63a7-63a8, U+63d0, U+642d, U+643a, U+6444, U+6458, U+6491, U+64ad, U+64b0, U+64c5, U+64ce, U+652f, U+6536, U+653e-653f, U+6548, U+654f, U+6559, U+6563, U+6570, U+6574, U+6587, U+6599, U+65ad, U+65af, U+65b9, U+65c5, U+65e5-65e6, U+65f6, U+660e, U+662f, U+663e, U+666e-666f, U+66b4, U+66f4, U+66fe, U+6700, U+6708-6709, U+671f, U+672a, U+672c, U+672f, U+673a, U+6743, U+675f, U+6761, U+6765, U+677f, U+6784, U+6790, U+6797, U+679c, U+67a2, U+67b6, U+67cf, U+67d3, U+67e5, U+6807, U+680f, U+6821, U+6837-6838, U+683c, U+6848, U+6863, U+695a, U+6982, U+6a21, U+6b21-6b22, U+6b3e, U+6b63, U+6b65, U+6bb5, U+6bcd, U+6bcf, U+6bd4, U+6c14, U+6c42, U+6c61, U+6c70, U+6c89, U+6c9f, U+6ca1, U+6cd5, U+6ce8, U+6d3b, U+6d41, U+6d4b, U+6d4e-6d4f, U+6d88, U+6da6, U+6dd8, U+6e05, U+6e20, U+6e38, U+6e90, U+6eaf, U+6ed1, U+6f14, U+70b9, U+7247, U+7269, U+72b6, U+72ec, U+732e, U+7387, U+73af-73b0, U+7406, U+751f, U+7528, U+7535, U+753b, U+7559, U+7565, U+7684, U+7686, U+76c8, U+76d1, U+76d6, U+76d8, U+76db, U+76df, U+76ee, U+76f4, U+76f8, U+76fe, U+770b, U+771f, U+7740, U+77db, U+7801, U+7814, U+7855, U+786e, U+793a, U+793c, U+79cd, U+79fb, U+7a0b, U+7a76, U+7a7a, U+7a7f, U+7acb, U+7ad9, U+7ae0, U+7aef, U+7b2c, U+7b49, U+7b54, U+7b56, U+7b5b, U+7b80, U+7b97, U+7ba1, U+7bb1, U+7c7b, U+7cbe, U+7cca, U+7cfb, U+7d22, U+7d2f, U+7ea2, U+7ea6-7ea7, U+7ebf, U+7ec4, U+7ec6-7ec8, U+7ecf, U+7ed3, U+7ed5, U+7ed9, U+7edd, U+7edf, U+7eed, U+7f16, U+7f29, U+7f3a, U+7f72, U+7ff0, U+7ffb, U+800c, U+804a, U+804c, U+8054, U+80a1, U+80b2, U+80cc, U+80f6, U+80fd, U+81ea, U+81f3-81f4, U+8206, U+820d, U+8282, U+82f1, U+8303, U+8350, U+83b7, U+8425, U+843d, U+8463, U+85cf, U+884c, U+8868, U+88ab, U+88c1, U+8981, U+8986, U+89c2, U+89c4, U+89c6, U+89c8, U+89d2, U+89e3, U+8a00, U+8b66, U+8ba1-8ba2, U+8ba9, U+8bae, U+8bb2, U+8bb8, U+8bba, U+8bbc, U+8bbe, U+8bc1, U+8bc4, U+8bc6, U+8bc9-8bca, U+8bd1, U+8bdd, U+8be2, U+8bed, U+8bfb, U+8bfe, U+8c01, U+8c03, U+8d1f, U+8d21-8d23, U+8d26, U+8d28, U+8d2f, U+8d37, U+8d39, U+8d44, U+8d70, U+8d77, U+8db3, U+8ddf, U+8de8, U+8def, U+8df3, U+8df5, U+8e2a, U+8f6c, U+8f6e, U+8f7d, U+8f85, U+8f93, U+8fc1, U+8fc7, U+8fce, U+8fd0-8fd1, U+8fd8-8fd9, U+8fdb, U+8fde, U+8fed, U+8ff0, U+9000, U+9002, U+9009, U+900f-9010, U+901a, U+9053, U+90a3, U+90ae, U+90e8, U+90fd, U+914d, U+91c7, U+91ca, U+91cc-91cd, U+91cf, U+91d1, U+94f6, U+94fe, U+9500, U+951a, U+952e, U+957f, U+95e8, U+95ed-95ee, U+95f4, U+9605, U+961f, U+9644, U+964c-964d, U+9650, U+9664, U+9669, U+96c6, U+9700, U+970d, U+9732, U+975e, U+9762, U+97f3, U+9875-9876, U+9879, U+987b, U+9884, U+9886, U+9898, U+989d, U+98ce, U+9a6c, U+9a8c, U+9ad8, U+9f50, U+9f84, U+ff08-ff09, U+ff0c, U+ff1a-ff1b;
+}
+
+/* ============================================================
+   DESIGN TOKENS — shared language with zhunmingma.vercel.app
+   ============================================================ */
+:root{
+  --font-display:'Playfair Display','Noto Serif SC',Georgia,serif;
+  --font-script:'La Belle Aurore',cursive;
+  --font-mono:'Space Mono',ui-monospace,monospace;
+  --font-body:'Inter','PingFang SC','Microsoft YaHei',system-ui,sans-serif;
+
+  --ease-out:cubic-bezier(.22,1,.36,1);
+  --ease-inout:cubic-bezier(.76,0,.24,1);
+
+  --maxw:1440px;
+  --gutter:clamp(20px,5vw,80px);
+  --nav-h:74px;
+
+  --z-grain:9; --z-nav:60; --z-cursor:120; --z-preloader:200;
+}
+html[data-theme="atelier"]{
+  --bg:#f1e8d8; --bg-2:#e9dfcb; --paper:#fbf5ea;
+  --ink:#2a2119; --ink-soft:#5f5347; --ink-faint:#8c8072;
+  --line:rgba(42,33,25,.14); --line-strong:rgba(42,33,25,.28);
+  --card:#fbf5ea;
+  --card-shadow:26px 30px 60px -30px rgba(60,42,26,.55),0 2px 6px rgba(60,42,26,.12);
+  --wash-1:#d98e7a; --wash-2:#8fa07e; --wash-3:#d8a24a; --wash-4:#c98a86;
+  --wash-alpha:.30; --grain-alpha:.05; --grain-blend:multiply;
+  --seal:#b4432f;
+  --shadow-float:0 16px 36px -26px rgba(60,42,26,.55),0 2px 6px rgba(60,42,26,.10);
+  --tint-seal:10%;
+}
+html[data-theme="nocturne"]{
+  --bg:#161210; --bg-2:#1d1815; --paper:#1d1712;
+  --ink:#f2ebdd; --ink-soft:#c3b7a5; --ink-faint:#8b8072;
+  --line:rgba(240,233,221,.14); --line-strong:rgba(240,233,221,.30);
+  --card:#1d1712;
+  --card-shadow:26px 34px 70px -30px rgba(0,0,0,.8),0 2px 8px rgba(0,0,0,.5);
+  --wash-1:#e39a83; --wash-2:#9fb389; --wash-3:#e6b25a; --wash-4:#d99b95;
+  --wash-alpha:.20; --grain-alpha:.055; --grain-blend:screen;
+  --seal:#e06a4e;
+  --shadow-float:0 16px 36px -22px rgba(0,0,0,.85),0 2px 8px rgba(0,0,0,.5);
+  --tint-seal:22%;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;overflow-x:clip;scroll-behavior:smooth;scroll-padding-top:84px}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:var(--font-body);font-weight:400;line-height:1.65;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+  transition:background .8s var(--ease-out),color .8s var(--ease-out);
+}
+body.no-scroll{overflow:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;color:inherit;background:none;border:none;cursor:pointer}
+::selection{background:var(--wash-1);color:#fff}
+:focus-visible{outline:2px solid var(--wash-1);outline-offset:3px;border-radius:2px}
+@media (prefers-reduced-motion:reduce){
+  .grain{animation:none}
+  .scrollhint i::after{animation:none}
+  html{scroll-behavior:auto}
+  *{transition-duration:.01ms!important}
+}
+.nav-links a.active{color:var(--seal)}
+.nav-links a.active::after{background:var(--seal);transform:scaleX(1);transform-origin:left}
+
+/* bilingual toggle — CSS driven */
+html[data-lang="zh"] .i-en{display:none!important}
+html[data-lang="en"] .i-zh{display:none!important}
+
+/* ambient washes + film grain */
+.ambience{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+/* perf: no filter blur, no blend mode — plain alpha layers composite for free */
+.ambience .wash{position:absolute;border-radius:50%;opacity:var(--wash-alpha);transform:translateZ(0)}
+.wash.w1{width:46vw;height:46vw;left:-8vw;top:-6vw;background:radial-gradient(circle at 30% 30%,var(--wash-1) 0%,transparent 70%)}
+.wash.w2{width:52vw;height:52vw;right:-12vw;top:12vh;background:radial-gradient(circle at 60% 40%,var(--wash-2) 0%,transparent 68%)}
+.wash.w3{width:40vw;height:40vw;left:14vw;bottom:-14vw;background:radial-gradient(circle at 50% 50%,var(--wash-3) 0%,transparent 70%)}
+.wash.w4{width:38vw;height:38vw;right:6vw;bottom:2vh;background:radial-gradient(circle at 40% 60%,var(--wash-4) 0%,transparent 70%)}
+.grain{
+  position:fixed;inset:-25%;z-index:var(--z-grain);pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity:var(--grain-alpha);
+  animation:grain 6s steps(5) infinite;
+  will-change:transform;transform:translateZ(0);
+}
+@keyframes grain{
+  0%,100%{transform:translate(0,0)}10%{transform:translate(-4%,-4%)}
+  30%{transform:translate(3%,-6%)}50%{transform:translate(-5%,5%)}
+  70%{transform:translate(6%,3%)}90%{transform:translate(-3%,6%)}
+}
+main{position:relative;z-index:1}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav{
+  position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:var(--z-nav);
+  display:flex;align-items:center;justify-content:space-between;padding:0 var(--gutter);
+  transition:transform .5s var(--ease-out),background .5s var(--ease-out);
+}
+.nav.scrolled{background:color-mix(in srgb,var(--bg) 95%,transparent);border-bottom:1px solid var(--line)}
+.nav.hidden{transform:translateY(-105%)}
+.nav .brand{font-family:var(--font-script);font-size:1.9rem;line-height:1;display:flex;align-items:center;gap:.5rem;white-space:nowrap}
+.nav .brand .dot{width:7px;height:7px;border-radius:50%;background:var(--wash-1);display:inline-block}
+.nav-right{display:flex;align-items:center;gap:clamp(14px,2vw,30px)}
+.nav-links{display:flex;gap:clamp(14px,2vw,30px)}
+.nav-links a{
+  font-family:var(--font-mono);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--ink-soft);position:relative;padding:6px 0;transition:color .3s;
+}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease-out)}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
+.nav .divider{width:1px;height:20px;background:var(--line-strong)}
+.ctrl{
+  font-family:var(--font-mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-soft);display:inline-flex;align-items:center;gap:6px;
+  border:1px solid var(--line-strong);border-radius:40px;padding:8px 12px;min-height:36px;
+  transition:color .3s,border-color .3s,background .3s;
+}
+.ctrl:hover{color:var(--ink);border-color:var(--ink)}
+.ctrl svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.6}
+.lang b{color:var(--ink)}
+.lang span{opacity:.5}
+.burger{display:none;width:40px;height:40px;border:1px solid var(--line-strong);border-radius:50%;align-items:center;justify-content:center;flex-direction:column;gap:4px}
+.burger i{width:15px;height:1.4px;background:var(--ink);transition:.35s var(--ease-out)}
+.burger.open i:nth-child(1){transform:translateY(5.4px) rotate(45deg)}
+.burger.open i:nth-child(2){transform:translateY(-5.4px) rotate(-45deg)}
+.mmenu{
+  position:fixed;inset:0;z-index:55;background:var(--bg);display:flex;flex-direction:column;
+  justify-content:center;gap:8px;padding:0 var(--gutter);
+  opacity:0;pointer-events:none;transition:opacity .4s var(--ease-out);
+}
+.mmenu.open{opacity:1;pointer-events:auto}
+.mmenu a{font-family:var(--font-display);font-size:clamp(2rem,9vw,3.2rem);padding:10px 0;border-bottom:1px solid var(--line)}
+.mmenu a em{font-family:var(--font-mono);font-style:normal;font-size:.8rem;color:var(--ink-faint);vertical-align:super;margin-left:10px}
+
+/* ============================================================
+   SHARED SECTION FURNITURE
+   ============================================================ */
+.sect{max-width:var(--maxw);margin:0 auto;padding:clamp(80px,14vh,150px) var(--gutter) 0}
+.sec-head{display:flex;align-items:baseline;gap:clamp(16px,3vw,40px);flex-wrap:wrap;margin-bottom:clamp(14px,3vh,30px)}
+.sec-head .no{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.3em;color:var(--ink-faint)}
+.sec-head h2{
+  font-family:var(--font-display);font-weight:500;font-size:clamp(2rem,5vw,3.8rem);
+  line-height:1.08;letter-spacing:-.01em;
+}
+.sec-head h2 em{font-style:italic;font-weight:400;color:var(--ink-soft)}
+.sec-sub{max-width:64ch;color:var(--ink-soft);font-size:clamp(.95rem,1.3vw,1.06rem);margin-bottom:clamp(30px,6vh,60px)}
+.rule{height:1px;background:var(--line);margin-top:clamp(18px,3vh,28px)}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  min-height:100svh;position:relative;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;text-align:center;
+  padding:calc(var(--nav-h) + 4vh) var(--gutter) 10vh;
+}
+.hero .kicker{
+  font-family:var(--font-mono);font-size:.72rem;letter-spacing:.4em;text-transform:uppercase;
+  color:var(--ink-faint);margin-bottom:clamp(20px,4vh,42px);
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;
+}
+.hero .kicker .ln{width:34px;height:1px;background:var(--line-strong)}
+.hero .sig{font-family:var(--font-script);font-size:clamp(1.7rem,4vw,2.7rem);color:var(--ink-soft);margin-bottom:.4rem}
+.hero h1{
+  font-family:var(--font-display);font-weight:500;
+  font-size:clamp(2rem,5.4vw,4.9rem);line-height:1.14;letter-spacing:-.01em;
+  color:var(--ink);max-width:24ch;
+}
+.hero h1 em{font-style:italic;font-weight:400}
+.hero h1 .line{display:block;overflow:hidden;padding:.04em 0}
+.hero h1 .line>span{display:inline-block;will-change:transform}
+.hero .role{
+  font-family:var(--font-mono);font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ink-faint);margin-top:clamp(18px,3.4vh,34px);
+}
+.hero .cta{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:clamp(26px,5vh,50px)}
+.btn{
+  font-family:var(--font-mono);font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:10px;
+  border:1px solid var(--line-strong);border-radius:60px;padding:15px 30px;
+  transition:background .4s var(--ease-out),color .4s,border-color .4s;position:relative;overflow:hidden;
+}
+.btn:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn.solid{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn.solid:hover{background:transparent;color:var(--ink)}
+.hero .stats{
+  display:flex;gap:clamp(22px,5vw,70px);flex-wrap:wrap;justify-content:center;
+  margin-top:clamp(40px,8vh,80px);
+}
+.stat{text-align:center}
+.stat b{font-family:var(--font-display);font-weight:500;font-size:clamp(1.7rem,3.4vw,2.7rem);display:block;line-height:1.1}
+.stat small{font-family:var(--font-mono);font-size:.64rem;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-faint)}
+.scrollhint{
+  position:absolute;bottom:4.5vh;left:50%;transform:translateX(-50%);
+  font-family:var(--font-mono);font-size:.62rem;letter-spacing:.34em;text-transform:uppercase;color:var(--ink-faint);
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+}
+.scrollhint i{width:1px;height:44px;background:var(--line-strong);position:relative;overflow:hidden;display:block}
+.scrollhint i::after{content:'';position:absolute;left:0;top:-100%;width:100%;height:100%;background:var(--ink);animation:drip 2.2s var(--ease-inout) infinite}
+@keyframes drip{0%{top:-100%}55%{top:0}100%{top:100%}}
+
+/* ============================================================
+   WORK — categorised card modules (homage: kayali123 / atelier voice)
+   ============================================================ */
+.cat{margin-top:clamp(38px,7vh,66px)}
+.cat:first-of-type{margin-top:0}
+.cat-head{display:flex;align-items:baseline;gap:clamp(12px,1.6vw,20px);flex-wrap:wrap}
+.cat-head h3{font-family:var(--font-display);font-weight:600;font-size:clamp(1.5rem,2.7vw,2.15rem);letter-spacing:-.01em}
+.cat-count{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--seal)}
+.cat-sub{color:var(--ink-soft);font-size:.95rem;margin:8px 0 clamp(18px,3vh,26px)}
+.cat-sub a{font-weight:600;color:var(--ink);border-bottom:1px solid var(--line-strong);transition:border-color .3s}
+.cat-sub a:hover{border-color:var(--ink)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));gap:clamp(16px,2.2vw,26px)}
+.card{
+  background:var(--paper);border:1px solid var(--line);border-radius:16px;
+  padding:clamp(20px,2.6vw,28px);display:flex;flex-direction:column;gap:13px;position:relative;
+  transition:transform .5s var(--ease-out),box-shadow .5s,border-color .4s;
+}
+.card:hover{transform:translateY(-6px);box-shadow:var(--card-shadow);border-color:var(--line-strong)}
+.card.featured{border:1.5px solid color-mix(in srgb,var(--seal) 55%,transparent)}
+.card.featured:hover{border-color:var(--seal)}
+.card .tile{
+  width:46px;height:46px;border-radius:13px;display:grid;place-items:center;font-size:1.3rem;line-height:1;
+  background:color-mix(in srgb,var(--tile,var(--wash-1)) 26%,var(--paper));
+  border:1px solid color-mix(in srgb,var(--tile,var(--wash-1)) 36%,transparent);
+  transition:transform .45s var(--ease-out);
+}
+.card:hover .tile{transform:rotate(-6deg) scale(1.07)}
+.card h4{font-family:var(--font-display);font-style:italic;font-weight:500;font-size:1.22rem;line-height:1.28}
+.card>p{color:var(--ink-soft);font-size:.9rem;flex:1}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chips span{
+  font-family:var(--font-mono);font-size:.6rem;letter-spacing:.08em;
+  border:1px solid var(--line);border-radius:30px;padding:4px 10px;color:var(--ink-soft);
+  background:color-mix(in srgb,var(--bg) 44%,transparent);
+}
+.card .figures{
+  font-family:var(--font-mono);font-size:.64rem;letter-spacing:.1em;color:var(--ink-faint);
+  border-top:1px dashed var(--line);padding-top:12px;
+}
+.card .figures b{color:var(--ink);font-weight:700}
+/* ---- 项目缘由叙述（2026-08-18；由标签式三问改写为自然段） ---- */
+.card .rationale{
+  margin:2px 0 4px;padding:0 0 0 14px;
+  border-left:2px solid color-mix(in srgb,var(--seal) 32%,transparent);
+  font-size:.845rem;line-height:1.72;color:var(--ink-soft)
+}
+.card .rationale b{color:var(--ink);font-weight:640}
+.card .rationale .caveat{color:var(--ink-soft);opacity:.82;font-style:italic}
+.card-links{display:flex;gap:clamp(14px,1.8vw,22px);flex-wrap:wrap}
+.card-links a,.card-links .na{
+  font-family:var(--font-mono);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);
+  position:relative;padding:3px 0;transition:color .3s;
+}
+.card-links a::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:1px;background:var(--seal);transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease-out)}
+.card-links a:hover{color:var(--ink)}
+.card-links a:hover::after{transform:scaleX(1);transform-origin:left}
+.card-links .na{border-bottom:1px dashed var(--line-strong);cursor:default}
+/* de-emphasised experiment cards */
+.card.mini{padding:clamp(16px,2vw,22px);gap:10px}
+.card.mini .tile{width:38px;height:38px;border-radius:11px;font-size:1.05rem}
+.card.mini h4{font-size:1.02rem;font-style:normal;font-family:var(--font-body);font-weight:600}
+.card.mini>p{font-size:.84rem}
+.card.mini .chips span{font-size:.56rem;padding:3px 8px}
+
+/* ============================================================
+   SKILLS — index cards
+   ============================================================ */
+.neq{font-family:Georgia,'Times New Roman',serif;font-style:normal}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:clamp(18px,2.6vw,30px)}
+.skill{
+  background:var(--paper);border:1px solid var(--line);border-top:2px solid var(--ink);
+  padding:clamp(22px,3vw,32px) clamp(20px,2.6vw,30px);position:relative;overflow:hidden;
+  transition:transform .5s var(--ease-out),box-shadow .5s;
+}
+.skill:nth-child(even){border-top-color:var(--wash-1)}
+.skill:hover{transform:translateY(-6px);box-shadow:var(--card-shadow)}
+.skill .roman{
+  position:absolute;right:14px;top:2px;font-family:var(--font-display);font-style:italic;
+  font-size:4.6rem;line-height:1;opacity:.07;pointer-events:none;
+}
+.skill h4{font-family:var(--font-display);font-weight:600;font-size:1.14rem;margin-bottom:4px}
+.skill .en-sub{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);display:block;margin-bottom:16px}
+.skill ul{list-style:none}
+.skill li{
+  font-size:.9rem;color:var(--ink-soft);padding:8px 0 8px 18px;position:relative;
+  border-bottom:1px dashed var(--line);
+}
+.skill li:last-child{border-bottom:none}
+.skill li::before{content:'';position:absolute;left:2px;top:16px;width:5px;height:5px;border-radius:50%;background:var(--wash-3)}
+.skill li b{color:var(--ink);font-weight:600}
+
+/* ============================================================
+   ABOUT — narrative + portrait + nine-country gallery
+   ============================================================ */
+.about-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:start;margin-top:clamp(10px,2vh,20px)}
+.ab-open{
+  font-family:var(--font-display);font-style:italic;font-weight:500;
+  font-size:clamp(1.45rem,2.8vw,2.25rem);line-height:1.32;letter-spacing:-.01em;
+  margin-bottom:clamp(18px,3vh,30px);
+}
+.about-text p{color:var(--ink-soft);font-size:.97rem;line-height:1.85;margin-bottom:1.15em;max-width:72ch}
+.about-text p b{color:var(--ink);font-weight:600}
+/* 人像已移入首屏右栏 —— 关于区改单栏；开场句是 display 字号，需要比正文更紧的行长 */
+.about-text .ab-open{max-width:32ch}
+.gal{margin-top:clamp(44px,8vh,80px)}
+.gal-top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+.gal-top h3{font-family:var(--font-display);font-weight:600;font-size:clamp(1.4rem,2.4vw,1.9rem)}
+.gal-more{
+  font-family:var(--font-mono);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);
+  border-bottom:1px solid var(--line-strong);padding-bottom:2px;transition:color .3s,border-color .3s;
+}
+.gal-more:hover{color:var(--ink);border-color:var(--ink)}
+.gal-chips{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 22px}
+.gal-chips button{
+  font-family:var(--font-mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;
+  border:1px solid var(--line);border-radius:30px;padding:7px 14px;color:var(--ink-soft);
+  transition:color .3s,border-color .3s;
+}
+.gal-chips button:hover{color:var(--ink);border-color:var(--line-strong)}
+.gal-chips button.on{color:var(--seal);border-color:var(--seal)}
+/* masonry — natural aspect ratios, like the archive's waterfall frames */
+.gal-grid{columns:230px;column-gap:clamp(14px,1.8vw,22px)}
+.gal-item{margin:0 0 clamp(16px,2vw,24px);break-inside:avoid;animation:galIn .55s var(--ease-out) both}
+@keyframes galIn{from{opacity:0;transform:translateY(14px)}}
+.gal-item img{
+  width:100%;height:auto;display:block;border-radius:14px;cursor:zoom-in;
+  box-shadow:0 2px 10px rgba(60,42,26,.14);transition:transform .5s var(--ease-out),box-shadow .5s;
+}
+.gal-item:hover img{transform:translateY(-4px) scale(1.012);box-shadow:var(--card-shadow)}
+.gal-item figcaption{
+  margin-top:8px;font-family:var(--font-mono);font-size:.56rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-faint);display:flex;justify-content:space-between;gap:8px;
+}
+.gal-item figcaption b{color:var(--ink-soft);font-weight:400}
+@media (max-width:640px){.gal-grid{columns:2}}
+@media (prefers-reduced-motion:reduce){.gal-item{animation:none}}
+
+/* mini verification seal on research cards */
+.mini-seal{
+  position:absolute;top:16px;right:16px;width:62px;height:62px;
+  border:1.3px solid var(--seal);border-radius:50%;color:var(--seal);
+  font-family:var(--font-mono);font-size:.48rem;letter-spacing:.16em;text-transform:uppercase;
+  display:grid;place-items:center;text-align:center;line-height:1.6;
+  transform:rotate(12deg);opacity:.5;transition:opacity .4s,transform .45s var(--ease-out);
+  pointer-events:none;padding:6px;
+}
+.card:hover .mini-seal{opacity:.95;transform:rotate(12deg) scale(1.06)}
+
+/* ============================================================
+   RESUME
+   ============================================================ */
+.resume-head-row{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+.cv{
+  background:var(--paper);border:1px solid var(--line);box-shadow:var(--card-shadow);
+  padding:clamp(26px,4.5vw,60px);margin-top:clamp(26px,4vh,44px);
+  display:grid;grid-template-columns:minmax(230px,.85fr) 2fr;gap:clamp(28px,4.5vw,64px);
+  position:relative;
+}
+.cv::before{
+  content:'CURRICULUM VITAE';position:absolute;top:14px;right:18px;
+  font-family:var(--font-mono);font-size:.56rem;letter-spacing:.34em;color:var(--ink-faint);opacity:.7;
+}
+.cv-side{display:flex;flex-direction:column;gap:clamp(24px,3.6vh,38px)}
+.cv h5{
+  font-family:var(--font-mono);font-size:.64rem;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--ink-faint);margin-bottom:12px;display:flex;align-items:center;gap:10px;
+}
+.cv h5::after{content:'';flex:1;height:1px;background:var(--line)}
+.cv-name{font-family:var(--font-display);font-weight:600;font-size:clamp(1.5rem,2.6vw,2.1rem);line-height:1.1}
+.cv-name .sig{font-family:var(--font-script);font-weight:400;font-size:1.3rem;color:var(--ink-faint);display:block;margin-top:6px}
+.cv-line{font-size:.86rem;color:var(--ink-soft);padding:6px 0;border-bottom:1px dashed var(--line);display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap}
+.cv-line b{font-weight:600;color:var(--ink);font-family:var(--font-mono);font-size:.72rem;letter-spacing:.06em}
+.cv-line a{border-bottom:1px solid var(--line-strong)}
+.cv-line a:hover{color:var(--ink)}
+.edu{padding:10px 0;border-bottom:1px dashed var(--line)}
+.edu:last-child{border-bottom:none}
+.edu b{display:block;font-weight:600;font-size:.94rem}
+.edu span{font-size:.84rem;color:var(--ink-soft);display:block}
+.edu small{font-family:var(--font-mono);font-size:.66rem;color:var(--ink-faint);letter-spacing:.06em}
+.cv-main{display:flex;flex-direction:column;gap:clamp(26px,4vh,40px)}
+.xp{position:relative;padding-left:26px;border-left:1px solid var(--line-strong)}
+.xp .node{position:absolute;left:-4.5px;top:8px;width:8px;height:8px;border-radius:50%;background:var(--wash-1);outline:4px solid var(--paper)}
+.xp{margin-left:4px;padding-bottom:6px}
+.xp header{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:baseline}
+.xp h6{font-size:1rem;font-weight:600;font-family:var(--font-body)}
+.xp h6 span{font-weight:400;color:var(--ink-soft)}
+.xp time{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.1em;color:var(--ink-faint);white-space:nowrap}
+.xp ul{list-style:none;margin-top:8px}
+.xp li{font-size:.88rem;color:var(--ink-soft);padding:4px 0 4px 16px;position:relative}
+.xp li::before{content:'—';position:absolute;left:0;color:var(--ink-faint)}
+.xp li b{color:var(--ink);font-weight:600}
+.cv-projects li a{border-bottom:1px solid var(--line-strong);white-space:nowrap}
+.cv-projects li a:hover{color:var(--ink)}
+.cv-note{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.12em;color:var(--ink-faint);margin-top:8px}
+
+/* ============================================================
+   CONTACT + FOOTER
+   ============================================================ */
+.contact{text-align:center;padding-bottom:clamp(70px,12vh,130px)}
+.contact .label{
+  display:flex;align-items:center;gap:12px;justify-content:center;
+  font-family:var(--font-mono);font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-faint);
+  margin-bottom:clamp(18px,3.4vh,32px);
+}
+.contact .label .ln{width:40px;height:1px;background:var(--line-strong)}
+.contact h2{
+  font-family:var(--font-display);font-weight:500;
+  font-size:clamp(2.1rem,6vw,4.6rem);line-height:1.1;letter-spacing:-.01em;max-width:20ch;margin:0 auto;
+}
+.contact h2 em{font-style:italic;font-weight:400;color:var(--ink-soft)}
+.contact .script-line{font-family:var(--font-script);font-size:clamp(1.4rem,3vw,2rem);color:var(--ink-faint);margin-top:14px}
+.contact .cta{margin-top:clamp(28px,5vh,50px);display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+.socials{
+  margin-top:clamp(34px,6vh,58px);display:flex;justify-content:center;gap:clamp(16px,3vw,40px);flex-wrap:wrap;
+  font-family:var(--font-mono);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);
+}
+.socials a,.socials button{
+  font-size:inherit;letter-spacing:inherit;text-transform:inherit;color:inherit;font-family:inherit;
+  position:relative;padding:4px 0;transition:color .3s;
+}
+.socials a::after,.socials button::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease-out)}
+.socials a:hover,.socials button:hover{color:var(--ink)}
+.socials a:hover::after,.socials button:hover::after{transform:scaleX(1);transform-origin:left}
+.footer{
+  border-top:1px solid var(--line);margin-top:clamp(50px,9vh,90px);
+  padding:26px var(--gutter);display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;
+  max-width:var(--maxw);margin-left:auto;margin-right:auto;
+}
+.footer .sig{font-family:var(--font-script);font-size:1.5rem}
+.footer small{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.14em;color:var(--ink-faint)}
+.footer .totop{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft)}
+.footer .totop:hover{color:var(--ink)}
+.integrity{
+  text-align:center;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.18em;color:var(--ink-faint);
+  padding:0 var(--gutter);
+}
+
+/* lightbox */
+.lb{
+  position:fixed;inset:0;z-index:150;display:grid;place-items:center;
+  padding:clamp(16px,4vw,48px);background:rgba(16,11,7,.93);
+  opacity:0;visibility:hidden;transition:opacity .35s var(--ease-out),visibility .35s;
+}
+.lb.open{opacity:1;visibility:visible}
+.lb figure{margin:0;max-width:min(1240px,94vw);text-align:center}
+.lb img{
+  max-width:min(1240px,94vw);max-height:80vh;width:auto;height:auto;
+  border-radius:10px;box-shadow:0 30px 90px -20px rgba(0,0,0,.7);transition:opacity .25s;
+}
+.lb figcaption{
+  margin-top:14px;font-family:var(--font-mono);font-size:.64rem;letter-spacing:.18em;
+  text-transform:uppercase;color:#cfc4b2;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;
+}
+.lb figcaption b{color:#f2ebdd;font-weight:400}
+.lb-x,.lb-prev,.lb-next{
+  position:fixed;z-index:151;color:#f2ebdd;width:46px;height:46px;
+  border:1px solid rgba(242,235,221,.35);border-radius:50%;display:grid;place-items:center;
+  font-size:1rem;background:rgba(0,0,0,.25);transition:border-color .3s,background .3s;
+}
+.lb-x:hover,.lb-prev:hover,.lb-next:hover{border-color:#f2ebdd;background:rgba(255,255,255,.1)}
+.lb-x{top:20px;right:20px}
+.lb-prev{left:16px;top:50%;transform:translateY(-50%)}
+.lb-next{right:16px;top:50%;transform:translateY(-50%)}
+@media (max-width:640px){
+  .lb-x{top:10px;right:10px}
+  .lb-prev{left:6px}.lb-next{right:6px}
+  .lb img{max-height:72vh}
+}
+
+/* toast (wechat copy) */
+.toast{
+  position:fixed;bottom:34px;left:50%;transform:translate(-50%,20px);
+  background:var(--ink);color:var(--bg);font-family:var(--font-mono);font-size:.7rem;letter-spacing:.14em;
+  padding:12px 22px;border-radius:40px;opacity:0;pointer-events:none;z-index:130;
+  transition:opacity .4s var(--ease-out),transform .4s var(--ease-out);
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* custom cursor */
+.cursor-dot,.cursor-ring{position:fixed;top:0;left:0;pointer-events:none;z-index:var(--z-cursor);border-radius:50%}
+.cursor-dot{width:6px;height:6px;background:var(--ink);transform:translate(-50%,-50%)}
+.cursor-ring{width:34px;height:34px;border:1px solid var(--line-strong);transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .3s}
+.cursor-ring.on{width:56px;height:56px;border-color:var(--ink)}
+@media (pointer:coarse){.cursor-dot,.cursor-ring{display:none}}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:900px){
+  .nav-links,.nav .divider,.nav-right .ctrl{display:none}
+  .burger{display:flex}
+  .cv{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .stat b{font-size:1.6rem}
+  .stat small{font-size:.62rem;letter-spacing:.14em}
+}
+.mmenu-ctrls{display:flex;gap:12px;margin-top:30px}
+
+/* ============================================================
+   PRINT — resume only
+   ============================================================ */
+@media print{
+  /* 唯一权威的打印清单：新增任何章节都必须写进这一处。
+     id 与 class 双写 —— 改类名或改 id 都还剩一道保险。 */
+  .ambience,.grain,.nav,.mmenu,.hero,#work,#skills,#about,#education,#gallery,#contact,
+  .contact,.closer,.prev,.deck,.footer,.integrity,
+  .preloader,.toast,.cursor-dot,.cursor-ring,.resume-head-row .btn,.scrollhint{display:none!important}
+  body{background:#fff;color:#111}
+  .sect{padding:0;max-width:100%}
+  .cv{box-shadow:none;border:none;padding:0;grid-template-columns:1fr;gap:18px}
+  .cv::before{display:none}
+  .sec-head h2{font-size:1.6rem}
+  .sec-sub{margin-bottom:10px}
+}
+
+/* ============================================================
+   NAV — 悬浮卡片（借参考图的排版，用站内的材料）
+   ============================================================ */
+.nav{height:auto;display:block;padding:clamp(9px,1.3vh,15px) var(--gutter) 0}
+.nav.scrolled{background:transparent;border-bottom:none}
+.nav-card{
+  max-width:var(--maxw);margin:0 auto;
+  display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;
+  gap:clamp(10px,2vw,26px);min-height:58px;
+  padding:8px 10px 8px clamp(12px,1.4vw,18px);
+  background:var(--paper);border:1px solid var(--line);border-radius:60px;
+  box-shadow:var(--shadow-float);
+  transition:border-color .5s var(--ease-out),box-shadow .5s var(--ease-out);
+}
+.nav.scrolled .nav-card{border-color:var(--line-strong)}
+.nav-card>*{min-width:0}
+.nav .brand{font-size:clamp(1.15rem,1.6vw,1.45rem);gap:.5rem}
+.brand-disc{
+  width:33px;height:33px;flex:0 0 auto;border-radius:50%;display:grid;place-items:center;
+  font-family:var(--font-display);font-weight:600;font-size:.9rem;line-height:1;color:var(--seal);
+  border:1px solid color-mix(in srgb,var(--seal) 45%,transparent);
+  background:color-mix(in srgb,var(--seal) var(--tint-seal),transparent);
+  transition:border-color .4s var(--ease-out);
+}
+.nav .brand:hover .brand-disc{border-color:var(--seal)}
+.brand-name{font-family:var(--font-script);line-height:1}
+.brand-mark{
+  font-family:var(--font-mono);font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--ink-faint);white-space:nowrap;
+  border-left:1px solid var(--line);padding-left:.6rem;margin-left:.15rem;
+}
+.nav .nav-links{justify-self:center;gap:clamp(2px,.45vw,7px)}
+.nav .nav-links a{
+  font-size:.68rem;letter-spacing:.18em;padding:9px clamp(11px,1.05vw,16px);border-radius:60px;
+  transition:color .3s var(--ease-out),background .3s var(--ease-out);
+}
+.nav .nav-links a::after,.nav .nav-links a.active::after{display:none}
+.nav .nav-links a:hover{color:var(--ink);background:color-mix(in srgb,var(--ink) 7%,transparent)}
+.nav .nav-links a.active{background:var(--ink);color:var(--bg)}
+.nav-card .nav-right{gap:clamp(8px,1vw,15px)}
+/* 站内没有 PDF 文件：这颗钮永远只是 #resume 的页内锚点，不得改成「下载简历 / Download CV」。
+   取件入口只有简历区里的 #printBtn（浏览器打印）。 */
+.nav-cta{
+  font-family:var(--font-mono);font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;
+  display:inline-flex;align-items:center;white-space:nowrap;min-height:38px;
+  padding:11px 18px;border-radius:60px;color:var(--ink-soft);
+  border:1px solid var(--line-strong);
+  transition:background .4s var(--ease-out),color .4s,border-color .4s;
+}
+.nav-cta:hover,.nav-cta.active{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+
+/* ============================================================
+   HERO — 左右两栏（60 / 40）
+   ============================================================ */
+.hero{
+  --hero-step:clamp(11px,2.1vh,23px);
+  display:flex;flex-direction:column;justify-content:center;align-items:stretch;text-align:left;
+  padding:calc(var(--nav-h) + 2.2vh) var(--gutter) clamp(74px,10vh,112px);
+  overflow:clip;
+}
+.hero-inner{width:100%;max-width:var(--maxw);margin:0 auto}
+.hero-grid{
+  display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.9fr);
+  gap:clamp(26px,4vw,64px);align-items:center;
+}
+.hero-left{display:flex;flex-direction:column;align-items:flex-start;min-width:0}
+
+/* ① 徽标 */
+.hero .kicker{
+  justify-content:flex-start;gap:10px;width:max-content;max-width:100%;
+  margin-bottom:var(--hero-step);padding:7px 15px;
+  border:1px solid var(--line);border-radius:60px;background:var(--paper);
+  font-size:.68rem;letter-spacing:.2em;color:var(--ink-soft);
+}
+.hero .kicker .dot{width:6px;height:6px;flex:0 0 auto;border-radius:50%;background:var(--seal)}
+
+/* ② 两行大标题（字号同时受宽度与视口高度约束，矮屏自动收） */
+.hero h1{max-width:none;font-size:clamp(1.75rem,min(3.15vw,4.55svh),2.8rem);line-height:1.16}
+
+/* ③ 角色行 + 下划线（画在文字上，折行时跟着断） */
+.hero .role{
+  margin-top:var(--hero-step);color:var(--seal);
+  font-size:.72rem;letter-spacing:.2em;line-height:2.1;
+}
+.hero .role span{
+  display:inline;padding-bottom:7px;
+  background-image:linear-gradient(var(--seal),var(--seal)),
+    linear-gradient(color-mix(in srgb,var(--seal) var(--tint-seal),transparent),color-mix(in srgb,var(--seal) var(--tint-seal),transparent));
+  background-repeat:no-repeat;background-size:100% 1px,100% 5px;background-position:0 100%,0 100%;
+  -webkit-box-decoration-break:clone;box-decoration-break:clone;
+}
+
+/* ④ 通栏标签条 —— 站内 .rule / .figures 的账簿栏线语汇 */
+.hero-band{
+  align-self:stretch;display:flex;align-items:center;gap:14px;
+  margin-top:var(--hero-step);padding:9px 0;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  font-family:var(--font-mono);font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--ink-faint);
+}
+.hero-band .band-label{color:var(--ink);white-space:nowrap}
+.hero-band .band-line{flex:1 1 20px;min-width:16px;height:1px;background:var(--line)}
+.hero-band .band-meta{white-space:nowrap}
+
+/* ⑤ 正文两行 */
+.hero-lede{
+  margin-top:var(--hero-step);max-width:min(100%,34em);
+  color:var(--ink-soft);line-height:1.72;font-size:clamp(.9rem,1.05vw,1rem);
+}
+.hero-lede .lede-l{display:block}
+.hero-lede .lede-l:first-child{color:var(--ink)}
+.hero-lede .lede-l+.lede-l{margin-top:.35em}
+
+/* ⑥ chips —— 与卡片内 .chips 刻意分家：mono 大写 + 60px 胶囊 + 纸底 */
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:var(--hero-step)}
+.hero-chips>span{
+  font-family:var(--font-mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;
+  padding:6px 13px;border:1px solid var(--line);border-radius:60px;
+  color:var(--ink-soft);background:var(--paper);
+}
+
+/* ⑦ CTA */
+.hero .cta{justify-content:flex-start;margin-top:calc(var(--hero-step) * 1.25)}
+
+/* ---------- 右栏 ---------- */
+.hero-right{position:relative;display:grid;place-items:center;min-width:0}
+.hero-orb,.hero-ring{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none}
+.hero-orb{
+  width:min(116%,500px);aspect-ratio:1;opacity:var(--wash-alpha);
+  background:radial-gradient(circle at 42% 36%,var(--wash-3) 0%,transparent 70%);
+}
+.hero-ring{width:min(104%,450px);aspect-ratio:1;border:1px solid var(--line-strong)}
+.hero-right .bubble{position:absolute;z-index:2;border-radius:50%;pointer-events:none;animation:floaty 8s var(--ease-inout) infinite}
+.hero-right .bubble.b1{width:54px;height:54px;left:0;top:14%;background:var(--paper);border:1px solid var(--line-strong)}
+.hero-right .bubble.b2{width:22px;height:22px;right:4%;top:6%;background:var(--wash-1);opacity:var(--wash-alpha);animation-duration:9.5s;animation-delay:-2.4s}
+.hero-right .bubble.b3{width:13px;height:13px;left:12%;bottom:16%;background:var(--wash-2);opacity:var(--wash-alpha);animation-duration:8.6s;animation-delay:-4.6s}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.hero-portrait{
+  position:relative;z-index:1;margin:0;width:min(100%,320px);
+  background:var(--bg-2);border-radius:180px 180px 20px 20px;box-shadow:var(--card-shadow);
+}
+.hero-portrait img{
+  /* 72% 是配旧冰岛人像（头顶大片空天）调的；新照片人物已靠上，需改为低百分比，
+     否则最矮档（框 320x290）会从顶部裁掉 222 源像素、把头切掉 */
+  width:100%;height:clamp(290px,44svh,420px);object-fit:cover;object-position:50% 12%;
+  border:1px solid var(--line-strong);border-radius:inherit;
+}
+.hero-seal{
+  position:absolute;z-index:3;left:-6%;bottom:22%;width:78px;height:78px;border-radius:50%;
+  display:grid;place-items:center;text-align:center;line-height:1.6;
+  border:1.3px solid var(--seal);color:var(--seal);background:var(--paper);
+  font-family:var(--font-mono);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;
+  transform:rotate(-11deg);
+}
+.now-card{
+  position:absolute;z-index:4;right:0;bottom:6%;width:min(92%,262px);
+  display:flex;flex-direction:column;gap:5px;padding:13px 15px;
+  background:var(--paper);border:1px solid var(--line-strong);border-radius:16px;
+  box-shadow:var(--shadow-float);
+}
+.now-k{
+  display:flex;align-items:center;gap:9px;
+  font-family:var(--font-mono);font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-faint);
+}
+.now-dot{position:relative;width:7px;height:7px;flex:0 0 auto;border-radius:50%;background:var(--seal);display:inline-block}
+.now-dot::after{
+  content:'';position:absolute;inset:-4px;border-radius:50%;
+  border:1px solid color-mix(in srgb,var(--seal) 45%,transparent);
+  animation:nowpulse 2.6s var(--ease-out) infinite;
+}
+@keyframes nowpulse{0%{transform:scale(.6);opacity:.9}100%{transform:scale(1.55);opacity:0}}
+.now-card b{font-family:var(--font-body);font-weight:600;font-size:.84rem;line-height:1.4;color:var(--ink)}
+.now-card small{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.08em;color:var(--ink-faint)}
+
+/* ---------- stats：通栏账目条，与两栏共用同一条左轴线 ---------- */
+.hero .stats{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:clamp(14px,2.4vw,40px);width:100%;
+  margin:calc(var(--hero-step) * 1.4) 0 0;
+  border-top:1px solid var(--line);padding-top:clamp(14px,2.1vh,22px);
+}
+.hero .stat{text-align:left}
+.hero .stat b{font-size:clamp(1.5rem,2.8vw,2.3rem)}
+
+/* ---------- 底部滑动提示：锚在 hero 底部内边距内，永远落在内容之下 ----------
+   （不用 top:calc(100svh - Npx)：hero 内容垂直居中，英文态更高时会与 stats 相撞） */
+.hero .scrollhint{
+  bottom:clamp(16px,2.6vh,30px);top:auto;
+  flex-direction:row;align-items:center;gap:12px;
+  padding:9px 17px;border:1px solid var(--line);border-radius:60px;background:var(--paper);
+  font-size:.6rem;letter-spacing:.24em;
+}
+.hero .scrollhint i{height:14px}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+/* 导航宽度梯子 —— EN 态是全站最宽情形 */
+@media (max-width:1200px){
+  .nav-card{gap:clamp(8px,1.4vw,18px)}
+  .nav .nav-links a{font-size:.64rem;letter-spacing:.14em;padding:8px 11px}
+  .brand-mark{font-size:.55rem;letter-spacing:.18em}
+  .nav-cta{padding:11px 15px;letter-spacing:.14em}
+}
+@media (max-width:1100px){
+  .nav-cta,.nav-card .divider{display:none}
+}
+@media (max-width:1080px){
+  .hero{padding-bottom:clamp(64px,9vh,96px)}
+  .hero-grid{grid-template-columns:minmax(0,1fr);gap:clamp(26px,4.5vh,40px)}
+  .hero-right{display:flex;flex-direction:column;align-items:center;gap:18px;width:100%}
+  .hero-ring,.hero-right .bubble{display:none}
+  .hero-orb{width:min(100%,360px);top:40%}
+  .hero-portrait{width:min(100%,290px)}
+  .hero-portrait img{height:clamp(260px,36svh,340px)}
+  .now-card{position:static;width:min(100%,330px)}
+}
+@media (max-width:900px){
+  .brand-mark{display:none}
+  .nav-card{grid-template-columns:auto minmax(0,1fr);padding-right:8px}
+  .nav-card .nav-right{justify-self:end}
+  .hero .scrollhint{display:none}
+}
+@media (max-width:640px){
+  .hero{padding-top:calc(var(--nav-h) + 1.2vh)}
+  .hero h1{font-size:clamp(1.6rem,6.4vw,2.2rem)}
+  .hero .kicker{font-size:.62rem;letter-spacing:.16em;padding:6px 13px}
+  .hero .role{font-size:.66rem;letter-spacing:.12em}
+  .hero-band{font-size:.58rem;letter-spacing:.18em;gap:10px}
+  .hero-chips>span{letter-spacing:.1em;padding:5px 11px}
+  .hero .stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 14px}
+  .hero-portrait{width:min(100%,240px);border-radius:135px 135px 16px 16px}
+  .hero-portrait img{height:clamp(230px,32svh,300px)}
+  .hero-seal{width:64px;height:64px;font-size:.52rem;left:-4%;bottom:16%}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .hero-right .bubble{animation:none}
+  .now-dot::after{animation:none;opacity:.35;transform:scale(1)}
+}
+
+/* ============================================================
+   本轮新增 —— 只用既有 token；凡涉及底色的一律双主题各自成立
+   ============================================================ */
+
+/* ---------- 工具 ---------- */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
+.inline-jump{color:var(--ink);font-weight:600;border-bottom:1px solid var(--line-strong);transition:border-color .3s}
+.inline-jump:hover{border-color:var(--ink)}
+
+/* ---------- 首屏姓名（替换原胶囊徽标） ---------- */
+.hero-id{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 12px;margin-bottom:var(--hero-step);max-width:100%}
+.hero-id .hello{
+  display:inline-flex;align-items:center;gap:9px;white-space:nowrap;
+  font-family:var(--font-mono);font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-faint);
+}
+.hero-id .hello .dot{width:6px;height:6px;flex:0 0 auto;border-radius:50%;background:var(--seal)}
+.hero-name{
+  font-family:var(--font-display);font-weight:600;color:var(--ink);
+  font-size:clamp(1.9rem,min(4.2vw,6.6svh),3.4rem);line-height:1.04;letter-spacing:-.015em;
+}
+.hero-name-alt{
+  font-family:var(--font-mono);font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--ink-faint);white-space:nowrap;
+}
+
+/* ---------- 01 作品：iframe 预览立面 ----------
+   初始 HTML 不含 iframe；JS 进视口前 240px 才挂载，串行排队。
+   iframe 只负责画面：pointer-events:none + inert + tabindex=-1；
+   整块点击由 .prev-hit（aria-hidden 的 span，同址 window.open）承担。 */
+.prev{
+  --s:.28;                                    /* JS 按 clientWidth ÷ 1000 覆写 */
+  --prev-filter:none;
+  --prev-scrim:color-mix(in srgb,var(--bg) 14%,transparent);
+  position:relative;display:block;width:100%;aspect-ratio:16/10;overflow:hidden;isolation:isolate;
+  border:1px solid var(--line);border-radius:12px;background:var(--bg-2);
+  transition:border-color .4s var(--ease-out);
+}
+.card:hover .prev{border-color:var(--line-strong)}
+.prev iframe{
+  position:absolute;left:0;top:0;z-index:0;width:1000px;height:625px;border:0;
+  transform:scale(var(--s));transform-origin:0 0;
+  pointer-events:none;opacity:0;filter:var(--prev-filter);
+  transition:opacity .5s var(--ease-out);
+}
+.prev.is-live iframe{opacity:1}
+.prev.is-slow iframe,.prev.is-off iframe{display:none}
+/* 主题翻译层：把外来页面的色彩系统压进本站底色。z-index 夹在 iframe(0) 与 tag(2) 之间 */
+.prev.is-live::after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:var(--prev-scrim)}
+.prev-skel{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  display:flex;flex-direction:column;justify-content:center;gap:9px;padding:clamp(14px,2vw,22px);
+  background:linear-gradient(160deg,color-mix(in srgb,var(--ink) 7%,var(--paper)) 0%,color-mix(in srgb,var(--ink) 2%,var(--bg-2)) 100%);
+  transition:opacity .5s var(--ease-out);
+}
+.prev.is-live .prev-skel{opacity:0}
+.prev-skel i{display:block;height:1px;background:var(--line-strong);opacity:.75}
+.prev-skel i:nth-of-type(1){width:52%}
+.prev-skel i:nth-of-type(2){width:78%}
+.prev-skel i:nth-of-type(3){width:64%}
+.prev-skel i:nth-of-type(4){width:40%}
+.prev-skel b{
+  font-family:var(--font-mono);font-weight:400;font-size:.58rem;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--ink-faint);margin-top:8px;
+}
+/* 三种状态三套文案：加载中 / 加载失败 / 主动未加载。不共用，避免自相矛盾 */
+.prev-msg-alt,.prev-msg-off{display:none}
+.prev.is-slow .prev-msg{display:none}
+.prev.is-slow .prev-msg-alt{display:block}
+.prev.is-off .prev-msg{display:none}
+.prev.is-off .prev-msg-off{display:block}
+/* 标签胶囊坐在外来页面上，不能假设底下是本站底色：用 --ink 实心盘 + --bg 字，
+   两套主题一起翻转，白底 demo 与夜间压暗后的 demo 上都成立 */
+.prev-tag{
+  position:absolute;right:10px;top:10px;z-index:2;
+  font-family:var(--font-mono);font-size:.54rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--bg);background:color-mix(in srgb,var(--ink) 92%,transparent);
+  border:1px solid var(--ink);border-radius:60px;padding:4px 10px;
+}
+.prev-tag .dot{width:5px;height:5px;border-radius:50%;background:color-mix(in srgb,var(--seal) 62%,var(--bg));display:inline-block;margin-right:6px}
+.prev.is-slow .prev-tag,.prev.is-off .prev-tag{opacity:.75}
+.prev-hit{position:absolute;inset:0;z-index:3;display:block;border-radius:inherit;cursor:pointer}
+/* 卡 3 的验证印章移进预览内左下角，与右上角的标签胶囊分列两端，不再压住画面右上 */
+.prev .mini-seal{
+  top:auto;right:auto;left:10px;bottom:10px;z-index:2;
+  background:color-mix(in srgb,var(--bg) 84%,transparent);opacity:.78;
+}
+.card:hover .prev .mini-seal{opacity:1;transform:rotate(12deg) scale(1.04)}
+/* nocturne：外来页面是浅色的，必须压暗 + 加纱，否则五块白板打在夜色页面上 */
+html[data-theme="nocturne"] .prev{
+  --prev-filter:brightness(.6) contrast(1.05) saturate(.85);
+  --prev-scrim:color-mix(in srgb,var(--bg) 40%,transparent);
+  border-color:var(--line-strong);
+}
+@media (prefers-reduced-motion:reduce){.prev iframe,.prev-skel{transition:none}}
+
+/* ---------- 04 教育：校园卡 ---------- */
+.edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(16px,2.2vw,26px)}
+.edu-card{
+  background:var(--paper);border:1px solid var(--line);border-radius:16px;overflow:hidden;
+  display:flex;flex-direction:column;min-width:0;
+  transition:transform .5s var(--ease-out),box-shadow .5s var(--ease-out),border-color .4s;
+}
+.edu-card:hover{transform:translateY(-6px);box-shadow:var(--card-shadow);border-color:var(--line-strong)}
+.edu-shot{position:relative;margin:0;aspect-ratio:4/3;overflow:hidden;background:var(--bg-2)}
+.edu-shot img{width:100%;height:100%;object-fit:cover;filter:saturate(.94);transition:transform .7s var(--ease-out)}
+.edu-card:hover .edu-shot img{transform:scale(1.035)}
+/* 蒙层与滤镜必须同向：atelier 用暖色 wash 调性，nocturne 改成向 --bg 压暗，
+   否则 12% 琥珀色 wash-3 会把 brightness() 压下去的亮度又提回来 */
+.edu-shot::after{content:'';position:absolute;inset:0;pointer-events:none;background:color-mix(in srgb,var(--wash-3) 12%,transparent)}
+html[data-theme="nocturne"] .edu-shot img{filter:saturate(.82) brightness(.7)}
+html[data-theme="nocturne"] .edu-shot::after{background:color-mix(in srgb,var(--bg) 34%,transparent)}
+.edu-body{padding:clamp(18px,2.2vw,24px);display:flex;flex-direction:column;gap:8px;flex:1}
+.edu-yr{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.18em;color:var(--ink-faint)}
+.edu-body h3{font-family:var(--font-display);font-weight:600;font-size:1.12rem;line-height:1.3}
+.edu-deg{color:var(--ink-soft);font-size:.9rem;margin-top:auto;padding-top:10px;border-top:1px dashed var(--line)}
+/* CC BY / BY-SA 要求署名 + 许可证链接；图片只等比缩放未裁剪，已在文中注明 */
+.edu-credit{margin-top:clamp(16px,2.4vh,24px);font-family:var(--font-mono);font-size:.6rem;
+  letter-spacing:.06em;line-height:1.9;color:var(--ink-faint);max-width:78ch}
+.edu-credit a{border-bottom:1px solid var(--line);transition:border-color .3s}
+.edu-credit a:hover{border-color:var(--ink-faint)}
+
+/* ---------- 06 影像：单帧翻页台 ---------- */
+.deck{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(12px,1.6vw,18px)}
+.deck-stage{
+  position:relative;display:block;width:100%;padding:0;aspect-ratio:3/2;cursor:pointer;overflow:hidden;
+  border:1px solid var(--line);border-radius:16px;background:var(--bg-2);box-shadow:var(--shadow-float);
+}
+.deck-stage img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:contain;
+  background:var(--bg-2);transition:opacity .35s var(--ease-out);
+}
+.deck-stage.is-swap img{opacity:0}
+.deck-hud{
+  position:absolute;left:0;right:0;bottom:0;z-index:2;pointer-events:none;
+  display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px;
+}
+/* HUD 坐在照片上，同样不能假设底色：与 .prev-tag 用同一套实心盘 */
+.deck-cap,.deck-idx{
+  font-family:var(--font-mono);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--bg);background:color-mix(in srgb,var(--ink) 88%,transparent);
+  border:1px solid var(--ink);border-radius:60px;padding:6px 12px;
+}
+.deck-cap{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.deck-cap b{color:var(--bg);font-weight:700}
+.deck-idx{flex:0 0 auto}
+.deck-ctl{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.deck-btn{
+  font-family:var(--font-mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);
+  border:1px solid var(--line-strong);border-radius:60px;padding:8px 14px;min-height:34px;
+  transition:color .3s,border-color .3s;
+}
+.deck-btn:hover{color:var(--ink);border-color:var(--ink)}
+.deck-hint{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.14em;color:var(--ink-faint);margin-left:auto}
+/* 上下 padding ≥6px：全局 :focus-visible 是 outline 2px + offset 3px，
+   overflow-x:auto 会把 overflow-y 算成 auto，padding 太小焦点环会被切 */
+.deck-strip{display:flex;gap:8px;min-width:0;overflow-x:auto;overscroll-behavior-x:contain;padding:6px 2px 10px;scrollbar-width:thin}
+.deck-strip::-webkit-scrollbar{height:5px}
+.deck-strip::-webkit-scrollbar-thumb{background:var(--line-strong);border-radius:60px}
+.deck-thumb{
+  flex:0 0 auto;width:66px;height:44px;padding:0;overflow:hidden;border-radius:8px;
+  border:1px solid var(--line);opacity:.55;
+  transition:opacity .3s,border-color .3s,transform .3s var(--ease-out);
+}
+.deck-thumb img{width:100%;height:100%;object-fit:cover}
+.deck-thumb:hover{opacity:.85}
+.deck-thumb.on{opacity:1;border-color:var(--seal);transform:translateY(-2px)}
+.gal-top .gal-title{font-family:var(--font-display);font-weight:600;font-size:clamp(1.4rem,2.4vw,1.9rem);line-height:1.2}
+
+/* ---------- 07 收尾大卡 ----------
+   卡内颜色只读六个局部变量，绝不直接用全局 --ink（会随主题翻转）。 */
+.contact{text-align:left;padding-bottom:clamp(40px,7vh,80px)}
+.closer{
+  /* atelier：墨色卡底 + 纸色字 */
+  --closer-bg:var(--ink);
+  --closer-fg:var(--bg);
+  --closer-dim:color-mix(in srgb,var(--bg) 70%,transparent);
+  --closer-line:color-mix(in srgb,var(--bg) 26%,transparent);   /* 细分割线，2:1 够用 */
+  --closer-ctl:color-mix(in srgb,var(--bg) 55%,transparent);    /* 控件描边，必须 ≥3:1 */
+  --closer-accent:color-mix(in srgb,var(--seal) 45%,var(--bg));
+  position:relative;isolation:isolate;overflow:hidden;
+  background:var(--closer-bg);color:var(--closer-fg);
+  border:1px solid transparent;border-radius:clamp(22px,3.2vw,42px);
+  padding:clamp(28px,5vw,72px) clamp(22px,4.4vw,64px) clamp(18px,2.4vw,28px);
+  box-shadow:var(--card-shadow);
+}
+html[data-theme="nocturne"] .closer{
+  /* nocturne：页面本就是暗的。渐变两端一起抬（22% / 13% --ink），
+     真正扛边界的是 --line-strong 描边（约 3.2:1）；黑影在 #161210 上几乎不出力，不依赖它。 */
+  --closer-bg:var(--bg-2);
+  --closer-fg:var(--ink);
+  --closer-dim:var(--ink-soft);
+  --closer-line:var(--line-strong);
+  --closer-ctl:var(--ink-soft);
+  --closer-accent:color-mix(in srgb,var(--seal) 78%,var(--ink));
+  border-color:var(--line-strong);
+  background:linear-gradient(157deg,
+    color-mix(in srgb,var(--ink) 22%,var(--paper)) 0%,
+    color-mix(in srgb,var(--ink) 13%,var(--bg-2)) 100%);
+  box-shadow:var(--card-shadow),inset 0 1px 0 color-mix(in srgb,var(--ink) 20%,transparent);
+}
+.closer::before{
+  content:'';position:absolute;z-index:0;pointer-events:none;
+  width:min(62%,520px);aspect-ratio:1;right:-12%;top:-28%;border-radius:50%;opacity:.16;
+  background:radial-gradient(circle at 50% 50%,var(--wash-3) 0%,transparent 70%);
+}
+.closer>*{position:relative;z-index:1}
+.closer .no{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--font-mono);font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--closer-dim);
+}
+.closer .no i{width:34px;height:1px;background:var(--closer-line);display:inline-block}
+.closer h2{
+  font-family:var(--font-display);font-weight:500;color:var(--closer-fg);
+  font-size:clamp(2rem,5.6vw,4.4rem);line-height:1.08;letter-spacing:-.01em;
+  max-width:18ch;margin:clamp(16px,2.6vh,28px) 0 0;
+}
+.closer h2 .ln{display:block}
+.closer h2 em{font-style:italic;font-weight:400;color:var(--closer-accent)}
+.closer .closer-lede{
+  color:var(--closer-dim);max-width:52ch;margin-top:clamp(14px,2.2vh,22px);
+  font-size:clamp(.92rem,1.15vw,1.02rem);line-height:1.75;
+}
+.closer .closer-lede .ln{display:block}
+.closer .script-line{
+  font-family:var(--font-script);font-size:clamp(1.3rem,2.6vw,1.9rem);color:var(--closer-dim);margin-top:10px;
+}
+.closer .cta{display:flex;gap:14px;flex-wrap:wrap;justify-content:flex-start;margin-top:clamp(24px,4vh,42px)}
+.closer .btn{border-color:var(--closer-ctl);color:var(--closer-fg)}
+.closer .btn:hover{background:var(--closer-fg);color:var(--closer-bg);border-color:var(--closer-fg)}
+.closer .btn.solid{background:var(--closer-fg);color:var(--closer-bg);border-color:var(--closer-fg)}
+.closer .btn.solid:hover{background:transparent;color:var(--closer-fg);border-color:var(--closer-fg)}
+.closer .socials{color:var(--closer-dim);justify-content:flex-start;margin-top:clamp(24px,4vh,40px)}
+.closer .socials a:hover,.closer .socials button:hover{color:var(--closer-fg)}
+.closer .socials a::after,.closer .socials button::after{background:var(--closer-fg)}
+.closer .integrity{color:var(--closer-dim);text-align:left;padding:0;margin-top:clamp(22px,3.4vh,34px)}
+.closer .footer{
+  max-width:none;margin:clamp(18px,2.6vh,26px) 0 0;padding:18px 0 0;
+  border-top:1px solid var(--closer-line);
+  display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;
+}
+.closer .footer small,.closer .footer .totop{color:var(--closer-dim)}
+.closer .footer .totop:hover{color:var(--closer-fg)}
+
+/* ---------- 导航：两级高亮的回落态（描边，不是实心） ---------- */
+.nav .nav-links a.sub-active{color:var(--ink);box-shadow:inset 0 0 0 1px var(--line-strong)}
+
+/* ---------- 移动菜单：7 条项的高度安全 ---------- */
+.mmenu{justify-content:flex-start;overflow-y:auto;padding-top:calc(var(--nav-h) + 10px);padding-bottom:30px}
+.mmenu a{font-size:clamp(1.5rem,7vw,2.6rem);line-height:1.25;padding:8px 0}
+
+/* ---------- 断点 ---------- */
+@media (max-width:900px){
+  .closer .footer{justify-content:flex-start}
+}
+@media (max-width:640px){
+  /* 手机整块不出预览：5×184px 的空骨架比没有预览更像坏了，也省掉五个跨域请求 */
+  .prev{display:none}
+  .hero-id{gap:4px 10px}
+  .hero-id .hello{font-size:.6rem;letter-spacing:.18em}
+  .hero-name-alt{display:none}
+  .deck-stage{aspect-ratio:4/3}
+  .deck-thumb{width:54px;height:38px}
+  .deck-hint{width:100%;margin-left:0}
+  .closer h2{max-width:none}
+  .closer .cta .btn{width:100%;justify-content:center}
+}
+@media (prefers-reduced-motion:reduce){
+  .deck-stage img,.edu-shot img{transition:none}
+}
+</style>
+</head>
+<body id="top">
+
+<!-- ambience + grain -->
+<div class="ambience" aria-hidden="true">
+  <div class="wash w1"></div><div class="wash w2"></div>
+  <div class="wash w3"></div><div class="wash w4"></div>
+</div>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- nav -->
+<nav class="nav" id="nav">
+  <div class="nav-card">
+  <a class="brand" href="#top" data-hover>
+    <span class="brand-disc" aria-hidden="true"><span class="i-zh">准</span><span class="i-en">Z</span></span>
+    <span class="brand-name">Zhunming Ma</span>
+    <span class="brand-mark"><span class="i-zh">作品集</span><span class="i-en">Portfolio</span></span>
+  </a>
+  <div class="nav-links">
+    <a href="#work" data-hover><span class="i-zh">作品</span><span class="i-en">Work</span></a>
+    <a href="#skills" data-hover><span class="i-zh">技能</span><span class="i-en">Skills</span></a>
+    <a href="#about" data-hover><span class="i-zh">关于</span><span class="i-en">About</span></a>
+    <a href="#contact" data-hover><span class="i-zh">联系</span><span class="i-en">Contact</span></a>
+  </div>
+  <div class="nav-right">
+    <!-- 页内锚点，站上没有 PDF 文件；不得改成「下载简历 / Download CV」 -->
+    <a class="nav-cta" href="#resume" data-magnetic data-hover><span class="i-zh">查看简历</span><span class="i-en">View résumé</span></a>
+    <span class="divider"></span>
+    <button class="ctrl lang" id="langBtn" aria-label="Switch language"><b id="langNow">中文</b><span>/</span><span id="langAlt">EN</span></button>
+    <button class="ctrl" id="themeBtn" aria-label="Switch theme">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.4"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></svg>
+      <span class="tlabel" id="themeLabel">Atelier</span>
+    </button>
+    <button class="burger" id="burger" aria-label="Menu"><i></i><i></i></button>
+  </div>
+  </div>
+</nav>
+<div class="mmenu" id="mmenu">
+  <a href="#work"><span class="i-zh">作品</span><span class="i-en">Work</span> <em>01</em></a>
+  <a href="#skills"><span class="i-zh">技能</span><span class="i-en">Skills</span> <em>02</em></a>
+  <a href="#about"><span class="i-zh">关于</span><span class="i-en">About</span> <em>03</em></a>
+  <a href="#education"><span class="i-zh">教育</span><span class="i-en">Education</span> <em>04</em></a>
+  <a href="#resume"><span class="i-zh">简历</span><span class="i-en">Résumé</span> <em>05</em></a>
+  <a href="#gallery"><span class="i-zh">影像</span><span class="i-en">Frames</span> <em>06</em></a>
+  <a href="#contact"><span class="i-zh">联系</span><span class="i-en">Contact</span> <em>07</em></a>
+  <div class="mmenu-ctrls">
+    <button class="ctrl" id="mLangBtn" aria-label="Switch language"><b id="mLangNow">中文</b><span>/</span><span id="mLangAlt">EN</span></button>
+    <button class="ctrl" id="mThemeBtn" aria-label="Switch theme"><span id="mThemeLabel">Atelier</span></button>
+  </div>
+</div>
+
+<main>
+<!-- ============ HERO ============ -->
+<header class="hero" id="hero">
+  <div class="hero-inner">
+    <div class="hero-grid">
+
+      <div class="hero-left">
+        <div class="hero-id" data-reveal>
+          <span class="hello">
+            <span class="dot" aria-hidden="true"></span>
+            <span class="i-zh">你好，我是</span><span class="i-en">Hello, I'm</span>
+          </span>
+          <span class="hero-name"><span class="i-zh">马准名</span><span class="i-en">Zhunming Ma</span></span>
+          <span class="hero-name-alt" aria-hidden="true"><span class="i-zh">Zhunming Ma</span><span class="i-en">马准名</span></span>
+        </div>
+
+        <h1>
+          <span class="line"><span><span class="i-zh">从真实业务问题出发，</span><span class="i-en">From a real business problem</span></span></span>
+          <span class="line"><span><span class="i-zh">把 AI 做成<em>可验证、能上线</em>的产品。</span><span class="i-en">to an AI product that is <em>verifiable and shippable</em>.</span></span></span>
+        </h1>
+
+        <div class="role" data-reveal>
+          <span class="i-zh">AI 产品 Builder</span>
+          <span class="i-en">AI Product Builder</span>
+        </div>
+
+        <div class="hero-band">
+          <span class="band-label"><span class="i-zh">档案</span><span class="i-en">My File</span></span>
+          <span class="band-line" aria-hidden="true"></span>
+          <span class="band-meta"><span class="i-zh">作品集 · 都柏林 — 2026</span><span class="i-en">Portfolio · Dublin — 2026</span></span>
+        </div>
+
+        <p class="hero-lede">
+          <span class="lede-l"><span class="i-zh">独立完成用户研究、PRD、Agent 工作流、原型开发与评测。</span><span class="i-en">User research, PRDs, agent workflows, prototypes and evaluation — end to end, on my own.</span></span>
+          <span class="lede-l"><span class="i-zh">兼具产品判断、数据分析与快速构建能力，关注业务结果，而不止于 Demo。</span><span class="i-en">Product judgment, data analysis and fast building — measured by business outcomes, not demos.</span></span>
+        </p>
+
+        <div class="hero-chips">
+          <span><span class="i-zh">AI 产品与 Agent</span><span class="i-en">AI Product &amp; Agents</span></span>
+          <span><span class="i-zh">商业与战略分析</span><span class="i-en">Business &amp; Strategy</span></span>
+          <span><span class="i-zh">数据分析与工程</span><span class="i-en">Data &amp; Engineering</span></span>
+          <span><span class="i-zh">团队管理与交付</span><span class="i-en">Team &amp; Delivery</span></span>
+        </div>
+
+        <div class="cta" data-reveal>
+          <a href="#work" class="btn solid" data-magnetic data-hover><span class="i-zh">查看代表项目</span><span class="i-en">See the flagship work</span> ↓</a>
+          <a href="#resume" class="btn" data-magnetic data-hover><span class="i-zh">阅读简历</span><span class="i-en">Read the résumé</span></a>
+        </div>
+      </div>
+
+      <aside class="hero-right">
+        <span class="hero-orb" aria-hidden="true"></span>
+        <span class="hero-ring" aria-hidden="true"></span>
+        <span class="bubble b1" aria-hidden="true"></span>
+        <span class="bubble b2" aria-hidden="true"></span>
+        <span class="bubble b3" aria-hidden="true"></span>
+
+        <figure class="hero-portrait">
+          <img src="images/portrait.jpg" width="720" height="960" fetchpriority="high" decoding="async"
+               alt="马准名蹲在溪边岩石上，手持相机与长焦镜头"
+               data-alt-zh="马准名蹲在溪边岩石上，手持相机与长焦镜头"
+               data-alt-en="Zhunming Ma crouched on a rock by a mountain stream, camera and telephoto lens in hand"
+               onerror="this.onerror=null;this.alt='Aurora over Iceland — from the photography archive';this.src='https://zhunmingma.vercel.app/images/jiguang1.jpg'" />
+          <!-- 印章暂移除：原文案「冰岛 2024」是配旧人像的，新照片的地点与年份待作者提供后恢复 -->
+        </figure>
+
+        <div class="now-card">
+          <span class="now-k"><i class="now-dot" aria-hidden="true"></i><span class="i-zh">当前</span><span class="i-en">Now</span></span>
+          <b><span class="i-zh">都柏林大学 — 助教与研究助理</span><span class="i-en">University College Dublin — TA &amp; Research Assistant</span></b>
+          <small><span class="i-zh">2024.09 – 至今 · 都柏林</span><span class="i-en">2024.09 – present · Dublin</span></small>
+        </div>
+      </aside>
+
+    </div>
+
+    <div class="stats">
+    <div class="stat" data-reveal><b data-count="3">0</b><small><span class="i-zh">代表项目</span><span class="i-en">Projects</span></small></div>
+    <div class="stat" data-reveal><b data-count="112650">0</b><small><span class="i-zh">订单明细</span><span class="i-en">Order lines</span></small></div>
+    <div class="stat" data-reveal><b data-count="200">0</b><small><span class="i-zh">Agent 评测例</span><span class="i-en">Agent evals</span></small></div>
+    <div class="stat" data-reveal><b data-count="60" data-suffix="+">0</b><small><span class="i-zh">可溯源来源</span><span class="i-en">Cited sources</span></small></div>
+    </div>
+  </div>
+
+  <div class="scrollhint" aria-hidden="true"><span class="i-zh">向下滑动，探索更多</span><span class="i-en">Scroll to explore</span><i></i></div>
+</header>
+
+<!-- ============ 01 WORK ============ -->
+<section class="sect" id="work">
+  <div class="sec-head" data-reveal>
+    <span class="no">01 / 07 — <span class="i-zh">作品</span><span class="i-en">Work</span></span>
+    <h2><span class="i-zh">决策系统<em>档案</em></span><span class="i-en">The Decision <em>Ledger</em></span></h2>
+  </div>
+
+  <div class="cat-head" data-reveal>
+    <h3><span class="i-zh">预测 <span class="neq">≠</span> 决策</span><span class="i-en">Prediction <span class="neq">≠</span> Decision</span></h3>
+    <span class="cat-count"><span class="i-zh">预测 + 目标 + 约束 + 取舍 + 责任</span><span class="i-en">Prediction + Objective + Constraints + Trade-offs + Accountability</span></span>
+  </div>
+  <p class="sec-sub" data-reveal style="margin:10px 0 clamp(16px,2.6vh,24px)">
+    <span class="i-zh">模型算得出下月销量下滑。这句话里没有任何一个动作。可选的动作有四个：降价、减库存、加投广告、退出品类。选哪一个，取决于这个品类要的是收入还是利润，能担多大风险，预算和库存还剩多少空间。放弃另外三条路要付出什么，同样要算进去。目标和权限一旦写清楚，AI 可以排序、推荐，也可以直接执行。它定不了这家公司把什么放在第一位，也不为最终结果负责。</span>
+    <span class="i-en">A model can tell you sales will fall next month. There is no action anywhere in that sentence. Four actions are open: cut the price, cut stock, spend more on ads, exit the category. Which one wins depends on whether this category is run for revenue or for margin, how much risk it can carry, and how much budget and inventory are left. The cost of giving up the other three counts too. Once objectives and authority are set down, AI can rank, recommend and even execute. It cannot settle what this company puts first, and it does not answer for the result.</span>
+  </p>
+  <p class="sec-sub" data-reveal>
+    <span class="i-zh">四件代表作落在四类业务——消费影像、平台结算风控、采销经营、家居日用，数据、规则与决策目标各不相同。进入陌生领域，我先弄清谁在做决策、哪些指标真正影响结果，再决定用什么数据和方法。</span>
+    <span class="i-en">Four flagship builds across four businesses — consumer imaging, platform settlement risk, category buying and home goods — each with its own data, rules and decision targets. Entering an unfamiliar one, I work out who decides and which metrics actually move the outcome before picking data or method.</span>
+  </p>
+
+  <!-- Category 1 · Decision Systems -->
+  <div class="cat">
+    <div class="cat-head" data-reveal>
+      <h3><span class="i-zh">代表项目</span><span class="i-en">Representative Projects</span></h3>
+      <span class="cat-count">4 <span class="i-zh">个项目</span><span class="i-en">projects</span></span>
+    </div>
+    <p class="cat-sub" data-reveal>
+      <span class="i-zh">消费影像产品 · AI 产品与 Agent · 经营分析与定价 · 平台战略——代码与演示都在 </span>
+      <span class="i-en">Consumer imaging product · AI product &amp; agents · business analytics &amp; pricing · platform strategy — code and demos on </span>
+      <a href="https://github.com/Martin-cell-blip" target="_blank" rel="noopener" data-hover>GitHub →</a>
+    </p>
+    <div class="cards">
+      <article class="card featured" style="--tile:var(--wash-4)">
+        <div class="prev" data-prev="dji/"
+             data-prev-title-zh="DJI Mimo 一键成片 PRD 预览" data-prev-title-en="DJI Mimo one-tap edit PRD preview">
+          <span class="prev-skel" aria-hidden="true">
+            <i></i><i></i><i></i><i></i>
+            <b class="prev-msg"><span class="i-zh">预览加载中</span><span class="i-en">Loading preview</span></b>
+            <b class="prev-msg-alt"><span class="i-zh">预览未加载</span><span class="i-en">Preview not loaded</span></b>
+            <b class="prev-msg-off"><span class="i-zh">预览已关闭</span><span class="i-en">Preview off</span></b>
+          </span>
+          <span class="prev-hit" data-open="dji/" aria-hidden="true" data-hover></span>
+          <span class="prev-tag"><i class="dot" aria-hidden="true"></i><span class="i-zh">实时预览 ↗</span><span class="i-en">Live preview ↗</span></span>
+        </div>
+        <div class="tile" aria-hidden="true">🎬</div>
+        <h4>DJI Mimo「AI 一键成片」· <span class="i-zh">产品需求文档</span><span class="i-en">Product Requirements</span></h4>
+        <p>
+          <span class="i-zh">从自采 8,223 条 App Store 评论与 706 条 B 站评论定位痛点，到把「什么算剪砸了」写成 84 条可机械判定的验收：G1 能不能发布 / G2 设备遥测是否真被用上 / G3 你会不会不改一帧直接发出去，三级全过才算通过。MVP 只留「运动燃片」一个场景。<b>首轮评测尚未执行——文档给的是判据，不是战报。</b></span>
+          <span class="i-en">From 8,223 self-collected App Store reviews and 706 Bilibili comments to a written-down definition of failure: 84 mechanically checkable cases across three gates — G1 shippable / G2 is the device telemetry actually used / G3 would you post it without changing a frame. All three must pass. The MVP keeps exactly one scenario. <b>The first eval round has not been run — this is the protocol, not results.</b></span>
+        </p>
+        <p class="rationale"><span class="i-zh">用户在大疆拍、却把素材导去剪映剪——工作流断在出片这步，而这块能力目前由第三方承担。大疆手里有云台电机指令、IMU、逐帧主体轨迹和 GPS 速度曲线，<b>这些是纯视觉推断不出来的拍摄现场真值</b>。所以 AI 只放在感知与判断环节（分辨运镜与手抖、定位速度峰值），<b>核心剪辑仍是确定性流水线</b>，大模型只碰文案层。「什么算剪砸了」先写成 84 条可机械判定的验收。<span class="caveat">首轮评测尚未执行——这里给的是判据，不是战报。</span></span><span class="i-en">Users shoot on DJI and edit in CapCut: the workflow breaks at export, and that capability is currently outsourced. DJI holds gimbal motor commands, IMU, per-frame subject tracks and GPS speed — <b>ground truth no vision model can infer</b>. So AI sits only where perception and judgement are needed; <b>the editing core stays a deterministic pipeline</b>, with the LLM confined to copy. Failure was defined first: 84 mechanically checkable cases across three gates. <span class="caveat">The first eval round has not been run — this is the protocol, not results.</span></span></p>
+        <div class="chips"><span>PRD</span><span class="i-zh">一手用户研究</span><span class="i-en">Primary research</span><span class="i-zh">评测协议</span><span class="i-en">Eval protocol</span><span class="i-zh">软硬协同</span><span class="i-en">HW × SW</span></div>
+        <div class="figures"><b>8,223</b> <span class="i-zh">条自采评论</span><span class="i-en">reviews collected</span> · <b>84</b> <span class="i-zh">条分层评测用例</span><span class="i-en">stratified eval cases</span></div>
+        <div class="card-links">
+          <a href="dji/" data-hover><span class="i-zh">读 PRD</span><span class="i-en">Read the PRD</span> →</a>
+        </div>
+      </article>
+
+      <article class="card" style="--tile:var(--wash-1)">
+        <div class="prev" data-prev="https://martin-cell-blip.github.io/decisionops-ai/"
+             data-prev-title-zh="DecisionOps AI 在线演示预览" data-prev-title-en="DecisionOps AI live demo preview">
+          <span class="prev-skel" aria-hidden="true">
+            <i></i><i></i><i></i><i></i>
+            <b class="prev-msg"><span class="i-zh">预览加载中</span><span class="i-en">Loading preview</span></b>
+            <b class="prev-msg-alt"><span class="i-zh">预览未加载</span><span class="i-en">Preview not loaded</span></b>
+            <b class="prev-msg-off"><span class="i-zh">预览已关闭</span><span class="i-en">Preview off</span></b>
+          </span>
+          <span class="prev-hit" data-open="https://martin-cell-blip.github.io/decisionops-ai/" aria-hidden="true" data-hover></span>
+          <span class="prev-tag"><i class="dot" aria-hidden="true"></i><span class="i-zh">实时预览 ↗</span><span class="i-en">Live preview ↗</span></span>
+        </div>
+        <div class="tile" aria-hidden="true">🧭</div>
+        <h4>DecisionOps AI · <span class="i-zh">决策运营台</span><span class="i-en">Decision Ledger</span></h4>
+        <p>
+          <span class="i-zh">双业务 Agent——结算风控与商家经营。规则引擎负责计算，大模型负责循证解释：每条建议必须携带证据引用；样本不足 30 单或 500 浏览时主动拒绝出建议，转人工审批。200 例固定种子评测接入 CI，字段来源全披露。</span>
+          <span class="i-en">Two business agents — settlement risk and merchant operations. The rules engine does the math; the LLM explains with evidence: every recommendation must carry citations; under 30 orders or 500 views it refuses to advise at all and hands off to human review. 200 fixed-seed eval cases wired into CI; full field-provenance disclosure.</span>
+        </p>
+        <p class="rationale"><span class="i-zh">看板不缺，缺的是「下一步动哪个 SKU、凭什么」。财务运营真正的痛点不是发现异常，而是<b>解释</b>异常——拒付或追回之前必须拿得出凭据。所以金额与判定交给规则引擎，必须可复算；<b>大模型只做规则写不出来的那件事</b>：把证据串成人能读的理由，并在样本不足时说清为什么不给建议。<b>它没有写权限。</b><span class="caveat">合成数据演示，无真实用户与业务收益。</span></span><span class="i-en">Dashboards are not scarce; knowing which SKU to act on and on what grounds is. The real pain is not spotting an exception but <b>explaining</b> it — you need evidence before you refuse or claw back a payment. So amounts and verdicts stay in the rules engine, recomputable; <b>the LLM does only what rules cannot</b>: turn evidence into a readable rationale, and say why it declines to advise on thin data. <b>It has no write access.</b> <span class="caveat">Synthetic-data demo — no real users or business outcomes.</span></span></p>
+        <div class="chips"><span>FastAPI</span><span class="i-zh">证据引用</span><span class="i-en">Evidence citations</span><span class="i-zh">数据不足拒答</span><span class="i-en">Graceful refusal</span><span>CI</span></div>
+        <div class="figures"><b>200</b> <span class="i-zh">例固定种子评测</span><span class="i-en">fixed-seed evals</span> · <b>112,650</b> <span class="i-zh">订单行</span><span class="i-en">order lines</span></div>
+        <div class="card-links">
+          <a href="https://martin-cell-blip.github.io/decisionops-ai/" target="_blank" rel="noopener" data-hover><span class="i-zh">在线演示</span><span class="i-en">Live demo</span> →</a>
+          <a href="https://github.com/Martin-cell-blip/decisionops-ai" target="_blank" rel="noopener" data-hover>GitHub →</a>
+        </div>
+      </article>
+
+      <article class="card" style="--tile:var(--wash-3)">
+        <div class="prev" data-prev="https://martin-cell-blip.github.io/category-management-sim/"
+             data-prev-title-zh="品类采销经营模拟盘看板预览" data-prev-title-en="Category Management Simulator dashboard preview">
+          <span class="prev-skel" aria-hidden="true">
+            <i></i><i></i><i></i><i></i>
+            <b class="prev-msg"><span class="i-zh">预览加载中</span><span class="i-en">Loading preview</span></b>
+            <b class="prev-msg-alt"><span class="i-zh">预览未加载</span><span class="i-en">Preview not loaded</span></b>
+            <b class="prev-msg-off"><span class="i-zh">预览已关闭</span><span class="i-en">Preview off</span></b>
+          </span>
+          <span class="prev-hit" data-open="https://martin-cell-blip.github.io/category-management-sim/" aria-hidden="true" data-hover></span>
+          <span class="prev-tag"><i class="dot" aria-hidden="true"></i><span class="i-zh">实时预览 ↗</span><span class="i-en">Live preview ↗</span></span>
+        </div>
+        <div class="tile" aria-hidden="true">🛒</div>
+        <h4><span class="i-zh">品类采销经营模拟盘</span><span class="i-en">Category Management Simulator</span></h4>
+        <p>
+          <span class="i-zh">基于 10 万+ 真实订单的采销决策闭环：品类结构 → 选品汰换 → 控价情景 → 大促复盘，四模块共用一套 GMV 口径。诊断出高价带以 25.8% SKU 贡献 62.6% GMV 的结构倒挂。</span>
+          <span class="i-en">A buying-and-merchandising loop over 100k+ real orders: structure → assortment → pricing → promotion review, four modules on one GMV definition. Surfaced a skew where 25.8% of SKUs drive 62.6% of GMV.</span>
+        </p>
+        <p class="rationale"><span class="i-zh">品类结构、选品汰换、控价、大促复盘，在多数团队里是四张彼此对不上的表——<b>口径不统一，四个结论就无法互证</b>。这里<b>刻意不用大模型</b>：GMV、毛利与汰换影响都是确定性计算，交给模型只会让结果不可复算，判断力该花在定义口径和设约束上。四模块共用一套 GMV 口径，跨模块对账做成管线硬断言，校验失败即中止。<span class="caveat">数据为公开的 2016–2018 巴西 Olist 平台集，无成本与流量字段，结论只到方法论层。</span></span><span class="i-en">Structure, assortment, pricing and promotion review usually live in four spreadsheets that disagree — <b>without one shared definition they cannot corroborate each other</b>. There is <b>deliberately no LLM here</b>: GMV, margin and delisting impact are deterministic computations, and a model would only make them non-reproducible. Judgement belongs in defining the metric and setting constraints. Four modules share one GMV definition, with reconciliation as a hard pipeline assertion that halts on failure. <span class="caveat">Public 2016–2018 Brazilian Olist data, without cost or traffic fields; conclusions hold at the method level only.</span></span></p>
+        <div class="chips"><span>DuckDB SQL</span><span>Python</span><span class="i-zh">经营分析 · 定价</span><span class="i-en">Analytics · Pricing</span></div>
+        <div class="figures"><b>374 SKU</b> <span class="i-zh">汰换 · GMV 仅降 9.6%</span><span class="i-en">delisted · GMV down only 9.6%</span> · <span class="i-zh">对账容差</span><span class="i-en">recon tol.</span> <b>0</b></div>
+        <div class="card-links">
+          <a href="https://martin-cell-blip.github.io/category-management-sim/" target="_blank" rel="noopener" data-hover><span class="i-zh">研究看板</span><span class="i-en">Dashboard</span> →</a>
+          <a href="https://github.com/Martin-cell-blip/category-management-sim" target="_blank" rel="noopener" data-hover>GitHub →</a>
+        </div>
+      </article>
+
+      <article class="card" style="--tile:var(--wash-2)">
+        <div class="prev" data-prev="https://martin-cell-blip.github.io/category-management-sim/research/"
+             data-prev-title-zh="家居日用品类行业研究报告预览" data-prev-title-en="Home &amp; Daily Goods industry study preview">
+          <span class="prev-skel" aria-hidden="true">
+            <i></i><i></i><i></i><i></i>
+            <b class="prev-msg"><span class="i-zh">预览加载中</span><span class="i-en">Loading preview</span></b>
+            <b class="prev-msg-alt"><span class="i-zh">预览未加载</span><span class="i-en">Preview not loaded</span></b>
+            <b class="prev-msg-off"><span class="i-zh">预览已关闭</span><span class="i-en">Preview off</span></b>
+          </span>
+          <div class="mini-seal" aria-hidden="true"><span><span class="i-zh">可溯源<br/>60+ 源</span><span class="i-en">Sourced<br/>60+</span></span></div>
+          <span class="prev-hit" data-open="https://martin-cell-blip.github.io/category-management-sim/research/" aria-hidden="true" data-hover></span>
+          <span class="prev-tag"><i class="dot" aria-hidden="true"></i><span class="i-zh">实时预览 ↗</span><span class="i-en">Live preview ↗</span></span>
+        </div>
+        <div class="tile" aria-hidden="true">🏠</div>
+        <h4><span class="i-zh">家居日用品类行业研究</span><span class="i-en">Home &amp; Daily Goods Industry Study</span></h4>
+        <p>
+          <span class="i-zh">平台战略视角的七章行研：三锚点交叉测算品类约 2000 亿、可获得盘 240–300 亿；识别并校正咨询机构口径污染；结论——<b>份额行业而非增长行业</b>，大类分散但细分单品可集中。</span>
+          <span class="i-en">A seven-chapter study from a platform-strategy lens: the category triangulated at ≈¥200bn with a ¥24–30bn obtainable pool; corrected a consulting-firm definition contamination; verdict — <b>a share game, not a growth game</b>, with concentratable niches.</span>
+        </p>
+        <p class="rationale"><span class="i-zh">进一个陌生品类，先要回答的不是「多大」而是<b>「这是抢份额还是等增长」</b>——两者对应完全不同的打法。而现成报告的口径互相污染，直接引用等于把结论建在别人的定义上，所以<b>规模测算全程不用模型</b>：三个独立口径各算一遍再交叉，是为了让每一步都能被别人重算。AI 只用在检索与初筛，数字逐条人工核对并编号。<span class="caveat">60+ 条编号来源；6 组对不上的数字单列一章，其中 2 组至今未解决。</span></span><span class="i-en">Entering an unfamiliar category, the first question is not how big it is but <b>whether it is a share game or a growth game</b> — the two imply opposite strategies. Published reports contaminate each other's definitions, so citing them builds your conclusion on someone else's terms; <b>the sizing therefore uses no model at all</b>: three independent anchors computed separately and cross-checked, so every step can be recomputed. AI is used only for retrieval and screening. <span class="caveat">60+ numbered sources; six conflicting figures are listed in their own chapter, two still unresolved.</span></span></p>
+        <div class="chips"><span class="i-zh">平台战略</span><span class="i-en">Platform strategy</span><span class="i-zh">规模测算</span><span class="i-en">Market sizing</span><span class="i-zh">敏感性分析</span><span class="i-en">Sensitivity</span></div>
+        <div class="figures"><b><span class="i-zh">约 2000 亿</span><span class="i-en">≈¥200bn</span></b> <span class="i-zh">品类规模</span><span class="i-en">category</span> · <b><span class="i-zh">240–300 亿</span><span class="i-en">¥24–30bn</span></b> <span class="i-zh">可获得盘</span><span class="i-en">obtainable</span></div>
+        <div class="card-links">
+          <a href="https://martin-cell-blip.github.io/category-management-sim/research/" target="_blank" rel="noopener" data-hover><span class="i-zh">阅读报告</span><span class="i-en">Read the report</span> →</a>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <!-- More engineering experiments — 2026-08-18 清场：整块从首页移除
+       理由：① 用户裁决「作品集不是越多越好」，首页只留 DJI / DecisionOps / 模拟盘 / 行研 四件；
+             ② Bank Audit Hub 的作品链接与 E-PRJ-CONF 记录不一致（指向 recon 仓库），澄清前不得对外；
+             ③ 物流对账的头号卖点（四方对账 / 120 项测试 / 费率卡基准）仍在未 commit 的分支上，
+                公开仓库与讲稿对不上，push 前不引用。
+       两者都保留在垂直线材料里（物流对账＝京东物流岗主打，Bank Audit Hub＝邮储审计岗主打）。
+  <div class="cat">
+    <div class="cat-head" data-reveal>
+      <h3><span class="i-zh">更多工程实验</span><span class="i-en">More Engineering Experiments</span></h3>
+      <span class="cat-count">2 <span class="i-zh">项</span><span class="i-en">builds</span></span>
+    </div>
+    <p class="cat-sub" data-reveal>
+      <span class="i-zh">两个垂直场景的落地实验——物流结算与银行审计，验证同一套「可核验」方法能迁移到不同业务。</span>
+      <span class="i-en">Two vertical experiments — logistics settlement and bank audit — showing the same verifiability method transfers across domains.</span>
+    </p>
+    <div class="cards">
+      <article class="card mini" style="--tile:var(--wash-2)">
+        <div class="prev" data-prev="https://martin-cell-blip.github.io/logistics-settlement-recon/"
+             data-prev-title-zh="物流结算对账演示预览" data-prev-title-en="Settlement recon demo preview">
+          <span class="prev-skel" aria-hidden="true">
+            <i></i><i></i><i></i><i></i>
+            <b class="prev-msg"><span class="i-zh">预览加载中</span><span class="i-en">Loading preview</span></b>
+            <b class="prev-msg-alt"><span class="i-zh">预览未加载</span><span class="i-en">Preview not loaded</span></b>
+            <b class="prev-msg-off"><span class="i-zh">预览已关闭</span><span class="i-en">Preview off</span></b>
+          </span>
+          <span class="prev-tag"><i class="dot" aria-hidden="true"></i><span class="i-zh">预览 · 不可交互</span><span class="i-en">Preview · static</span></span>
+        </div>
+        <div class="tile" aria-hidden="true">🧾</div>
+        <h4><span class="i-zh">物流结算对账 + 坏账预警</span><span class="i-en">Settlement Recon &amp; Bad-Debt Watch</span></h4>
+        <p>
+          <span class="i-zh">订单 × 账单 × 合同的三方对账引擎，7 类异常自动分类；合成账单注入真值验证，查全率 99.9%；附账龄 / DSO / ECL 与 AI 复核 Agent。另有 63 条引用的配套行研（备索）。</span>
+          <span class="i-en">A three-way recon engine (orders × bills × contracts) with 7 auto-classified exception types; validated against injected ground truth at 99.9% recall; plus aging / DSO / ECL and an AI review agent. A 63-citation companion study available on request.</span>
+        </p>
+        <div class="chips"><span>DuckDB SQL</span><span class="i-zh">账龄 · ECL</span><span class="i-en">Aging · ECL</span><span>AI Agent</span></div>
+        <div class="card-links">
+          <a href="https://github.com/Martin-cell-blip/logistics-settlement-recon" target="_blank" rel="noopener" data-hover>GitHub →</a>
+        </div>
+      </article>
+
+      <article class="card mini" style="--tile:var(--wash-4)">
+        <div class="prev" data-prev="https://martin-cell-blip.github.io/bank-audit-hub/"
+             data-prev-title-zh="Bank Audit Hub 演示预览" data-prev-title-en="Bank Audit Hub demo preview">
+          <span class="prev-skel" aria-hidden="true">
+            <i></i><i></i><i></i><i></i>
+            <b class="prev-msg"><span class="i-zh">预览加载中</span><span class="i-en">Loading preview</span></b>
+            <b class="prev-msg-alt"><span class="i-zh">预览未加载</span><span class="i-en">Preview not loaded</span></b>
+            <b class="prev-msg-off"><span class="i-zh">预览已关闭</span><span class="i-en">Preview off</span></b>
+          </span>
+          <span class="prev-tag"><i class="dot" aria-hidden="true"></i><span class="i-zh">预览 · 不可交互</span><span class="i-en">Preview · static</span></span>
+        </div>
+        <div class="tile" aria-hidden="true">🏦</div>
+        <h4>Bank Audit Hub · <span class="i-zh">函证与审计中枢</span><span class="i-en">Confirmations Workbench</span></h4>
+        <p>
+          <span class="i-zh">银行审计函证协同平台：五状态看板 + 状态机拒绝非法流转；回函差异三分归因；存款函证覆盖率红线预警；询证函一键生成。FastAPI + DuckDB，一条命令运行。</span>
+          <span class="i-en">A bank-audit confirmations workbench: a five-state board whose state machine rejects illegal transitions; three-way discrepancy attribution; deposit-coverage red-line alerts; one-click letters. FastAPI + DuckDB, one command to run.</span>
+        </p>
+        <div class="chips"><span>FastAPI</span><span>DuckDB</span><span class="i-zh">内控状态机</span><span class="i-en">Control states</span></div>
+        <div class="card-links">
+          <a href="https://github.com/Martin-cell-blip/bank-audit-hub" target="_blank" rel="noopener" data-hover>GitHub →</a>
+        </div>
+      </article>
+    </div>
+  </div>
+  -->
+  <div class="rule"></div>
+</section>
+
+<!-- ============ 02 SKILLS ============ -->
+<section class="sect" id="skills">
+  <div class="sec-head" data-reveal>
+    <span class="no">02 / 07 — <span class="i-zh">技能</span><span class="i-en">Skills</span></span>
+    <h2><span class="i-zh">工具与<em>方法</em></span><span class="i-en">Tools &amp; <em>Method</em></span></h2>
+  </div>
+  <p class="sec-sub" data-reveal>
+    <span class="i-zh">从需求到上线的完整链路：用户研究 → PRD → Agent 工作流 → 原型 → 评测。做完的东西都能被复跑、被追问。</span>
+    <span class="i-en">The full path from demand to launch: user research → PRD → agent workflow → prototype → evaluation. Everything I ship can be re-run and questioned.</span>
+  </p>
+  <div class="skills-grid">
+    <div class="skill" data-reveal>
+      <span class="roman">I</span>
+      <h4><span class="i-zh">AI 产品与 Agent</span><span class="i-en">AI Product &amp; Agents</span></h4>
+      <span class="en-sub">FastAPI · Evals · CI</span>
+      <ul>
+        <li><span class="i-zh">双业务 Agent 架构：<b>规则引擎计算 + 大模型循证解释</b></span><span class="i-en">Two-agent architecture: <b>rules engine for math, LLM for evidence-backed explanation</b></span></li>
+        <li><span class="i-zh"><b>证据引用</b>强校验 · 数据不足拒答 · 人工审批兜底</span><span class="i-en">Strict <b>evidence citations</b> · graceful refusal · human-review fallback</span></li>
+        <li><span class="i-zh"><b>固定种子评测</b>（200 例）接入 GitHub Actions CI</span><span class="i-en"><b>Fixed-seed evals</b> (200 cases) wired into GitHub Actions CI</span></li>
+        <li><span class="i-zh">千帆适配实测暴露<b>引用合并降级</b>，归一化修复后复测 <b>6/6 通过</b>——修的是代码，没有放宽校验</span><span class="i-en">A Qianfan port surfaced a <b>citation-merge regression</b>; fixed by normalizing citations and retested <b>6/6</b> — the code moved, the check did not</span></li>
+      </ul>
+    </div>
+    <div class="skill" data-reveal>
+      <span class="roman">II</span>
+      <h4><span class="i-zh">商业与战略分析</span><span class="i-en">Business &amp; Strategy</span></h4>
+      <span class="en-sub">Sizing · Pricing · Category P&amp;L</span>
+      <ul>
+        <li><span class="i-zh">品类结构 / 价格带 / 汰换 / 大促 ROI 的<b>经营决策闭环</b></span><span class="i-en">A full <b>operating loop</b>: structure, price bands, assortment, promo ROI</span></li>
+        <li><span class="i-zh"><b>三锚点市场测算</b> + 敏感性分析</span><span class="i-en"><b>Triple-anchor market sizing</b> with sensitivity analysis</span></li>
+        <li><span class="i-zh"><b>口径侦探</b>：识别并校正咨询机构口径污染</span><span class="i-en"><b>Definition detective</b>: catching &amp; correcting metric contamination</span></li>
+        <li><span class="i-zh">矛盾与缺口<b>显式披露</b>，不藏问题</span><span class="i-en">Contradictions &amp; gaps <b>disclosed</b>, never buried</span></li>
+      </ul>
+    </div>
+    <div class="skill" data-reveal>
+      <span class="roman">III</span>
+      <h4><span class="i-zh">数据分析与工程</span><span class="i-en">Data &amp; Engineering</span></h4>
+      <span class="en-sub">SQL · Python · Econometrics</span>
+      <ul>
+        <li><b>SQL (DuckDB)</b> · Python (pandas) · Excel <span class="i-zh">透视表</span><span class="i-en">pivots</span> · Power BI · Stata</li>
+        <li><span class="i-zh"><b>因果推断</b>：DID / 事件研究，保险政策 36 万观测面板</span><span class="i-en"><b>Causal inference</b>: DID / event study on a 360k-obs insurance-policy panel</span></li>
+        <li><span class="i-zh">财务与风控口径：三方对账 · 账龄 / ECL · 函证流程</span><span class="i-en">Finance &amp; risk fluency: three-way recon · aging / ECL · confirmations</span></li>
+      </ul>
+    </div>
+    <div class="skill" data-reveal>
+      <span class="roman">IV</span>
+      <h4><span class="i-zh">团队管理与交付</span><span class="i-en">Team &amp; Delivery</span></h4>
+      <span class="en-sub">Founder · Team Lead</span>
+      <ul>
+        <li><span class="i-zh"><b>研学公司创业</b>：5 人团队，2 场活动约 500 人</span><span class="i-en"><b>Founded a study-tour company</b>: 5-person team, 2 programs for ~500 students</span></li>
+        <li><span class="i-zh">电商经营合伙人：<b>年度利润 +7%</b>（兴盛塑料）</span><span class="i-en">E-commerce operating partner: <b>annual profit +7%</b> (Xingsheng Plastics)</span></li>
+        <li><span class="i-zh">带领 13 人团队，落地 <b>25 场</b>校企活动</span><span class="i-en">Led a 13-person team through <b>25</b> campus-corporate events</span></li>
+        <li><span class="i-zh">两类团队要的不同：创业队对<b>经营结果</b>负责，项目队要在多场并行下<b>保住交付</b>；做法都是把目标拆成谁在何时交什么，再按复盘调整</span><span class="i-en">The two demand different things: a venture team answers for the <b>P&amp;L</b>, a project team has to <b>hold delivery</b> across parallel events; both come down to splitting a goal into who ships what by when, then adjusting on review</span></li>
+      </ul>
+    </div>
+    <div class="skill" data-reveal>
+      <span class="roman">V</span>
+      <h4><span class="i-zh">沟通与协作</span><span class="i-en">Communication &amp; Collaboration</span></h4>
+      <span class="en-sub">20+ base tables · 300h teaching</span>
+      <ul>
+        <li><span class="i-zh"><b>跨部门口径对齐</b>：20+ 张业务底表。同一个指标名，各方常常用着不同的定义、统计范围与算法；先把这三样对齐，再进入计算</span><span class="i-en"><b>Cross-team definition alignment</b> across 20+ base tables. One metric name often carries different definitions, scopes and formulas across teams; I settle all three before any computing starts</span></li>
+        <li><span class="i-zh"><b>300 小时</b>全英文授课，面向 300+ 学生</span><span class="i-en"><b>300 hours</b> teaching in English to 300+ students</span></li>
+        <li><span class="i-zh">中文母语，<b>英文工作流利</b>（TOEFL 102 / GRE 332）</span><span class="i-en">Native Mandarin, <b>professional English</b> (TOEFL 102 / GRE 332)</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="rule"></div>
+</section>
+
+<!-- ============ 03 ABOUT ============ -->
+<section class="sect" id="about">
+  <div class="sec-head" data-reveal>
+    <span class="no">03 / 07 — <span class="i-zh">关于</span><span class="i-en">About</span></span>
+    <h2><span class="i-zh">关于<em>我</em></span><span class="i-en">About <em>me</em></span></h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p class="ab-open" data-reveal>
+        <span class="i-zh">我习惯把模糊的问题拆清楚，再用数据和行动验证。</span>
+        <span class="i-en">I break vague problems into clear ones — then verify with data and action.</span>
+      </p>
+      <p data-reveal>
+        <span class="i-zh">我在山东大学完成旅游管理与法学双学位，之后在约翰·霍普金斯大学读<b>应用经济学</b>，在都柏林大学读<b>经济学</b>并完成研究型硕士论文。两条路径叠在一起：我关注现实的商业问题，也习惯回到模型、机制和数据里找答案。</span>
+        <span class="i-en">I completed dual degrees in tourism management and law at Shandong University, then read <b>applied economics</b> at Johns Hopkins and <b>economics</b> at University College Dublin, finishing a research thesis there. The two tracks sit on top of each other: I follow real commercial problems, and I go back to models, mechanisms and data for the answers.</span>
+      </p>
+      <p data-reveal>
+        <span class="i-zh">在都柏林大学的两年，我做研究助理与教学助理：参与学术研究与数据分析，并面向 <b>300+ 学生</b>讲授微观经济学，累计 <b>300 小时</b>全英文授课。英文是我的工作语言（TOEFL 102）。</span>
+        <span class="i-en">Two years at UCD as a research and teaching assistant: academic research and data analysis, plus microeconomics taught to <b>300+ students</b> over <b>300 hours</b>, entirely in English. English is a working language for me (TOEFL 102).</span>
+      </p>
+      <p data-reveal>
+        <span class="i-zh">我曾在<b>字节跳动</b>和<b>中金</b>参与数据分析。这些工作把我的重心推到了分析之前的一步：先从业务问题里找出真正需要验证的假设，再让数据去支持决策。</span>
+        <span class="i-en">I've done data analytics at <b>ByteDance</b> and <b>CICC</b>. That work pushed my centre of gravity one step upstream of the analysis: find the hypothesis a business problem actually needs tested, then let the data carry the decision.</span>
+      </p>
+      <p data-reveal>
+        <span class="i-zh">我关注能被验证、也能落地的业务问题：品类怎么选、价格怎么定、风险怎么识别，以及 AI 怎样提高决策效率。围绕这些问题，我独立完成了 <b>DecisionOps AI</b>、<b>电商经营决策模拟盘</b>和<b>平台战略研究</b>，把需求拆解、数据分析、模型评测与产品上线连成一条链。</span>
+        <span class="i-en">I focus on business questions that can be verified and shipped: which assortment to carry, how to price, how to spot risk, and how AI can raise decision efficiency. Around these I independently built <b>DecisionOps AI</b>, an <b>e-commerce decision simulator</b> and a <b>platform-strategy study</b>, joining requirement breakdown, data analysis, model evaluation and product launch into one chain.</span>
+      </p>
+      <p data-reveal>
+        <span class="i-zh">我也带过团队：<b>5 人团队</b>运营研学公司，按财务 / 市场 / 履约 / 客服分工；<b>13 人团队</b>落地 <b>25 场</b>校企活动。带团队教给我的，是把一个目标翻译成别人能接手的事：交付什么、谁负责、什么时候完成。</span>
+        <span class="i-en">I've also led teams: a <b>five-person team</b> running a study-tour company across finance, marketing, delivery and client service, and a <b>13-person team</b> delivering <b>25</b> campus-corporate events. Leading taught me to translate a goal into something other people can pick up: what ships, who owns it, when it lands.</span>
+      </p>
+      <p data-reveal>
+        <span class="i-zh">工作之外，我长期拍胶片，三年走过九个国家、留下 <a href="#gallery" class="inline-jump" data-hover>84 帧</a>。摄影让我留意细节，也让我在没有确定答案时更沉得住气。</span>
+        <span class="i-en">Outside work I shoot film — nine countries and <a href="#gallery" class="inline-jump" data-hover>84 frames</a> across three years. Photography keeps me watching detail, and keeps me steady when there is no settled answer yet.</span>
+      </p>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+</section>
+
+<!-- ============ 04 EDUCATION ============ -->
+<section class="sect" id="education">
+  <div class="sec-head" data-reveal>
+    <span class="no">04 / 07 — <span class="i-zh">教育</span><span class="i-en">Education</span></span>
+    <h2><span class="i-zh">三所学校，<em>一条时间线</em></span><span class="i-en">Three schools, <em>one timeline</em></span></h2>
+  </div>
+  <p class="sec-sub" data-reveal>
+    <span class="i-zh">按时间倒序排列。校名、学位、时间与地点与下方简历栏逐字一致。</span>
+    <span class="i-en">In reverse chronological order. Schools, degrees, dates and places match the résumé column below word for word.</span>
+  </p>
+
+  <div class="edu-grid">
+    <article class="edu-card" data-reveal>
+      <figure class="edu-shot">
+        <img src="images/schools/ucd.jpg" width="1000" height="750" loading="lazy" decoding="async"
+             alt="都柏林大学贝尔菲尔德校区：湖景与文学院大楼"
+             data-alt-zh="都柏林大学贝尔菲尔德校区：湖景与文学院大楼"
+             data-alt-en="University College Dublin, Belfield campus — the lake and the Arts Block" />
+      </figure>
+      <div class="edu-body">
+        <span class="edu-yr">2024.09 – 2026.12 · Dublin</span>
+        <h3><span class="i-zh">都柏林大学 UCD</span><span class="i-en">University College Dublin</span></h3>
+        <p class="edu-deg"><span class="i-zh">经济学文学硕士 · 全额奖学金</span><span class="i-en">MA Economics · Full scholarship</span></p>
+      </div>
+    </article>
+
+    <article class="edu-card" data-reveal>
+      <figure class="edu-shot">
+        <img src="images/schools/jhu.jpg" width="1200" height="750" loading="lazy" decoding="async"
+             alt="约翰·霍普金斯大学华盛顿校区：尼采高级国际研究学院大楼"
+             data-alt-zh="约翰·霍普金斯大学华盛顿校区：尼采高级国际研究学院大楼"
+             data-alt-en="Johns Hopkins University, Washington D.C. — the Nitze School of Advanced International Studies" />
+      </figure>
+      <div class="edu-body">
+        <span class="edu-yr">2021.08 – 2022.12 · Washington D.C.</span>
+        <h3><span class="i-zh">约翰·霍普金斯大学 JHU</span><span class="i-en">Johns Hopkins University</span></h3>
+        <p class="edu-deg"><span class="i-zh">应用经济学理学硕士 · GPA 3.64/4.0</span><span class="i-en">MS Applied Economics · GPA 3.64/4.0</span></p>
+      </div>
+    </article>
+
+    <article class="edu-card" data-reveal>
+      <figure class="edu-shot">
+        <img src="images/schools/sdu.jpg" width="1200" height="800" loading="lazy" decoding="async"
+             alt="山东大学中心校区：知新楼、喷泉与校训石"
+             data-alt-zh="山东大学中心校区：知新楼、喷泉与校训石"
+             data-alt-en="Shandong University, Central Campus — Zhixin Tower, the fountain and the motto stone" />
+      </figure>
+      <div class="edu-body">
+        <span class="edu-yr">2017.09 – 2021.06 · Jinan</span>
+        <h3><span class="i-zh">山东大学</span><span class="i-en">Shandong University</span></h3>
+        <p class="edu-deg"><span class="i-zh">旅游管理学士 + 法学学士（双学位）</span><span class="i-en">BM Tourism Management + LLB (dual degree)</span></p>
+      </div>
+    </article>
+  </div>
+
+  <p class="edu-credit">
+    <span class="i-zh">校园图（仅等比缩放，未裁剪）：山东大学 © AlexHe34 · <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener license">CC BY-SA 3.0</a>；约翰·霍普金斯大学 © ajay_suresh · <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener license">CC BY 2.0</a>；都柏林大学 © Sarah777 · 公有领域。</span>
+    <span class="i-en">Campus photos (scaled only, not cropped): Shandong University © AlexHe34 · <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener license">CC BY-SA 3.0</a>; Johns Hopkins University © ajay_suresh · <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener license">CC BY 2.0</a>; University College Dublin © Sarah777 · public domain.</span>
+  </p>
+  <div class="rule"></div>
+</section>
+
+<!-- ============ 04 RESUME ============ -->
+<section class="sect" id="resume">
+  <div class="resume-head-row" data-reveal>
+    <div class="sec-head" style="margin-bottom:0">
+      <span class="no">05 / 07 — <span class="i-zh">简历</span><span class="i-en">Résumé</span></span>
+      <h2><span class="i-zh">简历<em>一页</em></span><span class="i-en">One-page <em>Résumé</em></span></h2>
+    </div>
+    <button class="btn" id="printBtn" data-magnetic data-hover><span class="i-zh">打印 / 存 PDF</span><span class="i-en">Print / Save PDF</span></button>
+  </div>
+
+  <div class="cv" data-reveal>
+    <!-- side -->
+    <aside class="cv-side">
+      <div>
+        <div class="cv-name">马准名<span class="sig">Zhunming Ma</span></div>
+      </div>
+      <div>
+        <h5><span class="i-zh">联系</span><span class="i-en">Contact</span></h5>
+        <div class="cv-line"><b>Mail</b><a href="mailto:zhunmingm@gmail.com" data-hover>zhunmingm@gmail.com</a></div>
+        <div class="cv-line"><b>GitHub</b><a href="https://github.com/Martin-cell-blip" target="_blank" rel="noopener" data-hover>Martin-cell-blip</a></div>
+        <div class="cv-line"><b>LinkedIn</b><a href="https://linkedin.com/in/zhunming-ma" target="_blank" rel="noopener" data-hover>zhunming-ma</a></div>
+      </div>
+      <div>
+        <h5><span class="i-zh">教育背景</span><span class="i-en">Education</span></h5>
+        <div class="edu">
+          <b><span class="i-zh">都柏林大学 UCD</span><span class="i-en">University College Dublin</span></b>
+          <span><span class="i-zh">经济学文学硕士 · 全额奖学金</span><span class="i-en">MA Economics · Full scholarship</span></span>
+          <small>2024.09 – 2026.12 · Dublin</small>
+        </div>
+        <div class="edu">
+          <b><span class="i-zh">约翰·霍普金斯大学 JHU</span><span class="i-en">Johns Hopkins University</span></b>
+          <span><span class="i-zh">应用经济学理学硕士 · GPA 3.64/4.0</span><span class="i-en">MS Applied Economics · GPA 3.64/4.0</span></span>
+          <small>2021.08 – 2022.12 · Washington D.C.</small>
+        </div>
+        <div class="edu">
+          <b><span class="i-zh">山东大学</span><span class="i-en">Shandong University</span></b>
+          <span><span class="i-zh">旅游管理学士 + 法学学士（双学位）</span><span class="i-en">BM Tourism Management + LLB (dual degree)</span></span>
+          <small>2017.09 – 2021.06 · Jinan</small>
+        </div>
+      </div>
+      <div>
+        <h5><span class="i-zh">技能</span><span class="i-en">Skills</span></h5>
+        <div class="cv-line"><span class="i-zh">FastAPI · OpenAI / ERNIE · 证据引用与数据不足拒答 · 固定种子评测 · GitHub Actions CI</span><span class="i-en">FastAPI · OpenAI / ERNIE · evidence citations &amp; graceful refusal · fixed-seed evals · GitHub Actions CI</span></div>
+        <div class="cv-line"><span class="i-zh">SQL (DuckDB) · Python (pandas) · Excel 透视表 · Power BI · Stata</span><span class="i-en">SQL (DuckDB) · Python (pandas) · Excel pivots · Power BI · Stata</span></div>
+        <div class="cv-line"><span class="i-zh">品类经营 · 定价 · 三锚点测算 · 对账 / 账龄 / ECL</span><span class="i-en">Category P&amp;L · pricing · market sizing · recon / aging / ECL</span></div>
+        <div class="cv-line"><span class="i-zh">TOEFL 102 · GRE 332</span><span class="i-en">TOEFL 102 · GRE 332</span></div>
+      </div>
+    </aside>
+
+    <!-- main -->
+    <div class="cv-main">
+      <div>
+        <h5><span class="i-zh">个人概述</span><span class="i-en">Profile</span></h5>
+        <p style="font-size:.92rem;color:var(--ink-soft);max-width:70ch">
+          <span class="i-zh">应用经济学背景的 AI 产品与经营分析候选人：独立完成 DecisionOps AI（双业务 Agent）、电商经营决策模拟盘与平台战略行业研究；两段大厂 / 头部机构数据分析实习（字节跳动、中金）；近三年电商经营合伙人经历（兴盛塑料）与研学公司创业经历；擅长用 SQL / Python / AI Agent 把人工重复流程自动化，单轮验证周期从 2–3 天压缩至 3–5 小时。</span>
+          <span class="i-en">Applied-economics-trained AI-product and business-analytics candidate: independently built DecisionOps AI (two business agents), an e-commerce decision simulator and a platform-strategy industry study; data-analytics internships at ByteDance and CICC; nearly three years as an e-commerce operating partner (Xingsheng Plastics) plus a study-tour startup; automates repetitive workflows with SQL / Python / AI agents, cutting one verification round from 2–3 days to 3–5 hours.</span>
+        </p>
+      </div>
+
+      <div>
+        <h5><span class="i-zh">实习与工作经历</span><span class="i-en">Experience</span></h5>
+        <div class="xp">
+          <span class="node"></span>
+          <header>
+            <h6><span class="i-zh">都柏林大学 <span>— 助教与研究助理</span></span><span class="i-en">University College Dublin <span>— TA &amp; Research Assistant</span></span></h6>
+            <time>2024.09 – <span class="i-zh">至今</span><span class="i-en">present</span> · Dublin</time>
+          </header>
+          <ul>
+            <li><span class="i-zh"><b>AI 提效落地：</b>搭建双 AI Agent 协作工作流（执行 + 独立评审），自动化「数字-代码」溯源审计与报告生成，单轮端到端验证从 2–3 天压缩至 3–5 小时。</span><span class="i-en"><b>AI in production:</b> built a dual-agent workflow (builder + independent reviewer) automating number-to-code provenance audits and reporting — one verification round cut from 2–3 days to 3–5 hours.</span></li>
+            <li><span class="i-zh"><b>数据建模：</b>基于 OpenFEMA 保单 + 房产成交 + HMDA 贷款数据构建区域×季度面板（36 万观测），定义「保费冲击强度」指标并统一口径（DID + 事件研究）。</span><span class="i-en"><b>Modeling:</b> built a region × quarter panel (360k obs) from OpenFEMA policies, property transactions and HMDA loans; defined a premium-shock metric with unified definitions (DID + event study).</span></li>
+            <li><span class="i-zh"><b>教学与沟通：</b>面向 300+ 学生讲授微观经济学（累计 300 小时，全英文），率先实践 AI 辅助教学。</span><span class="i-en"><b>Teaching:</b> taught microeconomics to 300+ students (300 hours, in English); an early adopter of AI-assisted teaching.</span></li>
+          </ul>
+        </div>
+        <div class="xp">
+          <span class="node"></span>
+          <header>
+            <h6><span class="i-zh">兴盛塑料 <span>— 合伙人 &amp; 产品经理（电商经营）</span></span><span class="i-en">Xingsheng Plastics <span>— Partner &amp; PM, E-commerce</span></span></h6>
+            <time><span class="i-zh">2023.02 – 2025.12 · 廊坊（2024.09 起远程）</span><span class="i-en">2023.02 – 2025.12 · Langfang (remote from 2024.09)</span></time>
+          </header>
+          <ul>
+            <li><span class="i-zh"><b>经营与选品：</b>主导淘宝 / 抖音渠道的 AI 辅助选品与款式迭代，年度利润提升约 7%（近 20 万元）。</span><span class="i-en"><b>Operations &amp; assortment:</b> led AI-assisted product selection and iteration on Taobao / Douyin, lifting annual profit by ~7% (≈¥200k).</span></li>
+            <li><span class="i-zh"><b>渠道与交付：</b>搭建 6 名主播的直播销售体系，并将打样—报价周期压缩至 12 天内。</span><span class="i-en"><b>Channels &amp; delivery:</b> built a six-host livestream sales channel and cut the sample-to-quote cycle to within 12 days.</span></li>
+          </ul>
+        </div>
+        <div class="xp">
+          <span class="node"></span>
+          <header>
+            <h6><span class="i-zh">中金公司 <span>— 数据分析实习</span></span><span class="i-en">CICC <span>— Data Analytics Intern</span></span></h6>
+            <time>2020.09 – 2020.11 · Beijing</time>
+          </header>
+          <ul>
+            <li><span class="i-zh"><b>经营与财务分析：</b>对 5 家上市公司做偿债能力与盈利质量分析，就资产权属、成本结构与现金流到期安排撰写尽调备忘录。</span><span class="i-en"><b>Financial analysis:</b> assessed solvency and earnings quality for 5 listed companies; drafted due-diligence memos on asset ownership, cost structure and cash-flow maturities.</span></li>
+            <li><span class="i-zh"><b>合规与风险核查：</b>用 Wind / 企查查穿透股东结构，核查关联关系、担保诉讼与负面舆情，构建风险清单支撑内部审阅。</span><span class="i-en"><b>Compliance:</b> traced ownership structures via Wind and Qichacha; screened related parties, guarantees, litigation and adverse media into risk registers for internal review.</span></li>
+          </ul>
+        </div>
+        <div class="xp">
+          <span class="node"></span>
+          <header>
+            <h6><span class="i-zh">字节跳动 <span>— 数据分析实习</span></span><span class="i-en">ByteDance <span>— Data Analytics Intern</span></span></h6>
+            <time>2019.09 – 2019.11 · Beijing</time>
+          </header>
+          <ul>
+            <li><span class="i-zh"><b>指标监控与异常预警：</b>日常跟踪 DAU 等 10+ 核心运营指标，负责异常数据预警与复核，输出动态数据摘要。</span><span class="i-en"><b>Metric monitoring:</b> tracked 10+ core metrics (incl. DAU), owned anomaly alerts and re-checks, and delivered rolling data digests.</span></li>
+            <li><span class="i-zh"><b>数据口径对齐：</b>对 20+ 张业务底表做指标对齐与口径校验，消除跨部门统计口径差异。</span><span class="i-en"><b>Definition alignment:</b> reconciled metrics across 20+ base tables, eliminating cross-team definition drift.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <h5><span class="i-zh">项目经历</span><span class="i-en">Projects</span></h5>
+        <ul class="xp cv-projects" style="border-left:none;padding-left:0;margin-left:0">
+          <li><span class="i-zh"><b>DecisionOps AI</b> — 双业务 Agent（结算风控 + 商家经营）：规则引擎计算、大模型循证解释；200 例固定种子评测接入 CI。</span><span class="i-en"><b>DecisionOps AI</b> — two business agents (settlement risk + merchant ops): rules engine for math, LLM for evidence-backed explanation; 200 fixed-seed evals in CI.</span> <a href="https://github.com/Martin-cell-blip/decisionops-ai" target="_blank" rel="noopener" data-hover>repo ↗</a></li>
+          <li><span class="i-zh"><b>电商经营决策模拟盘</b> — 品类结构 / 汰换 / 定价 / 大促四模块闭环，GMV 跨模块对账容差 0。</span><span class="i-en"><b>Category Management Sim</b> — structure / assortment / pricing / promotion loop with zero-tolerance GMV reconciliation.</span> <a href="https://github.com/Martin-cell-blip/category-management-sim" target="_blank" rel="noopener" data-hover>repo ↗</a></li>
+          <li><span class="i-zh"><b>家居日用品类行业研究</b> — 平台战略视角七章行研，60+ 编号溯源来源。</span><span class="i-en"><b>Home &amp; Daily Goods study</b> — seven chapters from a platform-strategy lens, 60+ numbered sources.</span> <a href="https://martin-cell-blip.github.io/category-management-sim/research/" target="_blank" rel="noopener" data-hover><span class="i-zh">报告</span><span class="i-en">report</span> ↗</a></li>
+          <li><span class="i-zh"><b>DJI Mimo「AI 一键成片」PRD</b> — 自采 8,223 条 App Store + 706 条 B 站评论定位需求；84 条分层评测用例、三级判定协议。</span><span class="i-en"><b>DJI Mimo one-tap edit PRD</b> — demand grounded in 8,223 self-collected App Store reviews and 706 Bilibili comments; 84 stratified eval cases across a three-gate protocol.</span> <a href="dji/" data-hover><span class="i-zh">读 PRD</span><span class="i-en">read</span> ↗</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h5><span class="i-zh">校园与组织经历</span><span class="i-en">Leadership</span></h5>
+        <div class="xp">
+          <span class="node"></span>
+          <header>
+            <h6><span class="i-zh">山东大学学生职业发展联盟 <span>— 实习实践部部长</span></span><span class="i-en">SDU Career Development Union <span>— Head, Internship &amp; Practice Dept.</span></span></h6>
+            <time>2018.06 – 2020.05 · Jinan</time>
+          </header>
+          <ul>
+            <li><span class="i-zh">带领 13 人部门，累计落地 25 场校企活动（校园名企行、求职讲座等），覆盖约 3000 人次。</span><span class="i-en">Led a 13-person department through 25 campus-corporate events (company visits, career talks), reaching ~3,000 attendees.</span></li>
+            <li><span class="i-zh">独立对接企业 HR 到校开讲，获学生、企业、学校三方好评。</span><span class="i-en">Independently brought corporate HR speakers to campus — praised by students, companies and the university alike.</span></li>
+          </ul>
+        </div>
+        <div class="xp">
+          <span class="node"></span>
+          <header>
+            <h6><span class="i-zh">山礼仁研学 <span>— 创始人 · 执行董事</span></span><span class="i-en">Shanliren Study Tours <span>— Founder &amp; Executive Director</span></span></h6>
+            <time>2018.10 – 2020.07 · Jinan</time>
+          </header>
+          <ul>
+            <li><span class="i-zh">独立创办研学旅游公司：签约 8 家核心供应商代校方统采议价，带 5 人团队按财务/市场/履约/客服分工，落地 2 场活动、约 500 人，营收约 20 万元。</span><span class="i-en">Independently founded a study-tour company: 8 core suppliers under centralized procurement for client schools, a five-person team across finance, marketing, delivery and client service; ran 2 programs for ~500 students, ~¥200k revenue.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="rule"></div>
+</section>
+
+<!-- ============ 06 FRAMES ============ -->
+<section class="sect" id="gallery">
+  <div class="sec-head" data-reveal>
+    <span class="no">06 / 07 — <span class="i-zh">影像</span><span class="i-en">Frames</span></span>
+    <h2><span class="i-zh">一次<em>一帧</em></span><span class="i-en">Nine Countries, <em>in frames</em></span></h2>
+  </div>
+  <p class="sec-sub" data-reveal>
+    <span class="i-zh">点画面就翻到下一张，也可以按国家筛，或用缩略图直接跳。</span>
+    <span class="i-en">Click the picture for the next one, filter by country, or jump straight from the thumbnails.</span>
+  </p>
+
+  <div class="gal">
+    <div class="gal-top" data-reveal>
+      <div class="gal-title"><span class="i-zh">九国剪影</span><span class="i-en">Nine Countries</span> <span class="cat-count">38 <span class="i-zh">帧精选</span><span class="i-en">frames</span></span></div>
+      <a class="gal-more" href="https://zhunmingma.vercel.app/" target="_blank" rel="noopener" data-hover><span class="i-zh">全部 84 帧 → 摄影站</span><span class="i-en">All 84 frames → the archive</span></a>
+    </div>
+    <div class="gal-chips" id="galChips" data-reveal></div>
+
+    <div class="deck" id="galGrid">
+      <button class="deck-stage" type="button" id="deckStage" aria-describedby="deckHint">
+        <img id="deckImg" alt="" loading="lazy" decoding="async" />
+        <span class="deck-hud" aria-hidden="true">
+          <span class="deck-cap"><b id="deckCap"></b></span>
+          <span class="deck-idx" id="deckIdx"></span>
+        </span>
+      </button>
+      <div class="deck-ctl">
+        <button class="deck-btn" type="button" id="deckPrev">← <span class="i-zh">上一帧</span><span class="i-en">Prev</span></button>
+        <button class="deck-btn" type="button" id="deckNext"><span class="i-zh">下一帧</span><span class="i-en">Next</span> →</button>
+        <button class="deck-btn" type="button" id="deckZoom"><span class="i-zh">放大看</span><span class="i-en">Enlarge</span></button>
+        <span class="deck-hint" id="deckHint"><span class="i-zh">点画面即切下一帧 · ←/→ 翻页 · 缩略图直跳</span><span class="i-en">Click the frame for the next · ←/→ to page · thumbnails jump</span></span>
+      </div>
+      <div class="deck-strip" id="deckStrip"></div>
+      <p class="sr-only" role="status" id="deckLive"></p>
+    </div>
+  </div>
+  <div class="rule"></div>
+</section>
+
+<!-- ============ 07 CONTACT ============ -->
+<section class="sect contact" id="contact">
+  <div class="closer" data-reveal>
+    <span class="no"><i aria-hidden="true"></i>07 / 07 — <span class="i-zh">聊聊</span><span class="i-en">Let's talk</span></span>
+
+    <h2>
+      <span class="ln"><span class="i-zh">下一段经历，</span><span class="i-en">The next chapter —</span></span>
+      <span class="ln"><span class="i-zh"><em>也许可以一起开始。</em></span><span class="i-en"><em>maybe we start it together.</em></span></span>
+    </h2>
+
+    <p class="closer-lede">
+      <span class="ln"><span class="i-zh">我正在寻找 2027 届管培生与 AI 产品岗位。</span><span class="i-en">I'm looking for 2027 graduate-programme and AI product roles.</span></span>
+      <span class="ln"><span class="i-zh">如果你也关心预测之后的那一步——目标、约束与责任怎么落到一个具体决定上，欢迎来聊聊。</span><span class="i-en">If you also care about the step after the prediction — how objectives, constraints and accountability land on one concrete decision — let's talk.</span></span>
+    </p>
+
+    <div class="script-line"><span class="i-zh">可核验、可复现、有署名 —</span><span class="i-en">verified, reproducible, and signed —</span></div>
+
+    <div class="cta">
+      <a class="btn solid" href="mailto:zhunmingm@gmail.com" data-magnetic data-hover><span class="i-zh">写邮件给我</span><span class="i-en">Email me</span> ↗</a>
+      <button class="btn" type="button" id="mailCopyBtn" data-mail="zhunmingm@gmail.com" data-magnetic data-hover><span class="i-zh">复制邮箱</span><span class="i-en">Copy email</span></button>
+      <a class="btn" href="#resume" data-magnetic data-hover><span class="i-zh">查看简历</span><span class="i-en">View résumé</span></a>
+    </div>
+
+    <div class="socials">
+      <a href="https://github.com/Martin-cell-blip" target="_blank" rel="noopener" data-hover>GitHub</a>
+      <a href="https://linkedin.com/in/zhunming-ma" target="_blank" rel="noopener" data-hover>LinkedIn</a>
+      <button type="button" data-wx="FunnyAstro_Dc" id="wxBtn" data-hover><span class="i-zh">微信</span><span class="i-en">WeChat</span></button>
+      <a href="https://zhunmingma.vercel.app/" target="_blank" rel="noopener" data-hover><span class="i-zh">摄影档案</span><span class="i-en">The Travelling Archive</span> ↗</a>
+    </div>
+
+    <p class="integrity">
+      <span class="i-zh">作品数字均可溯源至公开仓库或注明来源的报告。</span>
+      <span class="i-en">Every figure in the work above traces to a public repo or a cited report.</span>
+    </p>
+
+    <footer class="footer">
+      <small>© <span id="yr"></span> Zhunming Ma · 马准名 · <span class="i-zh">作品数字皆可核验</span><span class="i-en">work figures verifiable</span></small>
+      <a href="#top" class="totop" data-hover><span class="i-zh">回到顶部</span><span class="i-en">Back to top</span> ↑</a>
+    </footer>
+  </div>
+</section>
+</main>
+
+<!-- lightbox -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-hidden="true"
+     aria-label="影像放大查看" data-label-zh="影像放大查看" data-label-en="Enlarged frame viewer">
+  <button class="lb-x" id="lbX" aria-label="关闭" data-label-zh="关闭" data-label-en="Close">✕</button>
+  <button class="lb-prev" id="lbPrev" aria-label="上一帧" data-label-zh="上一帧" data-label-en="Previous">←</button>
+  <button class="lb-next" id="lbNext" aria-label="下一帧" data-label-zh="下一帧" data-label-en="Next">→</button>
+  <figure>
+    <img id="lbImg" alt="" />
+    <figcaption><b id="lbTitle"></b><span id="lbMeta"></span><span id="lbCount"></span></figcaption>
+  </figure>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+<div class="cursor-dot" id="cDot" aria-hidden="true"></div>
+<div class="cursor-ring" id="cRing" aria-hidden="true"></div>
+
+<!-- Motion stack — same as The Travelling Archive -->
+<!-- GSAP 自托管：jsdelivr 在中国大陆不稳；两个文件独立请求，任一失败已由 start() 内 typeof 守卫兜底 -->
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  "use strict";
+  var docEl=document.documentElement;
+  var hasGsap=typeof gsap!=="undefined";
+  var reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- language ---------- */
+  var langBtn=document.getElementById('langBtn'),
+      langNow=document.getElementById('langNow'),
+      langAlt=document.getElementById('langAlt');
+  function curLang(){return docEl.getAttribute('data-lang')||'zh'}
+  /* alt / title / aria-label 这类属性装不下 i-zh/i-en 双跨度，
+     统一用 data-*-zh / data-*-en 承载，随语言切换写回。 */
+  function applyI18nAttrs(l){
+    var z=l==='zh';
+    document.querySelectorAll('[data-alt-zh],[data-title-zh],[data-label-zh]').forEach(function(el){
+      var a=el.getAttribute(z?'data-alt-zh':'data-alt-en');
+      if(a!==null)el.setAttribute('alt',a);
+      var t=el.getAttribute(z?'data-title-zh':'data-title-en');
+      if(t!==null)el.setAttribute('title',t);
+      var b=el.getAttribute(z?'data-label-zh':'data-label-en');
+      if(b!==null)el.setAttribute('aria-label',b);
+    });
+  }
+  function applyLang(l){
+    docEl.setAttribute('data-lang',l);
+    docEl.setAttribute('lang',l==='zh'?'zh-CN':'en');
+    langNow.textContent=l==='zh'?'中文':'EN';
+    langAlt.textContent=l==='zh'?'EN':'中文';
+    var mn=document.getElementById('mLangNow'),ma=document.getElementById('mLangAlt');
+    if(mn){mn.textContent=langNow.textContent;ma.textContent=langAlt.textContent}
+    applyI18nAttrs(l);
+    try{localStorage.setItem('zm-lang',l)}catch(e){}
+  }
+  function toggleLang(){
+    applyLang(docEl.getAttribute('data-lang')==='zh'?'en':'zh');
+    if(hasGsap&&window.ScrollTrigger)ScrollTrigger.refresh();
+  }
+  applyLang((function(){try{return localStorage.getItem('zm-lang')}catch(e){return null}})()||'zh');
+  langBtn.addEventListener('click',toggleLang);
+  var mLangBtn=document.getElementById('mLangBtn');
+  if(mLangBtn)mLangBtn.addEventListener('click',toggleLang);
+
+  /* ---------- theme ---------- */
+  var themeBtn=document.getElementById('themeBtn'),
+      themeLabel=document.getElementById('themeLabel');
+  function applyTheme(t){
+    docEl.setAttribute('data-theme',t);
+    themeLabel.textContent=t==='atelier'?'Atelier':'Nocturne';
+    var ml=document.getElementById('mThemeLabel');
+    if(ml)ml.textContent=themeLabel.textContent;
+    var tc=document.querySelector('meta[name="theme-color"]');
+    if(tc)tc.setAttribute('content',t==='atelier'?'#f1e8d8':'#161210');
+    try{localStorage.setItem('zm-theme',t)}catch(e){}
+  }
+  function toggleTheme(){
+    applyTheme(docEl.getAttribute('data-theme')==='atelier'?'nocturne':'atelier');
+  }
+  applyTheme((function(){try{return localStorage.getItem('zm-theme')}catch(e){return null}})()||'atelier');
+  themeBtn.addEventListener('click',toggleTheme);
+  var mThemeBtn=document.getElementById('mThemeBtn');
+  if(mThemeBtn)mThemeBtn.addEventListener('click',toggleTheme);
+
+  /* ---------- year ---------- */
+  document.getElementById('yr').textContent=new Date().getFullYear();
+
+  /* ---------- burger ---------- */
+  var burger=document.getElementById('burger'),mmenu=document.getElementById('mmenu');
+  burger.addEventListener('click',function(){
+    var open=mmenu.classList.toggle('open');
+    burger.classList.toggle('open',open);
+    document.body.classList.toggle('no-scroll',open);
+  });
+  mmenu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){
+      mmenu.classList.remove('open');burger.classList.remove('open');
+      document.body.classList.remove('no-scroll');
+    });
+  });
+
+  /* ---------- wechat copy ---------- */
+  var toast=document.getElementById('toast'),toastT;
+  function showToast(msg){
+    toast.textContent=msg;toast.classList.add('show');
+    clearTimeout(toastT);toastT=setTimeout(function(){toast.classList.remove('show')},2200);
+  }
+  document.getElementById('wxBtn').addEventListener('click',function(){
+    var id=this.getAttribute('data-wx');
+    var zh=docEl.getAttribute('data-lang')==='zh';
+    function done(){showToast(zh?('微信号已复制：'+id):('WeChat ID copied: '+id))}
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(id).then(done,function(){showToast(id)});
+    }else{showToast(id)}
+  });
+  var mailBtn=document.getElementById('mailCopyBtn');
+  if(mailBtn){
+    mailBtn.addEventListener('click',function(){
+      var addr=this.getAttribute('data-mail');
+      var zh=curLang()==='zh';
+      function done(){showToast(zh?('邮箱已复制：'+addr):('Email copied: '+addr))}
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(addr).then(done,function(){showToast(addr)});
+      }else{showToast(addr)}
+    });
+  }
+
+  /* ---------- print resume ---------- */
+  function forceReveal(){
+    if(!hasGsap)return;
+    gsap.utils.toArray('[data-reveal]').forEach(function(el){
+      gsap.killTweensOf(el);
+      gsap.set(el,{clearProps:'opacity,transform,visibility'});
+    });
+  }
+  window.addEventListener('beforeprint',forceReveal);
+  document.getElementById('printBtn').addEventListener('click',function(){forceReveal();window.print()});
+
+  /* ---------- nav scroll behaviour ---------- */
+  var nav=document.getElementById('nav'),lastY=0;
+  function onScroll(){
+    var y=window.scrollY||document.documentElement.scrollTop;
+    nav.classList.toggle('scrolled',y>40);
+    nav.classList.toggle('hidden',y>lastY&&y>420&&!mmenu.classList.contains('open'));
+    lastY=y;
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+
+  /* ---------- custom cursor ---------- */
+  if(window.matchMedia('(pointer:fine)').matches){
+    var dot=document.getElementById('cDot'),ring=document.getElementById('cRing');
+    var rx=0,ry=0,tx=0,ty=0;
+    window.addEventListener('mousemove',function(e){
+      tx=e.clientX;ty=e.clientY;
+      dot.style.transform='translate('+(tx-3)+'px,'+(ty-3)+'px)';
+    },{passive:true});
+    (function loop(){
+      rx+=(tx-rx)*.14;ry+=(ty-ry)*.14;
+      ring.style.transform='translate('+(rx-17)+'px,'+(ry-17)+'px)';
+      requestAnimationFrame(loop);
+    })();
+    document.querySelectorAll('a,button,[data-hover]').forEach(function(el){
+      el.addEventListener('mouseenter',function(){ring.classList.add('on')});
+      el.addEventListener('mouseleave',function(){ring.classList.remove('on')});
+    });
+  }
+
+  /* ---------- 项目实时预览：立面 + 排队懒挂载 ----------
+     初始 HTML 里 iframe 数 = 0，LCP 候选仍是首屏人像（fetchpriority=high），
+     预览一个字节都不参与首屏竞争。进视口前 240px 才创建，且全站同一时刻只允许一张在拉取。 */
+  (function(){
+    var PVW=1000;                                   /* iframe 虚拟宽度，必须与 CSS 里的 width 一致 */
+    var nodes=[].slice.call(document.querySelectorAll('[data-prev]'));
+
+    /* 整块点击：aria-hidden 的 span，不是链接元素 —— 不新增可导航目标，
+       也不会在无障碍树里造出第二个指向同一 URL 的焦点。键盘/读屏走卡片下方那条有文字的链接。 */
+    document.querySelectorAll('.prev-hit[data-open]').forEach(function(el){
+      el.addEventListener('click',function(){
+        window.open(el.getAttribute('data-open'),'_blank','noopener');
+      });
+    });
+
+    if(!nodes.length)return;
+
+    function fitAll(){
+      nodes.forEach(function(el){
+        var w=el.clientWidth;
+        if(w)el.style.setProperty('--s',(w/PVW).toFixed(4));
+      });
+    }
+    fitAll();
+    if('ResizeObserver' in window){
+      var ro=new ResizeObserver(fitAll);
+      nodes.forEach(function(el){ro.observe(el)});
+    }else{
+      window.addEventListener('resize',fitAll,{passive:true});
+    }
+
+    var conn=navigator.connection||navigator.mozConnection||navigator.webkitConnection;
+    var stingy=!!(conn&&(conn.saveData||/(^|-)2g$/.test(conn.effectiveType||'')));
+    var small=window.matchMedia('(max-width:640px)').matches;   /* ≤640px 时 .prev 已 display:none */
+    if(stingy||small||!('IntersectionObserver' in window)){
+      nodes.forEach(function(el){el.classList.add('is-off')});   /* 专用文案「预览已关闭」，零请求 */
+      return;
+    }
+
+    var queue=[],busy=false;
+    function pump(){
+      if(busy||!queue.length)return;
+      busy=true;
+      var el=queue.shift(),settled=false;
+      var f=document.createElement('iframe');
+      f.setAttribute('loading','lazy');
+      f.setAttribute('scrolling','no');
+      f.setAttribute('tabindex','-1');
+      f.setAttribute('inert','');                 /* 同时移出焦点序列与无障碍树；不要再叠 aria-hidden */
+      f.setAttribute('referrerpolicy','no-referrer');
+      f.setAttribute('sandbox','allow-scripts allow-same-origin');
+      f.setAttribute('data-title-zh',el.getAttribute('data-prev-title-zh')||'');
+      f.setAttribute('data-title-en',el.getAttribute('data-prev-title-en')||'');
+      f.setAttribute('title',el.getAttribute(curLang()==='zh'?'data-prev-title-zh':'data-prev-title-en')||'');
+      function next(gap){busy=false;setTimeout(pump,gap)}
+      var timer=setTimeout(function(){
+        if(settled)return;
+        settled=true;el.classList.add('is-slow');next(120);
+      },9000);
+      /* 超时只是先放行队列，不是死刑：迟到的 load 仍然可以翻盘 */
+      f.addEventListener('load',function(){
+        clearTimeout(timer);
+        el.classList.remove('is-slow');
+        el.classList.add('is-live');
+        if(!settled){settled=true;next(450)}
+      });
+      f.addEventListener('error',function(){
+        clearTimeout(timer);
+        if(settled)return;
+        settled=true;el.classList.add('is-slow');next(120);
+      });
+      f.src=el.getAttribute('data-prev');
+      el.appendChild(f);
+      fitAll();
+    }
+
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(!e.isIntersecting)return;
+        io.unobserve(e.target);
+        queue.push(e.target);pump();
+      });
+    },{rootMargin:'240px 0px'});
+    nodes.forEach(function(el){io.observe(el)});
+
+    /* 焦点兜底：inert 对嵌套浏览上下文的效果各家实现不一致。
+       万一某浏览器仍把 Tab 送进被嵌页面，立刻拉回本卡片里那条真链接。 */
+    window.addEventListener('blur',function(){
+      setTimeout(function(){
+        var ae=document.activeElement;
+        if(!ae||ae.tagName!=='IFRAME')return;
+        var host=ae.parentNode;
+        if(!host||!host.classList||!host.classList.contains('prev'))return;
+        ae.blur();
+        var card=host.closest?host.closest('.card'):null;
+        var back=card&&card.querySelector('.card-links a');
+        if(back)back.focus();else window.focus();
+      },0);
+    });
+  })();
+
+  /* ---------- nine-country gallery (up to 5 frames each) ---------- */
+  var GBASE='images/g/';
+  var GAL=[
+    {k:'china',zh:'中国',en:'China',y:'2023',items:[
+      ["Heaven's Gate · Zhangjiajie","china1.jpg",427,640],
+      ["Avatar Hallelujah · Zhangjiajie","china2.jpg",640,427],
+      ["Saint Sophia · Harbin","china3.jpg",640,445],
+      ["Yellow Crane Tower · Wuhan","china4.jpg",427,640],
+      ["Qinhuai River · Nanjing","china5.jpg",640,427]]},
+    {k:'ireland',zh:'爱尔兰',en:'Ireland',y:'2024',items:[
+      ["Dublin Streets","ireland1.jpg",427,640],
+      ["Liffey River","ireland2.jpg",640,571],
+      ["Irish Pub","ireland3.jpg",427,640],
+      ["St. Patrick's Parade","ireland4.jpg",640,427],
+      ["Green Celebration","ireland5.jpg",640,427]]},
+    {k:'usa',zh:'美国',en:'USA',y:'2024',items:[
+      ["Capital Fireworks I · D.C.","usa1.jpg",640,427],
+      ["Capital Fireworks II · D.C.","usa2.jpg",640,427],
+      ["Capital Fireworks III · D.C.","usa3.jpg",640,427],
+      ["Monument Glow · D.C.","usa4.jpg",640,427]]},
+    {k:'iceland',zh:'冰岛',en:'Iceland',y:'2024',items:[
+      ["Aurora","iceland1.jpg",360,640],
+      ["Kirkjufell · Grundarfjörður","iceland2.jpg",640,427],
+      ["Skógafoss","iceland3.jpg",640,360],
+      ["Glacier Tongue · Vatnajökull","iceland4.jpg",640,397],
+      ["Hellnar Church · Snæfellsnes","iceland5.jpg",427,640]]},
+    {k:'uae',zh:'阿联酋',en:'UAE',y:'2025',items:[
+      ["Sheikh Zayed Mosque","uae1.jpg",421,640],
+      ["White Domes","uae2.jpg",385,640],
+      ["Islamic Architecture","uae3.jpg",640,427],
+      ["Reflections","uae4.jpg",640,427]]},
+    {k:'france',zh:'法国',en:'France',y:'2025',items:[
+      ["Iron Lady · Paris","france1.jpg",640,360],
+      ["The Pyramid · Louvre","france2.jpg",640,427],
+      ["Sainte-Chapelle","france3.jpg",640,427],
+      ["Arc de Triomphe","france4.jpg",640,427],
+      ["Les Nymphéas · Orangerie","france5.jpg",640,360]]},
+    {k:'switzerland',zh:'瑞士',en:'Switzerland',y:'2025',items:[
+      ["Matterhorn · Zermatt","switzerland1.jpg",427,640],
+      ["Alpine Night · Grindelwald","switzerland2.jpg",640,427],
+      ["Interlaken Paraglide","switzerland3.jpg",400,640],
+      ["Lake Thun · Spiez","switzerland4.jpg",640,400],
+      ["Old City · Bern","switzerland5.jpg",427,640]]},
+    {k:'norway',zh:'挪威',en:'Norway',y:'2025',items:[
+      ["Tromsø View","norway1.jpg",427,640],
+      ["Arctic Blue · Tromsø","norway2.jpg",640,400],
+      ["Fjord Light","norway3.jpg",640,427]]},
+    {k:'sweden',zh:'瑞典',en:'Sweden',y:'2025',items:[
+      ["Subway Art I · Stockholm","sweden1.jpg",640,427],
+      ["Subway Art II · Stockholm","sweden2.jpg",640,427]]}
+  ];
+  (function(){
+    var chipsEl=document.getElementById('galChips'),deck=document.getElementById('galGrid');
+    if(!chipsEl||!deck)return;
+    var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var stage=document.getElementById('deckStage'),
+        img=document.getElementById('deckImg'),
+        cap=document.getElementById('deckCap'),
+        idxEl=document.getElementById('deckIdx'),
+        strip=document.getElementById('deckStrip'),
+        live=document.getElementById('deckLive');
+    if(!stage)return;
+
+    var CUR=[],idx=0,lbOpen=false,warmed=false,lastFocus=null;
+
+    function chip(k,zh,en,n){
+      var b=document.createElement('button');b.type='button';b.dataset.k=k;
+      b.setAttribute('aria-pressed','false');
+      b.innerHTML='<span class="i-zh">'+zh+'</span><span class="i-en">'+en+'</span>'+(n?' · '+n:'');
+      return b;
+    }
+    chipsEl.appendChild(chip('all','全部','All',38));
+    GAL.forEach(function(g){chipsEl.appendChild(chip(g.k,g.zh,g.en,g.items.length))});
+
+    function warm(){
+      if(!warmed||!CUR.length)return;
+      var n=CUR[(idx+1)%CUR.length];
+      if(n)(new Image()).src='images/L/'+n.f;
+    }
+    /* 操作回执：视觉上是 HUD，读屏靠这个 role=status。中英分支。 */
+    function announce(){
+      if(!live||!CUR.length)return;
+      var it=CUR[idx];
+      live.textContent=curLang()==='zh'
+        ?('第 '+(idx+1)+' 帧，共 '+CUR.length+' 帧 · '+it.zh+' · '+it.t)
+        :('Frame '+(idx+1)+' of '+CUR.length+' · '+it.en+' · '+it.t);
+    }
+    function paint(){
+      var it=CUR[idx];
+      cap.innerHTML=it.t+' — <span class="i-zh">'+it.zh+'</span><span class="i-en">'+it.en+'</span> &rsquo;'+it.y.slice(2);
+      idxEl.textContent=(idx+1)+' / '+CUR.length;
+      var act=null;
+      strip.querySelectorAll('.deck-thumb').forEach(function(b,j){
+        var on=j===idx;
+        b.classList.toggle('on',on);b.tabIndex=on?0:-1;   /* roving tabindex：38 张不污染 Tab 序 */
+        if(on){b.setAttribute('aria-current','true');act=b}
+        else b.removeAttribute('aria-current');
+      });
+      if(act)strip.scrollTo({left:Math.max(0,act.offsetLeft-(strip.clientWidth-act.offsetWidth)/2),
+                             behavior:reduce?'auto':'smooth'});
+    }
+    function show(i,instant,quiet){
+      if(!CUR.length)return;
+      idx=(i+CUR.length)%CUR.length;
+      var it=CUR[idx];
+      if(instant||reduce){
+        img.src='images/L/'+it.f;img.alt=it.t;stage.classList.remove('is-swap');
+      }else{
+        stage.classList.add('is-swap');
+        var pre=new Image();pre.decoding='async';
+        pre.onload=pre.onerror=function(){
+          img.src=pre.src;img.alt=it.t;stage.classList.remove('is-swap');warm();
+        };
+        pre.src='images/L/'+it.f;
+      }
+      paint();
+      if(!quiet)announce();
+    }
+    function build(k){
+      chipsEl.querySelectorAll('button').forEach(function(b){
+        var on=b.dataset.k===k;
+        b.classList.toggle('on',on);b.setAttribute('aria-pressed',on?'true':'false');
+      });
+      CUR=[];
+      GAL.forEach(function(g){
+        if(k!=='all'&&g.k!==k)return;
+        g.items.forEach(function(it){CUR.push({t:it[0],f:it[1],zh:g.zh,en:g.en,y:g.y})});
+      });
+      strip.innerHTML=CUR.map(function(it,i){
+        return '<button class="deck-thumb" type="button" data-i="'+i+'" tabindex="-1">'
+          +'<img loading="lazy" decoding="async" width="66" height="44" src="'+GBASE+it.f+'" alt="'+it.t.replace(/"/g,'&quot;')+'" /></button>';
+      }).join('');
+      show(0,true,true);
+      if(hasGsap&&window.ScrollTrigger)ScrollTrigger.refresh();
+    }
+    function step(d){warmed=true;show(idx+d)}
+
+    stage.addEventListener('click',function(){step(1)});
+    document.getElementById('deckNext').addEventListener('click',function(){step(1)});
+    document.getElementById('deckPrev').addEventListener('click',function(){step(-1)});
+    document.getElementById('deckZoom').addEventListener('click',function(){openLb(idx)});
+    strip.addEventListener('click',function(e){
+      var b=e.target.closest('.deck-thumb');
+      if(b){warmed=true;show(parseInt(b.dataset.i,10));b.focus()}
+    });
+    deck.addEventListener('keydown',function(e){
+      if(lbOpen)return;                                  /* 灯箱开着时两套键盘不打架 */
+      var k=e.key,inStrip=strip.contains(document.activeElement);
+      if(k==='ArrowRight'){e.preventDefault();step(1)}
+      else if(k==='ArrowLeft'){e.preventDefault();step(-1)}
+      else if(k==='Home'){e.preventDefault();warmed=true;show(0)}
+      else if(k==='End'){e.preventDefault();warmed=true;show(CUR.length-1)}
+      else return;
+      if(inStrip){var na=strip.querySelector('.deck-thumb.on');if(na)na.focus()}
+    });
+    chipsEl.addEventListener('click',function(e){
+      var b=e.target.closest('button');
+      if(!b)return;
+      build(b.dataset.k);announce();
+    });
+    build('all');
+
+    /* ---------- lightbox（沿用原 DOM，改由「放大看」触发，补齐对话框语义） ---------- */
+    var lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg'),
+        lbTitle=document.getElementById('lbTitle'),lbMeta=document.getElementById('lbMeta'),
+        lbCount=document.getElementById('lbCount'),
+        lbX=document.getElementById('lbX'),
+        lbP=document.getElementById('lbPrev'),
+        lbN=document.getElementById('lbNext');
+    function lbShow(){
+      var it=CUR[idx];
+      lbImg.style.opacity=.3;
+      lbImg.onload=function(){lbImg.style.opacity=1};
+      lbImg.src='images/L/'+it.f;
+      lbImg.alt=it.t;
+      lbTitle.textContent=it.t;
+      lbMeta.innerHTML='<span class="i-zh">'+it.zh+'</span><span class="i-en">'+it.en+'</span> &rsquo;'+it.y.slice(2);
+      lbCount.textContent=(idx+1)+' / '+CUR.length;
+    }
+    function openLb(i){
+      idx=i;lbShow();lbOpen=true;lastFocus=document.activeElement;
+      lb.classList.add('open');lb.setAttribute('aria-hidden','false');
+      document.body.classList.add('no-scroll');
+      lbX.focus();
+    }
+    function closeLb(){
+      lbOpen=false;
+      lb.classList.remove('open');lb.setAttribute('aria-hidden','true');
+      document.body.classList.remove('no-scroll');
+      show(idx,true,true);                     /* 灯箱里翻到哪张，回来就停在哪张 */
+      var back=(lastFocus&&document.contains(lastFocus))?lastFocus:stage;
+      if(back&&back.focus)back.focus({preventScroll:true});
+      announce();
+    }
+    function navLb(d){idx=(idx+d+CUR.length)%CUR.length;lbShow()}
+    lbX.addEventListener('click',closeLb);
+    lbP.addEventListener('click',function(){navLb(-1)});
+    lbN.addEventListener('click',function(){navLb(1)});
+    lb.addEventListener('click',function(e){if(e.target===lb)closeLb()});
+    document.addEventListener('keydown',function(e){
+      if(!lbOpen)return;
+      if(e.key==='Escape'){closeLb();return}
+      if(e.key==='ArrowLeft'){navLb(-1);return}
+      if(e.key==='ArrowRight'){navLb(1);return}
+      if(e.key==='Tab'){                       /* 焦点锁在三颗按钮之间，不掉进背后的页面 */
+        var ring=[lbX,lbP,lbN],i=ring.indexOf(document.activeElement);
+        e.preventDefault();
+        ring[e.shiftKey?(i<=0?ring.length-1:i-1):((i+1)%ring.length)].focus();
+      }
+    });
+  })();
+
+  /* ---------- scrollspy ---------- */
+  (function(){
+    var map={};
+    document.querySelectorAll('.nav-links a[href^="#"], .nav-cta[href^="#"]').forEach(function(a){
+      map[a.getAttribute('href').slice(1)]=a;
+    });
+    /* 两级：先找本章自己的导航项；它不存在或被媒体查询藏了，就回落到所属分组并打描边态。
+       这同时修掉一个既存 bug —— ≤1100px 时 .nav-cta 被隐藏，滚到 #resume 全站导航都是暗的。 */
+    var OWN={work:'work',skills:'skills',about:'about',resume:'resume',contact:'contact'};
+    var GRP={education:'about',gallery:'about',resume:'about'};
+    function vis(el){return !!(el&&(el.offsetWidth||el.offsetHeight||el.getClientRects().length))}
+    if(!('IntersectionObserver' in window))return;
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(!en.isIntersecting)return;
+        Object.keys(map).forEach(function(k){map[k].classList.remove('active','sub-active')});
+        var id=en.target.id;
+        var o=OWN[id]&&map[OWN[id]];
+        if(o&&vis(o)){o.classList.add('active');return}
+        var g=GRP[id]&&map[GRP[id]];
+        if(g&&vis(g))g.classList.add('sub-active');
+      });
+    },{rootMargin:'-40% 0px -55% 0px'});
+    ['work','skills','about','education','resume','gallery','contact'].forEach(function(id){
+      var el=document.getElementById(id);if(el)io.observe(el);
+    });
+  })();
+
+  /* ---------- magnetic buttons ---------- */
+  if(hasGsap&&!reduceMotion&&window.matchMedia('(pointer:fine)').matches){
+    document.querySelectorAll('[data-magnetic]').forEach(function(el){
+      var qx=gsap.quickTo(el,'x',{duration:.4,ease:'power3.out'}),
+          qy=gsap.quickTo(el,'y',{duration:.4,ease:'power3.out'});
+      el.addEventListener('mousemove',function(e){
+        var r=el.getBoundingClientRect();
+        qx((e.clientX-r.left-r.width/2)*.25);
+        qy((e.clientY-r.top-r.height/2)*.35);
+      });
+      el.addEventListener('mouseleave',function(){qx(0);qy(0)});
+    });
+  }
+
+  /* ---------- counters ---------- */
+  function fmt(n,dec){
+    var s=dec?n.toFixed(1):Math.round(n).toString();
+    return s.replace(/\B(?=(\d{3})+(?!\d))/g,',');
+  }
+  function runCounters(instant){
+    document.querySelectorAll('[data-count]').forEach(function(el){
+      var target=parseFloat(el.getAttribute('data-count')),
+          suffix=el.getAttribute('data-suffix')||'',
+          dec=el.getAttribute('data-count').indexOf('.')>-1;
+      if(instant||!hasGsap||!window.ScrollTrigger){el.textContent=fmt(target,dec)+suffix;return}
+      var obj={v:0};
+      gsap.to(obj,{
+        v:target,duration:1.4,ease:'power2.out',
+        scrollTrigger:{trigger:el,start:'top 88%',once:true},
+        onUpdate:function(){el.textContent=fmt(obj.v,dec)+suffix},
+        onComplete:function(){el.textContent=fmt(target,dec)+suffix}
+      });
+    });
+  }
+
+  /* ---------- entrance (no preloader: content is visible at parse) ---------- */
+  function start(){
+    if(!hasGsap||reduceMotion){runCounters(true);return}
+    /* 两个 GSAP 文件是各自独立的请求（jsdelivr 在部分地区不稳）。
+       若只有 ScrollTrigger 失败，裸写 registerPlugin(ScrollTrigger) 会抛 ReferenceError，
+       start() 当场中断 —— runCounters 收不到，首屏四个数字会永远停在 0。
+       typeof 对未声明标识符是安全的，用它守住。 */
+    if(typeof ScrollTrigger!=="undefined")gsap.registerPlugin(ScrollTrigger);
+    gsap.timeline()
+      .from('.hero .hero-id',{y:22,opacity:0,duration:.55,ease:'power3.out'},0)
+      .from('.hero h1 .line>span',{yPercent:110,duration:.75,stagger:.09,ease:'power4.out'},.1)
+      .from('.hero-right',{y:24,opacity:0,duration:.7,ease:'power3.out'},.16)
+      .from('.hero .role,.hero-band,.hero-lede,.hero-chips,.hero .cta,.hero .stats,.scrollhint',{y:18,opacity:0,duration:.55,stagger:.05,ease:'power3.out'},.28);
+    runCounters(document.hidden);
+    reveals();
+  }
+
+  /* ---------- scroll reveals ---------- */
+  function reveals(){
+    if(!hasGsap||!window.ScrollTrigger)return;
+    gsap.utils.toArray('main .sect [data-reveal]').forEach(function(el){
+      gsap.from(el,{
+        y:24,opacity:0,duration:.7,ease:'power3.out',
+        scrollTrigger:{trigger:el,start:'top 90%',once:true}
+      });
+    });
+    /* card grids: staggered entrance per module, fire-once */
+    gsap.utils.toArray('.cards').forEach(function(grid){
+      gsap.from(grid.children,{
+        y:24,opacity:0,duration:.6,stagger:.07,ease:'power3.out',
+        scrollTrigger:{trigger:grid,start:'top 88%',once:true}
+      });
+    });
+  }
+
+  if(document.readyState==='complete'){start()}
+  else{window.addEventListener('load',start)}
+})();
+</script>
+</body>
+</html>
