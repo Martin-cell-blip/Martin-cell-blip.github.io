@@ -16,7 +16,7 @@
 :root{
   --bg-0:#0b0d0f; --bg-1:#121518; --bg-2:#181c20; --bg-3:#20252a; --bg-4:#2a3037;
   --line:#262c32; --line-2:#333b43;
-  --ink-0:#eef1f3; --ink-1:#a8b2bb; --ink-2:#6b7681; --ink-3:#48525b;
+  --ink-0:#eef1f3; --ink-1:#a8b2bb; --ink-2:#828d98; --ink-3:#79848f;
   --sig-open:#f5a524; --sig-closed:#2dd4a7; --sig-reject:#e05c4b;
   --sig-defer:#7c8b99; --sig-conflict:#d946ac;
   --sig-like:#3d9970; --sig-dislike:#c0392b;
@@ -146,7 +146,7 @@ table.tbl tbody tr[data-cur="1"] td:first-child{box-shadow:inset 2px 0 0 var(--s
 .desk{display:grid;grid-template-columns:1fr 372px;height:100%;min-height:0}
 .desk-l{display:flex;flex-direction:column;min-width:0;border-right:1px solid var(--line)}
 .desk-r{display:flex;flex-direction:column;min-height:0;background:var(--bg-1)}
-.player{background:#000;position:relative;flex:none;aspect-ratio:16/9;max-height:44vh;
+.player{background:#06080a;position:relative;flex:none;aspect-ratio:16/9;max-height:44vh;
   display:flex;align-items:center;justify-content:center;overflow:hidden}
 .player-frame{position:absolute;inset:0;
   background:radial-gradient(ellipse 60% 50% at 32% 42%, rgba(120,150,180,.16), transparent 62%),
@@ -367,6 +367,16 @@ table.mx tbody tr:hover th,table.mx tbody tr:hover td{background:var(--bg-2)}
   .dispo{grid-template-columns:1fr}
   .kpis{grid-template-columns:repeat(2,1fr)}
 }
+
+/* 尊重系统的「减少动态效果」设置。原来没有这一段，是 UI 审查查出来的。 */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+    scroll-behavior:auto !important;
+  }
+}
 </style>
 </head>
 <body>
@@ -513,9 +523,9 @@ table.mx tbody tr:hover th,table.mx tbody tr:hover td{background:var(--bg-2)}
             <div class="player-tc" id="pvTc">00:04:12:08</div>
             <div class="player-rec"><span style="width:6px;height:6px;border-radius:50%;background:var(--sig-dislike);display:inline-block"></span>踩密集区 · 04:08–04:22</div>
             <div class="player-ctr">
-              <button class="pbtn" title="上一条意见"><svg viewBox="0 0 24 24"><path d="M19 20L9 12l10-8v16zM5 19V5h2v14H5z"/></svg></button>
-              <button class="pbtn" title="播放"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
-              <button class="pbtn" title="下一条意见"><svg viewBox="0 0 24 24"><path d="M5 4l10 8-10 8V4zm12 1h2v14h-2V5z"/></svg></button>
+              <button class="pbtn" type="button" title="上一条意见" aria-label="跳到上一条意见"><svg viewBox="0 0 24 24"><path d="M19 20L9 12l10-8v16zM5 19V5h2v14H5z"/></svg></button>
+              <button class="pbtn" type="button" title="播放" aria-label="播放"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="pbtn" type="button" title="下一条意见" aria-label="跳到下一条意见"><svg viewBox="0 0 24 24"><path d="M5 4l10 8-10 8V4zm12 1h2v14h-2V5z"/></svg></button>
             </div>
           </div>
 

@@ -1427,15 +1427,15 @@ html[data-theme="nocturne"] .closer{
     <span class="i-en">A model can tell you sales will fall next month. There is no action anywhere in that sentence. Four actions are open: cut the price, cut stock, spend more on ads, exit the category. Which one wins depends on whether this category is run for revenue or for margin, how much risk it can carry, and how much budget and inventory are left. The cost of giving up the other three counts too. Once objectives and authority are set down, AI can rank, recommend and even execute. It cannot settle what this company puts first, and it does not answer for the result.</span>
   </p>
   <p class="sec-sub" data-reveal>
-    <span class="i-zh">四件代表作落在四类业务——消费影像、平台结算风控、采销经营、家居日用，数据、规则与决策目标各不相同。进入陌生领域，我先弄清谁在做决策、哪些指标真正影响结果，再决定用什么数据和方法。</span>
-    <span class="i-en">Four flagship builds across four businesses — consumer imaging, platform settlement risk, category buying and home goods — each with its own data, rules and decision targets. Entering an unfamiliar one, I work out who decides and which metrics actually move the outcome before picking data or method.</span>
+    <span class="i-zh">六件代表作落在六类业务——内容生产流程、媒资检索、消费影像、平台结算风控、采销经营、家居日用，数据、规则与决策目标各不相同。进入陌生领域，我先弄清谁在做决策、哪些指标真正影响结果，再决定用什么数据和方法。</span>
+    <span class="i-en">Six flagship builds across six businesses — content production workflow, media asset retrieval, consumer imaging, platform settlement risk, category buying and home goods — each with its own data, rules and decision targets. Entering an unfamiliar one, I work out who decides and which metrics actually move the outcome before picking data or method.</span>
   </p>
 
   <!-- Category 1 · Decision Systems -->
   <div class="cat">
     <div class="cat-head" data-reveal>
       <h3><span class="i-zh">代表项目</span><span class="i-en">Representative Projects</span></h3>
-      <span class="cat-count">4 <span class="i-zh">个项目</span><span class="i-en">projects</span></span>
+      <span class="cat-count">6 <span class="i-zh">个项目</span><span class="i-en">projects</span></span>
     </div>
     <p class="cat-sub" data-reveal>
       <span class="i-zh">消费影像产品 · AI 产品与 Agent · 经营分析与定价 · 平台战略——代码与演示都在 </span>
@@ -1443,6 +1443,58 @@ html[data-theme="nocturne"] .closer{
       <a href="https://github.com/Martin-cell-blip" target="_blank" rel="noopener" data-hover>GitHub →</a>
     </p>
     <div class="cards">
+            <article class="card featured" style="--tile:var(--wash-2)">
+        <div class="prev" data-prev="review-ledger/"
+             data-prev-title-zh="成片评审与意见核销台预览" data-prev-title-en="Review ledger preview">
+          <span class="prev-skel" aria-hidden="true">
+            <i></i><i></i><i></i><i></i>
+            <b class="prev-msg"><span class="i-zh">预览加载中</span><span class="i-en">Loading preview</span></b>
+            <b class="prev-msg-alt"><span class="i-zh">预览未加载</span><span class="i-en">Preview not loaded</span></b>
+            <b class="prev-msg-off"><span class="i-zh">预览已关闭</span><span class="i-en">Preview off</span></b>
+          </span>
+          <span class="prev-hit" data-open="review-ledger/" aria-hidden="true" data-hover></span>
+          <span class="prev-tag"><i class="dot" aria-hidden="true"></i><span class="i-zh">实时预览 ↗</span><span class="i-en">Live preview ↗</span></span>
+        </div>
+        <div class="tile" aria-hidden="true">◧</div>
+        <h4><span class="i-zh">不采纳也要写理由 · 成片评审核销台</span><span class="i-en">A rejection needs a reason · Review Ledger</span></h4>
+        <p>
+          <span class="i-zh">一条片子上线前的意见来自四个地方——点映赞踩曲线、AI 评审、编导批注、客户批注——最后靠剪辑师在脑子里合并。这一段没有产品。台账把四路意见锚到同一根时间码上，处置时选「不采纳」必须填理由，未关闭的自动滚到下一版。<b>意见是我造的，团队是我模拟的，它证明不了在真实剪辑房好用。</b></span>
+          <span class="i-en">Before a cut ships, notes arrive from four places — a screening like/dislike curve, an AI review panel, the director, the client — and the editor merges them in his head. Nothing owns that step. This ledger anchors all four to one timecode, forces a written reason on every rejection, and rolls unclosed notes into the next cut. <b>The notes are mine, the team is simulated; this cannot show it works in a real edit suite.</b></span>
+        </p>
+        <p class="rationale"><span class="i-zh">批注这一格已经满了：商业侧有阅流，开源侧有 Clapshot。查过三个自托管评审项目，它们的功能清单里「意见状态流转」「跨版本对应」「冲突检测」<b>三项全部未提及</b>——都止步于把意见打在时间码上，没有一家回答「这条意见到底关掉了没有」。所以我做的是批注的下一环。</span><span class="i-en">Annotation itself is a solved square — Yueliu commercially, Clapshot in the open. Across three self-hosted review projects, note state, cross-version mapping and conflict detection are <b>absent from every feature list</b>. They stop at pinning a note to a timecode; none answers whether it was ever closed. So I built the step after annotation.</span></p>
+        <div class="chips"><span class="i-zh">B 端内部工具</span><span class="i-en">Internal tool</span><span class="i-zh">状态机</span><span class="i-en">State machine</span><span class="i-zh">判据先行</span><span class="i-en">Gates first</span><span class="i-zh">低代码分诊</span><span class="i-en">Low-code triage</span></div>
+        <div class="figures"><b>2/2</b> <span class="i-zh">真冲突全中、3 个干扰项零误报</span><span class="i-en">conflicts caught, 0 false positives on 3 decoys</span> · <b>0/5</b> <span class="i-zh">重复识别失败并留档</span><span class="i-en">dedup failed, kept on record</span></div>
+        <div class="card-links">
+          <a href="review-ledger/" data-hover><span class="i-zh">打开原型</span><span class="i-en">Open the prototype</span> →</a>
+        </div>
+      </article>
+
+      <article class="card" style="--tile:var(--wash-3)">
+        <div class="prev" data-prev="footage-desk/"
+             data-prev-title-zh="素材调取台预览" data-prev-title-en="Footage desk preview">
+          <span class="prev-skel" aria-hidden="true">
+            <i></i><i></i><i></i><i></i>
+            <b class="prev-msg"><span class="i-zh">预览加载中</span><span class="i-en">Loading preview</span></b>
+            <b class="prev-msg-alt"><span class="i-zh">预览未加载</span><span class="i-en">Preview not loaded</span></b>
+            <b class="prev-msg-off"><span class="i-zh">预览已关闭</span><span class="i-en">Preview off</span></b>
+          </span>
+          <span class="prev-hit" data-open="footage-desk/" aria-hidden="true" data-hover></span>
+          <span class="prev-tag"><i class="dot" aria-hidden="true"></i><span class="i-zh">实时预览 ↗</span><span class="i-en">Live preview ↗</span></span>
+        </div>
+        <div class="tile" aria-hidden="true">▤</div>
+        <h4><span class="i-zh">他们解决了搬运，没解决定位 · 素材调取台</span><span class="i-en">Moving is solved, finding is not · Footage Desk</span></h4>
+        <p>
+          <span class="i-zh">一家内容公司公开过完整的素材搬运方案：SSD 加磁带、光缆串起办公楼、剪辑师点播放时自动从磁带预转。但没有任何东西回答上一个问题——剪辑师怎么先知道要找的是哪一条。这一页只做两件事：把元数据模型定出来，把冷热分层下的检索与回迁做出来。</span>
+          <span class="i-en">One content studio has published a complete plan for <em>moving</em> footage: SSD plus tape, fibre between buildings, tape-to-SSD pre-staging the moment an editor hits play. Nothing answers the question before that one — how the editor knows which clip to ask for. This page does two things: fix the metadata model, and make retrieval and recall work across hot and cold tiers.</span>
+        </p>
+        <p class="rationale"><span class="i-zh">左侧五组筛选维度不是我拟的分类法，是从对方公开素材库实地抓下来的真实字段：景别、机型、帧率、色彩空间、内容标签。产品经理在这里要做的是把已经存在的口头词汇变成可检索的字段。<b>磁带号是模拟的，批次合并的收益依赖这个分布假设。</b></span><span class="i-en">The five facets on the left are not a taxonomy I invented; they were scraped from the studio's own public footage library — shot size, camera, frame rate, colour space, subject tag. The job here is turning vocabulary people already speak into fields you can query. <b>Tape IDs are simulated, so the batching gain rests on that assumption.</b></span></p>
+        <div class="chips"><span class="i-zh">媒资元数据</span><span class="i-en">Media metadata</span><span class="i-zh">冷热分层</span><span class="i-en">Hot/cold tiering</span><span class="i-zh">Facet 检索</span><span class="i-en">Faceted search</span></div>
+        <div class="figures"><b>16</b> <span class="i-zh">个字段逐条标来源</span><span class="i-en">fields, each with a cited source</span> · <b>6→2</b> <span class="i-zh">条素材合并为批次，少装载一半</span><span class="i-en">clips batched, half the tape loads</span></div>
+        <div class="card-links">
+          <a href="footage-desk/" data-hover><span class="i-zh">打开检索页</span><span class="i-en">Open the desk</span> →</a>
+        </div>
+      </article>
+
       <article class="card featured" style="--tile:var(--wash-4)">
         <div class="prev" data-prev="dji/"
              data-prev-title-zh="DJI Mimo 一键成片 PRD 预览" data-prev-title-en="DJI Mimo one-tap edit PRD preview">

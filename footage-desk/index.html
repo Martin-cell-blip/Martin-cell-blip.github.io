@@ -11,7 +11,7 @@
 :root{
   --bg-0:#0b0d0f;--bg-1:#121518;--bg-2:#181c20;--bg-3:#20252a;--bg-4:#2a3037;
   --line:#262c32;--line-2:#333b43;
-  --ink-0:#eef1f3;--ink-1:#a8b2bb;--ink-2:#6b7681;--ink-3:#48525b;
+  --ink-0:#eef1f3;--ink-1:#a8b2bb;--ink-2:#828d98;--ink-3:#79848f;
   --hot:#2dd4a7;      /* SSD 热层 */
   --cold:#4a9eff;     /* 磁带冷层 */
   --warn:#f5a524;     /* 回迁中 */
@@ -158,6 +158,16 @@ footer{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);
   .search{grid-template-columns:1fr}
   .facets{position:static}
   .cmp{grid-template-columns:1fr}
+}
+
+/* 尊重系统的「减少动态效果」设置。原来没有这一段，是 UI 审查查出来的。 */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+    scroll-behavior:auto !important;
+  }
 }
 </style>
 </head>
