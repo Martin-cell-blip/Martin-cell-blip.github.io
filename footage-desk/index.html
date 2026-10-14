@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>素材调取台 · 元数据模型与检索页</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-0:#0b0d0f;--bg-1:#121518;--bg-2:#181c20;--bg-3:#20252a;--bg-4:#2a3037;
+  --line:#262c32;--line-2:#333b43;
+  --ink-0:#eef1f3;--ink-1:#a8b2bb;--ink-2:#828d98;--ink-3:#79848f;
+  --hot:#2dd4a7;      /* SSD 热层 */
+  --cold:#4a9eff;     /* 磁带冷层 */
+  --warn:#f5a524;     /* 回迁中 */
+  --err:#e05c4b;
+  --r-s:3px;--r-m:5px;
+  --fs-mono:'IBM Plex Mono','SFMono-Regular',Consolas,monospace;
+  --fs-ui:'IBM Plex Sans','Noto Sans SC',-apple-system,'Microsoft YaHei',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{max-width:100%;overflow-x:hidden}
+body{margin:0;background:var(--bg-0);color:var(--ink-0);font-family:var(--fs-ui);
+  font-size:13px;line-height:1.5;-webkit-font-smoothing:antialiased}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:999;opacity:.03;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E")}
+.tc{font-family:var(--fs-mono);font-variant-numeric:tabular-nums}
+.lbl{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-2);font-weight:600}
+
+.wrap{max-width:1320px;margin:0 auto;padding:26px 22px 60px}
+header.hd{border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:22px}
+.eyebrow{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--warn);
+  font-weight:600;margin-bottom:9px}
+h1{margin:0 0 9px;font-size:25px;font-weight:600;letter-spacing:-.02em;line-height:1.25}
+.sub{font-size:13px;color:var(--ink-1);max-width:760px;line-height:1.7;margin:0}
+.sub b{color:var(--ink-0)}
+.tagline{margin-top:13px;padding:11px 14px;border-left:2px solid var(--warn);
+  background:rgba(245,165,36,.06);font-size:12.5px;color:var(--ink-1);line-height:1.7;border-radius:0 var(--r-m) var(--r-m) 0}
+.tagline b{color:var(--ink-0)}
+
+.sec{margin-bottom:30px}
+.sec-hd{display:flex;align-items:baseline;gap:11px;margin-bottom:13px;
+  padding-bottom:9px;border-bottom:1px solid var(--line)}
+.sec-hd h2{margin:0;font-size:16px;font-weight:600}
+.sec-hd .lbl{margin-left:auto}
+.sec-d{font-size:12px;color:var(--ink-2);line-height:1.7;margin:-4px 0 14px;max-width:800px}
+
+/* 检索区 */
+.search{display:grid;grid-template-columns:236px 1fr;gap:16px;align-items:start}
+.facets{background:var(--bg-1);border:1px solid var(--line);border-radius:var(--r-m);
+  padding:13px;position:sticky;top:16px}
+.fg{margin-bottom:15px}
+.fg:last-child{margin-bottom:0}
+.fg-t{font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-2);
+  font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.fg-t em{font-style:normal;font-family:var(--fs-mono);font-size:9px;color:var(--ink-3);
+  border:1px solid var(--line-2);padding:0 4px;border-radius:2px;letter-spacing:0}
+.fchips{display:flex;flex-wrap:wrap;gap:4px}
+.fc{height:22px;padding:0 8px;border-radius:11px;border:1px solid var(--line-2);
+  background:transparent;color:var(--ink-2);font-family:inherit;font-size:11px;cursor:pointer;
+  transition:all .12s}
+.fc:hover{color:var(--ink-0);border-color:#414b55}
+.fc[aria-pressed="true"]{background:var(--bg-4);color:var(--ink-0);border-color:#4a5560}
+.searchbar{display:flex;gap:8px;margin-bottom:13px}
+.searchbar input{flex:1;height:34px;padding:0 12px;border-radius:var(--r-m);
+  border:1px solid var(--line-2);background:var(--bg-1);color:var(--ink-0);
+  font-family:inherit;font-size:13px}
+.searchbar input:focus{outline:none;border-color:#4a9eff;box-shadow:0 0 0 2px rgba(74,158,255,.14)}
+.searchbar input::placeholder{color:var(--ink-3)}
+.btn{height:34px;padding:0 14px;border-radius:var(--r-m);border:1px solid var(--line-2);
+  background:var(--bg-2);color:var(--ink-0);font-family:inherit;font-size:12.5px;cursor:pointer;
+  display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.btn:hover{background:var(--bg-3)}
+.btn-p{background:var(--warn);border-color:var(--warn);color:#1a1206;font-weight:600}
+.btn-p:hover{background:#ffb43d}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+
+.resbar{display:flex;align-items:center;gap:11px;margin-bottom:11px;font-size:12px;color:var(--ink-2)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(238px,1fr));gap:11px}
+.card{background:var(--bg-1);border:1px solid var(--line);border-radius:var(--r-m);
+  overflow:hidden;cursor:pointer;transition:border-color .14s,transform .14s}
+.card:hover{border-color:#414b55;transform:translateY(-1px)}
+.card[data-sel="1"]{border-color:var(--warn);box-shadow:0 0 0 1px rgba(245,165,36,.3)}
+.thumb{aspect-ratio:16/9;position:relative;overflow:hidden}
+.thumb-bg{position:absolute;inset:0}
+.thumb-tier{position:absolute;top:7px;left:7px;height:19px;padding:0 7px;border-radius:var(--r-s);
+  display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:600;
+  background:rgba(0,0,0,.66);backdrop-filter:blur(3px)}
+.thumb-tier.hot{color:var(--hot);border:1px solid rgba(45,212,167,.4)}
+.thumb-tier.cold{color:var(--cold);border:1px solid rgba(74,158,255,.4)}
+.thumb-dur{position:absolute;bottom:7px;right:7px;font-family:var(--fs-mono);font-size:10px;
+  color:#fff;background:rgba(0,0,0,.66);padding:1px 5px;border-radius:2px}
+.thumb-proxy{position:absolute;bottom:7px;left:7px;font-size:9.5px;color:rgba(255,255,255,.85);
+  background:rgba(0,0,0,.66);padding:1px 5px;border-radius:2px;display:flex;align-items:center;gap:3px}
+.card-b{padding:9px 10px}
+.card-n{font-size:12px;font-weight:600;margin-bottom:6px;white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis}
+.card-m{display:flex;flex-wrap:wrap;gap:3px}
+.tag{font-size:9.5px;padding:1px 5px;border-radius:2px;background:var(--bg-3);
+  color:var(--ink-2);border:1px solid var(--line);white-space:nowrap}
+.tag.k{color:var(--ink-1)}
+.card-tape{margin-top:7px;padding-top:7px;border-top:1px solid var(--line);
+  font-family:var(--fs-mono);font-size:9.5px;color:var(--ink-3);display:flex;
+  align-items:center;justify-content:space-between}
+
+/* 回迁计划 */
+.plan{background:var(--bg-1);border:1px solid var(--line);border-radius:var(--r-m);padding:15px}
+.plan-hd{display:flex;align-items:center;gap:10px;margin-bottom:13px}
+.plan-hd h3{margin:0;font-size:14px;font-weight:600}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.cmp-c{padding:13px;border-radius:var(--r-m);border:1px solid var(--line-2);background:var(--bg-2)}
+.cmp-c[data-w="good"]{border-color:rgba(45,212,167,.35);background:rgba(45,212,167,.05)}
+.cmp-t{font-size:11px;color:var(--ink-2);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.cmp-v{font-family:var(--fs-mono);font-size:27px;font-weight:600;line-height:1;letter-spacing:-.02em}
+.cmp-v small{font-size:12px;color:var(--ink-2);font-weight:400;margin-left:3px}
+.cmp-d{font-size:11px;color:var(--ink-2);margin-top:8px;line-height:1.6}
+.tapes{display:grid;gap:7px}
+.tape{display:flex;align-items:center;gap:10px;padding:9px 11px;background:var(--bg-2);
+  border:1px solid var(--line);border-radius:var(--r-m)}
+.tape-id{font-family:var(--fs-mono);font-size:11.5px;font-weight:600;color:var(--cold);
+  min-width:78px;flex:none}
+.tape-bar{flex:1;height:6px;background:var(--bg-3);border-radius:3px;overflow:hidden;position:relative}
+.tape-bar span{display:block;height:100%;background:var(--cold);border-radius:3px}
+.tape-n{font-family:var(--fs-mono);font-size:11px;color:var(--ink-1);min-width:62px;text-align:right}
+.tape-t{font-family:var(--fs-mono);font-size:11px;color:var(--ink-2);min-width:56px;text-align:right}
+
+/* 模型表。宽内容在自己的容器里横向滚动，页面本身不允许横向滚动 */
+.m-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r-m)}
+table.m{width:100%;min-width:660px;border-collapse:collapse;font-size:12px}
+table.m th{text-align:left;padding:8px 11px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-2);font-weight:600;border-bottom:1px solid var(--line-2);background:var(--bg-1)}
+table.m td{padding:8px 11px;border-bottom:1px solid var(--line);vertical-align:top}
+table.m tr:hover td{background:var(--bg-2)}
+.fname{font-family:var(--fs-mono);font-size:11.5px;color:var(--ink-0);font-weight:500}
+.ftype{font-family:var(--fs-mono);font-size:10.5px;color:var(--ink-3)}
+.src{font-size:10px;padding:1px 6px;border-radius:2px;white-space:nowrap;font-weight:600}
+.src-pub{background:rgba(45,212,167,.13);color:var(--hot);border:1px solid rgba(45,212,167,.3)}
+.src-jd{background:rgba(74,158,255,.13);color:var(--cold);border:1px solid rgba(74,158,255,.3)}
+.src-inf{background:rgba(245,165,36,.12);color:var(--warn);border:1px solid rgba(245,165,36,.28)}
+
+.box{padding:13px 15px;border-radius:var(--r-m);font-size:11.5px;line-height:1.75;
+  background:rgba(74,158,255,.05);border:1px solid rgba(74,158,255,.18);color:var(--ink-1)}
+.box b{color:var(--ink-0)}
+.box.warn{background:rgba(245,165,36,.05);border-color:rgba(245,165,36,.2)}
+.box.plain{background:var(--bg-1);border-color:var(--line)}
+.box ol,.box ul{margin:8px 0 0;padding-left:19px}
+.box li{margin-bottom:5px}
+
+.srcs{font-size:11px;color:var(--ink-2);line-height:1.8}
+.srcs a{color:var(--cold);text-decoration:none}
+.srcs a:hover{text-decoration:underline}
+footer{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);
+  font-size:10.5px;color:var(--ink-3);line-height:1.7}
+
+@media (max-width:900px){
+  .search{grid-template-columns:1fr}
+  .facets{position:static}
+  .cmp{grid-template-columns:1fr}
+}
+
+/* 尊重系统的「减少动态效果」设置。原来没有这一段，是 UI 审查查出来的。 */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+    scroll-behavior:auto !important;
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hd">
+  <div class="eyebrow">佐证页 · 素材调取台</div>
+  <h1>他们解决了搬运，没解决定位</h1>
+  <p class="sub">影视飓风公开过一套完整的素材<b>搬运</b>方案：1000TB SSD 加 320 盘磁带、24 芯光缆串起所有办公楼、剪辑师点播放时系统自动把素材从磁带预转到 SSD。公开资料里没有任何东西回答上一个问题：<b>剪辑师怎么先知道要找的是哪一条</b>。</p>
+  <div class="tagline">
+    这一页只做两件事：<b>把素材元数据模型定出来</b>，<b>把冷热分层下的检索与回迁做出来</b>。
+    这是主打作品之外的一块证据，不求做成完整产品。它要证明的是：我看得懂剪辑师找素材时会用的查询条件。
+  </div>
+</header>
+
+<!-- ============ 检索 ============ -->
+<section class="sec">
+  <div class="sec-hd">
+    <h2>检索</h2>
+    <span class="lbl">Facet 取自官网素材库实测字段</span>
+  </div>
+  <p class="sec-d">左侧五组筛选维度取自影视飓风对外素材库（ysjf.com/material），是我实地抓下来的真实 facet，没有一条是我拟的。他们已经按这套维度理解素材了，内部检索就该沿用同一套词汇，不必另发明一套。</p>
+
+  <div class="search">
+    <aside class="facets">
+      <div class="fg">
+        <div class="fg-t">景别 <em>官网</em></div>
+        <div class="fchips" data-f="shot">
+          <button class="fc">全景</button><button class="fc">远景</button>
+          <button class="fc">中景</button><button class="fc">近景</button><button class="fc">特写</button>
+        </div>
+      </div>
+      <div class="fg">
+        <div class="fg-t">机型 <em>官网</em></div>
+        <div class="fchips" data-f="cam">
+          <button class="fc">RED</button><button class="fc">SONY</button><button class="fc">DJI</button>
+          <button class="fc">BMD</button><button class="fc">Canon</button><button class="fc">NiKon</button>
+        </div>
+      </div>
+      <div class="fg">
+        <div class="fg-t">色彩空间 <em>官网</em></div>
+        <div class="fchips" data-f="log">
+          <button class="fc">S-Log3</button><button class="fc">D-Log</button>
+          <button class="fc">N-Log</button><button class="fc">Log3G10</button><button class="fc">Rec.709</button>
+        </div>
+      </div>
+      <div class="fg">
+        <div class="fg-t">内容 <em>官网</em></div>
+        <div class="fchips" data-f="topic">
+          <button class="fc">航拍</button><button class="fc">延时</button><button class="fc">自然风景</button>
+          <button class="fc">动物</button><button class="fc">城市人文</button><button class="fc">空镜</button>
+        </div>
+      </div>
+      <div class="fg">
+        <div class="fg-t">存储层 <em>内部</em></div>
+        <div class="fchips" data-f="tier">
+          <button class="fc">SSD 热层</button><button class="fc">磁带冷层</button><button class="fc">仅代理</button>
+        </div>
+      </div>
+    </aside>
+
+    <div>
+      <div class="searchbar">
+        <input id="q" placeholder="找一条素材：西藏 航拍 全景 日出…">
+        <button class="btn" id="clear">清空</button>
+      </div>
+      <div class="resbar">
+        <span id="cnt">共 12 条</span>
+        <span style="color:var(--ink-3)">·</span>
+        <span id="tierInfo"></span>
+        <span style="margin-left:auto"></span>
+        <button class="btn btn-p" id="planBtn" disabled>生成回迁计划</button>
+      </div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 回迁计划 ============ -->
+<section class="sec">
+  <div class="sec-hd">
+    <h2>回迁计划</h2>
+    <span class="lbl">冷热分层下的批次合并</span>
+  </div>
+  <p class="sec-d">磁带的成本不在读取速度，在<b>装载次数</b>。换一盘带的机械开销远大于多读几条。所以剪辑师一次勾选 6 条冷层素材时，正确做法是<b>按磁带号合并成批次</b>，同一盘带上的素材一次取完，而不是发 6 个独立请求。</p>
+
+  <div class="plan">
+    <div class="plan-hd">
+      <h3 id="planTitle">先在上面勾选几条冷层素材</h3>
+      <span class="lbl" style="margin-left:auto" id="planSel">已选 0 条</span>
+    </div>
+    <div class="cmp">
+      <div class="cmp-c">
+        <div class="cmp-t">逐条回迁（现在的做法）</div>
+        <div class="cmp-v" id="naive">—<small> 次装载</small></div>
+        <div class="cmp-d">每条素材各发一次请求，同一盘带被反复装载。</div>
+      </div>
+      <div class="cmp-c" data-w="good">
+        <div class="cmp-t">按磁带合并（本方案）</div>
+        <div class="cmp-v" id="batched">—<small> 次装载</small></div>
+        <div class="cmp-d" id="saveTxt">同一盘带上的素材合并成一个批次，一次取完。</div>
+      </div>
+    </div>
+    <div class="lbl" style="margin-bottom:9px">批次明细</div>
+    <div class="tapes" id="tapes">
+      <div style="font-size:12px;color:var(--ink-3);padding:10px 0">未选择素材。</div>
+    </div>
+    <div class="box warn" style="margin-top:13px">
+      <b>这个数字是算出来的，不是测出来的。</b>装载次数按"不同磁带号的个数"计算，
+      这是一个纯组合问题，不涉及真实磁带库的排队、并发与换带耗时。
+      我没有 LTO 库可测，所以这里只报装载次数，<b>不报时间</b>。把秒数写出来就是编造。
+    </div>
+  </div>
+</section>
+
+<!-- ============ 元数据模型 ============ -->
+<section class="sec">
+  <div class="sec-hd">
+    <h2>元数据模型</h2>
+    <span class="lbl">每个字段都标注来源</span>
+  </div>
+  <p class="sec-d">字段分三档：<span class="src src-pub">官网实测</span>直接抄自他们对外素材库的卡片；<span class="src src-jd">JD/公开</span>来自招聘 JD 或公开视频里明确出现的概念；<span class="src src-inf">推断</span>是我按冷热分层的需要补的，没有证据说他们已经有。</p>
+
+  <div class="m-scroll">
+  <table class="m">
+    <thead><tr><th style="width:172px">字段</th><th style="width:118px">类型</th><th style="width:96px">来源</th><th>为什么需要它</th></tr></thead>
+    <tbody>
+      <tr><td class="fname">clip_id</td><td class="ftype">string PK</td><td><span class="src src-inf">推断</span></td><td>主键。素材可以改名、可以转码，但引用它的地方不能断。</td></tr>
+      <tr><td class="fname">project</td><td class="ftype">string</td><td><span class="src src-pub">官网实测</span></td><td>官网卡片就是「样片日记-南非」这种项目/合集归属。</td></tr>
+      <tr><td class="fname">shot_size</td><td class="ftype">enum(5)</td><td><span class="src src-pub">官网实测</span></td><td>全景/远景/中景/近景/特写。剪辑师找镜头的第一维度。</td></tr>
+      <tr><td class="fname">topic</td><td class="ftype">string[]</td><td><span class="src src-pub">官网实测</span></td><td>可二级，官网出现过「动物-长颈鹿」这种写法。</td></tr>
+      <tr><td class="fname">camera_brand</td><td class="ftype">enum(12)</td><td><span class="src src-pub">官网实测</span></td><td>DJI/SONY/RED/BMD… 决定素材能不能和同场次其他机位配。</td></tr>
+      <tr><td class="fname">resolution</td><td class="ftype">string</td><td><span class="src src-pub">官网实测</span></td><td>4K/6K/8K。</td></tr>
+      <tr><td class="fname">fps</td><td class="ftype">decimal</td><td><span class="src src-pub">官网实测</span></td><td>59.94 与 60 不是一回事，混用会掉帧。</td></tr>
+      <tr><td class="fname">color_space</td><td class="ftype">enum</td><td><span class="src src-pub">官网实测</span></td><td>S-Log3/D-Log/N-Log/Log3G10。<b>决定能不能直接进时间线</b>的字段。</td></tr>
+      <tr><td class="fname">tc_in / tc_out</td><td class="ftype">timecode</td><td><span class="src src-jd">JD/公开</span></td><td>DIT 岗 JD 明写"素材全生命周期管理"。</td></tr>
+      <tr><td class="fname">checksum</td><td class="ftype">string</td><td><span class="src src-jd">JD/公开</span></td><td>他们自研的 Gate 拷卡软件就做 MD5/XXHASH64 校验。</td></tr>
+      <tr><td class="fname">storage_tier</td><td class="ftype">enum(3)</td><td><span class="src src-jd">JD/公开</span></td><td>SSD 热层 / 磁带冷层 / 仅代理。1000TB SSD + 320 盘磁带是公开数字。</td></tr>
+      <tr><td class="fname">tape_id</td><td class="ftype">string</td><td><span class="src src-inf">推断</span></td><td><b>回迁批次合并的依据。</b>没有它，冷层就只能逐条取。</td></tr>
+      <tr><td class="fname">proxy_status</td><td class="ftype">enum(3)</td><td><span class="src src-inf">推断</span></td><td>有代理才能在不回迁的情况下先看。</td></tr>
+      <tr><td class="fname">recall_state</td><td class="ftype">enum(4)</td><td><span class="src src-inf">推断</span></td><td>未回迁/排队中/回迁中/已在热层。</td></tr>
+      <tr><td class="fname">archived_at</td><td class="ftype">datetime</td><td><span class="src src-inf">推断</span></td><td>降冷时间，用于回看降冷策略是否合理。</td></tr>
+      <tr><td class="fname">last_used_at</td><td class="ftype">datetime</td><td><span class="src src-inf">推断</span></td><td>旧素材复用的前提是知道它上次被谁用过。</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="box" style="margin-top:14px">
+    <b>为什么不自己发明一套字段。</b>他们的对外素材库已经在用「景别 / 内容 / 机型 / 帧率 / 色彩空间」标注每一条素材。
+    这说明公司内部已有跨机型跨项目的标注习惯，而且这套词汇正是剪辑师开口要素材时会说的话
+    （"给我找个西藏那次的航拍全景，最好是 RED 拍的"）。产品经理在这里要做的是<b>把已经存在的口头词汇变成可检索的字段</b>，而不是设计一套分类法。
+  </div>
+</section>
+
+<!-- ============ 边界 ============ -->
+<section class="sec">
+  <div class="sec-hd"><h2>这一页证明不了什么</h2></div>
+  <div class="box plain">
+    <ol>
+      <li><b>素材是我自己的摄影素材，12 条。</b>他们是 4000TB、2025 年一年拷了约 1PB。规模差了六个数量级，检索在小库上好用不代表在大库上好用。</li>
+      <li><b>磁带号是我编的。</b>公开资料只说了"320 颗 12TB 磁带"，没有任何关于编号规则、单带容量利用率、素材如何分配到带的信息。批次合并的收益依赖这个分布，换一种分配方式收益会完全不同。</li>
+      <li><b>装载次数不等于时间。</b>没有 LTO 库可测，所以只报次数不报秒数。</li>
+      <li><b>没做语义检索。</b>这一页只做 facet 过滤和关键词匹配。做向量检索会让这一页变成一个技术演示，而这一页要证明的是我懂剪辑师的查询语言，不是我会调向量库。</li>
+      <li><b>他们可能已经有了。</b>2026 年新招的 Java／SRE／全栈很可能正在做这件事。我的判断依据是"公开资料里我没找到"，不是"他们没有"。</li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-hd"><h2>来源</h2></div>
+  <div class="srcs">
+    1. 素材 facet 与卡片字段｜飓风素材库 <a href="https://www.ysjf.com/material">ysjf.com/material</a>，2026-08-19 实地采集<br>
+    2. 1000TB SSD + 320 颗 12TB 磁带、24 芯光缆、2025 年拷卡约 1PB、剪辑师点播放时自动从磁带预转 SSD、资料工程师岗位｜数位时代对《2026 年了，影视飓风是怎么工作的？》的转述，2026-04-28（原视频 2026-04-25）<br>
+    3. Gate 拷卡软件 MD5/XXHASH64 校验｜飓风商店 B 站视频，2021-07-14<br>
+    4. DIT 岗"素材全生命周期管理：拍摄数据备份、项目归档及历史素材提取"、要求熟悉 Silverstack / Offshoot｜影视飓风官方招聘站实习 DIT JD，2026-07-28<br>
+    5. "交付物散落在表格、文件夹和聊天中，版本不统一、信息难沉淀"｜飞书项目客户案例页
+  </div>
+</section>
+
+<footer>
+  作品原型 · 非真实系统 · 素材与磁带号为模拟数据 · 马准名 2026-08
+</footer>
+</div>
+
+<script>
+const CLIPS=[
+ {id:'TBT_A032_C007',n:'西藏-羊卓雍措日出',proj:'样片日记-西藏',shot:'全景',topic:['自然风景','航拍'],cam:'DJI',res:'5.1K',fps:'29.97',log:'D-Log',tier:'cold',tape:'LTO-0142',proxy:'有',dur:'00:01:24',g:['#1a3a5c','#3d6b8c','#c9a227']},
+ {id:'TBT_A032_C011',n:'西藏-经幡特写',proj:'样片日记-西藏',shot:'特写',topic:['城市人文'],cam:'SONY',res:'4K',fps:'59.94',log:'S-Log3',tier:'cold',tape:'LTO-0142',proxy:'有',dur:'00:00:38',g:['#8c3d2e','#c96a3d','#e8c07a']},
+ {id:'TBT_A033_C002',n:'西藏-牧民与牦牛',proj:'样片日记-西藏',shot:'中景',topic:['动物','城市人文'],cam:'SONY',res:'4K',fps:'23.976',log:'S-Log3',tier:'cold',tape:'LTO-0142',proxy:'有',dur:'00:02:06',g:['#4a5c2e','#7d8c4a','#c4b57a']},
+ {id:'NAM_B008_C001',n:'南非-长颈鹿全身',proj:'样片日记-南非',shot:'全景',topic:['动物'],cam:'DJI',res:'4K',fps:'59.94',log:'D-Log',tier:'cold',tape:'LTO-0207',proxy:'有',dur:'00:00:52',g:['#7a6b3d','#b09a5c','#d9c88a']},
+ {id:'NAM_B008_C014',n:'南非-草原延时',proj:'样片日记-南非',shot:'远景',topic:['延时','自然风景'],cam:'SONY',res:'6K',fps:'29.97',log:'S-Log3',tier:'cold',tape:'LTO-0207',proxy:'无',dur:'00:00:16',g:['#8c6a2e','#c99a4a','#f0d68a']},
+ {id:'JPN_C021_C005',n:'日本-涩谷路口俯拍',proj:'样片日记-日本',shot:'远景',topic:['城市人文','航拍'],cam:'DJI',res:'4K',fps:'29.97',log:'D-Log',tier:'cold',tape:'LTO-0088',proxy:'有',dur:'00:01:12',g:['#2e3d5c','#4a5c8c','#8ca0c9']},
+ {id:'JPN_C022_C009',n:'日本-居酒屋暖光',proj:'样片日记-日本',shot:'近景',topic:['城市人文'],cam:'Canon',res:'4K',fps:'23.976',log:'Rec.709',tier:'cold',tape:'LTO-0088',proxy:'有',dur:'00:00:44',g:['#5c2e1a','#8c4a2e','#d98c4a']},
+ {id:'ALS_D004_C003',n:'阿拉斯加-冰川空镜',proj:'样片日记-阿拉斯加',shot:'远景',topic:['自然风景','空镜'],cam:'RED',res:'8K',fps:'23.976',log:'Log3G10',tier:'hot',tape:'—',proxy:'有',dur:'00:01:38',g:['#2e5c6b','#4a8c9e','#a8d4e0']},
+ {id:'ALS_D004_C018',n:'阿拉斯加-极光延时',proj:'样片日记-阿拉斯加',shot:'全景',topic:['延时','自然风景'],cam:'RED',res:'8K',fps:'23.976',log:'Log3G10',tier:'hot',tape:'—',proxy:'有',dur:'00:00:22',g:['#1a2e4a','#2e6b5c','#7ad9a8']},
+ {id:'IDN_E011_C006',n:'印尼-火山口航拍',proj:'样片日记-印度尼西亚',shot:'全景',topic:['航拍','自然风景'],cam:'DJI',res:'5.1K',fps:'29.97',log:'D-Log',tier:'cold',tape:'LTO-0311',proxy:'有',dur:'00:01:05',g:['#4a2e2e','#8c5c4a','#d9a88c']},
+ {id:'XJ_F007_C012',n:'南疆-胡杨林中景',proj:'样片日记-南疆',shot:'中景',topic:['自然风景'],cam:'NiKon',res:'4K',fps:'29.97',log:'N-Log',tier:'cold',tape:'LTO-0311',proxy:'无',dur:'00:00:58',g:['#6b5c1a','#a89a3d','#e0d47a']},
+ {id:'STD_G002_C001',n:'棚拍-产品旋转台',proj:'DJIFlip评测',shot:'特写',topic:['空镜'],cam:'BMD',res:'6K',fps:'59.94',log:'Rec.709',tier:'proxy',tape:'LTO-0088',proxy:'仅代理',dur:'00:00:30',g:['#2e2e33','#4a4a52','#8c8c99']}
+];
+const TIER={hot:['hot','SSD 热层'],cold:['cold','磁带冷层'],proxy:['cold','仅代理']};
+let sel=new Set(), filt={}, q='';
+
+function match(c){
+  if(q){
+    const hay=(c.n+c.proj+c.shot+c.topic.join('')+c.cam+c.log+c.id).toLowerCase();
+    if(!q.toLowerCase().split(/\s+/).filter(Boolean).every(t=>hay.includes(t))) return false;
+  }
+  for(const [k,vs] of Object.entries(filt)){
+    if(!vs.size) continue;
+    let ok=false;
+    if(k==='shot') ok=vs.has(c.shot);
+    if(k==='cam') ok=vs.has(c.cam);
+    if(k==='log') ok=vs.has(c.log);
+    if(k==='topic') ok=c.topic.some(t=>vs.has(t));
+    if(k==='tier') ok=vs.has(TIER[c.tier][1]);
+    if(!ok) return false;
+  }
+  return true;
+}
+function render(){
+  const res=CLIPS.filter(match);
+  document.getElementById('grid').innerHTML = res.length? res.map(c=>`
+    <article class="card" data-id="${c.id}" data-sel="${sel.has(c.id)?1:0}">
+      <div class="thumb">
+        <div class="thumb-bg" style="background:linear-gradient(145deg,${c.g[0]},${c.g[1]} 52%,${c.g[2]})"></div>
+        <span class="thumb-tier ${TIER[c.tier][0]}">${TIER[c.tier][1]}</span>
+        <span class="thumb-dur">${c.dur}</span>
+        <span class="thumb-proxy">代理 ${c.proxy}</span>
+      </div>
+      <div class="card-b">
+        <div class="card-n">${c.n}</div>
+        <div class="card-m">
+          <span class="tag k">${c.shot}</span><span class="tag k">${c.cam}</span>
+          <span class="tag">${c.res}</span><span class="tag">${c.fps}</span><span class="tag k">${c.log}</span>
+        </div>
+        <div class="card-tape"><span>${c.id}</span><span>${c.tape}</span></div>
+      </div>
+    </article>`).join('')
+    : '<div style="grid-column:1/-1;padding:26px;text-align:center;color:var(--ink-3);font-size:12px">没有匹配的素材。</div>';
+  document.getElementById('cnt').textContent=`共 ${res.length} 条`;
+  const nc=res.filter(c=>c.tier!=='hot').length;
+  document.getElementById('tierInfo').textContent=`${res.length-nc} 条在热层，${nc} 条需回迁`;
+  document.getElementById('planBtn').disabled=sel.size===0;
+  plan();
+}
+function plan(){
+  const chosen=CLIPS.filter(c=>sel.has(c.id)&&c.tier!=='hot');
+  document.getElementById('planSel').textContent=`已选 ${sel.size} 条，其中 ${chosen.length} 条在冷层`;
+  if(!chosen.length){
+    document.getElementById('planTitle').textContent='先在上面勾选几条冷层素材';
+    document.getElementById('naive').innerHTML='—<small> 次装载</small>';
+    document.getElementById('batched').innerHTML='—<small> 次装载</small>';
+    document.getElementById('saveTxt').textContent='同一盘带上的素材合并成一个批次，一次取完。';
+    document.getElementById('tapes').innerHTML='<div style="font-size:12px;color:var(--ink-3);padding:10px 0">未选择素材。</div>';
+    return;
+  }
+  const byTape={};
+  chosen.forEach(c=>{(byTape[c.tape]=byTape[c.tape]||[]).push(c)});
+  const nTapes=Object.keys(byTape).length;
+  document.getElementById('planTitle').textContent=`${chosen.length} 条冷层素材 → ${nTapes} 个批次`;
+  document.getElementById('naive').innerHTML=`${chosen.length}<small> 次装载</small>`;
+  document.getElementById('batched').innerHTML=`${nTapes}<small> 次装载</small>`;
+  const cut=chosen.length-nTapes;
+  document.getElementById('saveTxt').textContent = cut>0
+    ? `少装载 ${cut} 次（${Math.round(cut/chosen.length*100)}%）。同一盘带上的素材合并成一个批次，一次取完。`
+    : '本次每条素材各在不同磁带上，合并没有收益。这种情况也要如实显示。';
+  document.getElementById('tapes').innerHTML=Object.entries(byTape)
+    .sort((a,b)=>b[1].length-a[1].length)
+    .map(([t,cs])=>`
+      <div class="tape">
+        <span class="tape-id">${t}</span>
+        <div class="tape-bar"><span style="width:${Math.min(100,cs.length/chosen.length*100*1.6)}%"></span></div>
+        <span class="tape-n">${cs.length} 条</span>
+        <span class="tape-t">批次 1/${nTapes}</span>
+      </div>
+      <div style="font-size:10.5px;color:var(--ink-3);padding:0 11px 6px 12px;font-family:var(--fs-mono);word-break:break-all;line-height:1.7">${cs.map(c=>c.id).join('　')}</div>`).join('');
+}
+document.getElementById('grid').addEventListener('click',e=>{
+  const card=e.target.closest('.card'); if(!card)return;
+  const id=card.dataset.id;
+  sel.has(id)?sel.delete(id):sel.add(id);
+  render();
+});
+document.querySelectorAll('.fchips').forEach(g=>{
+  const key=g.dataset.f;
+  filt[key]=new Set();
+  g.addEventListener('click',e=>{
+    const b=e.target.closest('.fc'); if(!b)return;
+    const on=b.getAttribute('aria-pressed')==='true';
+    b.setAttribute('aria-pressed',String(!on));
+    on?filt[key].delete(b.textContent):filt[key].add(b.textContent);
+    render();
+  });
+});
+document.getElementById('q').addEventListener('input',e=>{q=e.target.value.trim();render()});
+document.getElementById('clear').addEventListener('click',()=>{
+  q=''; document.getElementById('q').value=''; sel.clear();
+  Object.values(filt).forEach(s=>s.clear());
+  document.querySelectorAll('.fc').forEach(b=>b.setAttribute('aria-pressed','false'));
+  render();
+});
+render();
+</script>
+</body>
+</html>

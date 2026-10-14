@@ -1,0 +1,1044 @@
+<!doctype html>
+<html lang="zh-CN" data-page="p2">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>成片评审与意见核销台 · 高保真原型</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   成片评审与意见核销台 — 视觉系统
+   设计方向：剪辑房仪器面板（instrument panel）
+   判准：它要能摆在 DaVinci 旁边那块监视器上不违和
+   ============================================================ */
+:root{
+  --bg-0:#0b0d0f; --bg-1:#121518; --bg-2:#181c20; --bg-3:#20252a; --bg-4:#2a3037;
+  --line:#262c32; --line-2:#333b43;
+  --ink-0:#eef1f3; --ink-1:#a8b2bb; --ink-2:#828d98; --ink-3:#79848f;
+  --sig-open:#f5a524; --sig-closed:#2dd4a7; --sig-reject:#e05c4b;
+  --sig-defer:#7c8b99; --sig-conflict:#d946ac;
+  --sig-like:#3d9970; --sig-dislike:#c0392b;
+  --focus:#4a9eff;
+  --r-s:3px; --r-m:5px; --rail-w:196px;
+  --fs-mono:'IBM Plex Mono','SFMono-Regular',Consolas,monospace;
+  --fs-ui:'IBM Plex Sans','Noto Sans SC',-apple-system,'Microsoft YaHei',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg-0);color:var(--ink-0);font-family:var(--fs-ui);
+  font-size:13px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow:hidden}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E")}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9998;
+  background:radial-gradient(ellipse 120% 100% at 50% 40%, transparent 55%, rgba(0,0,0,.45) 100%)}
+
+.tc{font-family:var(--fs-mono);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.num{font-family:var(--fs-mono);font-variant-numeric:tabular-nums}
+.lbl{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-2);font-weight:600}
+.hr{height:1px;background:var(--line);border:0;margin:0}
+
+.app{display:grid;grid-template-columns:var(--rail-w) 1fr;height:100vh}
+
+.rail{background:var(--bg-1);border-right:1px solid var(--line);display:flex;flex-direction:column;min-height:0}
+.brand{padding:16px 16px 14px;border-bottom:1px solid var(--line)}
+.brand-mark{display:flex;align-items:center;gap:8px}
+.brand-dot{width:7px;height:7px;border-radius:50%;background:var(--sig-open);
+  box-shadow:0 0 10px var(--sig-open);flex:none;animation:pulse 3.2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.brand-name{font-size:13px;font-weight:700;letter-spacing:.01em}
+.brand-sub{font-size:10px;color:var(--ink-3);margin-top:5px;letter-spacing:.04em;font-family:var(--fs-mono)}
+.nav{padding:10px 8px;flex:1;overflow-y:auto}
+.nav-sec{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);
+  padding:12px 8px 6px;font-weight:600}
+.nav-item{display:flex;align-items:center;gap:9px;width:100%;text-align:left;padding:7px 8px;
+  margin-bottom:1px;border:0;border-radius:var(--r-s);background:transparent;color:var(--ink-1);
+  font-family:inherit;font-size:12.5px;cursor:pointer;transition:background .12s,color .12s;position:relative}
+.nav-item:hover{background:var(--bg-2);color:var(--ink-0)}
+.nav-item[aria-current="true"]{background:var(--bg-3);color:var(--ink-0);font-weight:500}
+.nav-item[aria-current="true"]::before{content:'';position:absolute;left:-8px;top:50%;
+  transform:translateY(-50%);width:2px;height:16px;background:var(--sig-open);border-radius:0 2px 2px 0}
+.nav-ico{width:14px;height:14px;flex:none;stroke:currentColor;fill:none;stroke-width:1.6;opacity:.85}
+.nav-badge{margin-left:auto;font-family:var(--fs-mono);font-size:10px;color:var(--ink-2);
+  background:var(--bg-3);padding:1px 5px;border-radius:9px;border:1px solid var(--line)}
+.nav-item[aria-current="true"] .nav-badge{background:var(--bg-0)}
+.rail-foot{padding:11px 14px;border-top:1px solid var(--line);font-size:10px;color:var(--ink-3);line-height:1.6}
+.rail-foot b{color:var(--ink-2);font-weight:600}
+
+.main{display:flex;flex-direction:column;min-width:0;min-height:0;background:var(--bg-0)}
+.topbar{height:46px;flex:none;border-bottom:1px solid var(--line);background:var(--bg-1);
+  display:flex;align-items:center;gap:14px;padding:0 16px}
+.crumb{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink-1);min-width:0}
+.crumb b{color:var(--ink-0);font-weight:600}
+.crumb .sep{color:var(--ink-3)}
+.crumb-title{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:340px}
+.spacer{flex:1}
+.chip{display:inline-flex;align-items:center;gap:5px;height:23px;padding:0 8px;
+  border:1px solid var(--line-2);border-radius:var(--r-s);background:var(--bg-2);
+  font-size:11px;color:var(--ink-1);font-family:var(--fs-mono)}
+.chip-dot{width:5px;height:5px;border-radius:50%;background:currentColor}
+.btn{height:26px;padding:0 11px;border-radius:var(--r-s);border:1px solid var(--line-2);
+  background:var(--bg-2);color:var(--ink-0);font-family:inherit;font-size:12px;cursor:pointer;
+  display:inline-flex;align-items:center;gap:6px;transition:background .12s,border-color .12s}
+.btn:hover{background:var(--bg-3);border-color:#3f4952}
+.btn-primary{background:var(--sig-open);border-color:var(--sig-open);color:#1a1206;font-weight:600}
+.btn-primary:hover{background:#ffb43d;border-color:#ffb43d}
+.btn-ghost{background:transparent;border-color:transparent;color:var(--ink-1)}
+.btn-ghost:hover{background:var(--bg-2);color:var(--ink-0)}
+.page{flex:1;overflow:auto;min-height:0;display:none}
+.page[data-active="true"]{display:block;animation:fade .28s ease-out both}
+@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+
+.panel{background:var(--bg-1);border:1px solid var(--line);border-radius:var(--r-m)}
+.panel-hd{display:flex;align-items:center;gap:10px;padding:10px 13px;border-bottom:1px solid var(--line)}
+.panel-hd h3{margin:0;font-size:12.5px;font-weight:600;letter-spacing:.01em}
+.panel-hd .lbl{margin-left:auto}
+
+.badge{display:inline-flex;align-items:center;gap:4px;height:18px;padding:0 6px;border-radius:var(--r-s);
+  font-size:10px;font-weight:600;letter-spacing:.03em;white-space:nowrap;border:1px solid transparent}
+.b-screening{background:rgba(61,153,112,.14);color:#5fc492;border-color:rgba(61,153,112,.3)}
+.b-ai{background:rgba(217,70,172,.13);color:#e77fc9;border-color:rgba(217,70,172,.28)}
+.b-editor{background:rgba(74,158,255,.13);color:#7db6ff;border-color:rgba(74,158,255,.28)}
+.b-client{background:rgba(245,165,36,.13);color:#f5bc5c;border-color:rgba(245,165,36,.3)}
+.b-p0{background:rgba(224,92,75,.16);color:#f08375;border-color:rgba(224,92,75,.34)}
+.b-p1{background:rgba(245,165,36,.13);color:#f5bc5c;border-color:rgba(245,165,36,.28)}
+.b-p2{background:var(--bg-3);color:var(--ink-2);border-color:var(--line-2)}
+.b-persona{background:var(--bg-3);color:var(--ink-1);border-color:var(--line-2);font-weight:500}
+
+.st{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:500}
+.st::before{content:'';width:6px;height:6px;border-radius:1px;background:currentColor;flex:none}
+.st-open{color:var(--sig-open)}
+.st-closed{color:var(--sig-closed)}
+.st-reject{color:var(--sig-reject)}
+.st-defer{color:var(--sig-defer)}
+
+.p-wrap{padding:18px 20px 40px;max-width:1400px}
+.p-head{margin-bottom:16px}
+.p-head h2{margin:0 0 5px;font-size:18px;font-weight:600;letter-spacing:-.01em}
+.p-head p{margin:0;font-size:12px;color:var(--ink-2);max-width:640px;line-height:1.65}
+
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+.kpi{background:var(--bg-1);border:1px solid var(--line);border-radius:var(--r-m);
+  padding:12px 14px;position:relative;overflow:hidden}
+.kpi::after{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--accent,var(--line-2))}
+.kpi .lbl{display:block;margin-bottom:7px}
+.kpi-v{font-family:var(--fs-mono);font-size:23px;font-weight:600;line-height:1;letter-spacing:-.02em}
+.kpi-v small{font-size:12px;color:var(--ink-2);font-weight:400;margin-left:2px}
+.kpi-sub{font-size:10.5px;color:var(--ink-3);margin-top:6px}
+
+table.tbl{width:100%;border-collapse:collapse;font-size:12px}
+table.tbl th{text-align:left;padding:8px 12px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-2);font-weight:600;border-bottom:1px solid var(--line);background:var(--bg-1);
+  position:sticky;top:0;z-index:2}
+table.tbl td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
+table.tbl tbody tr{transition:background .1s;cursor:pointer}
+table.tbl tbody tr:hover{background:var(--bg-2)}
+table.tbl tbody tr[data-cur="1"]{background:var(--bg-2)}
+table.tbl tbody tr[data-cur="1"] td:first-child{box-shadow:inset 2px 0 0 var(--sig-open)}
+.v-tag{font-family:var(--fs-mono);font-weight:600;font-size:12px}
+.bar{height:5px;border-radius:3px;background:var(--bg-3);overflow:hidden;min-width:92px;position:relative}
+.bar span{display:block;height:100%;background:var(--sig-closed);border-radius:3px;
+  transition:width .5s cubic-bezier(.4,0,.2,1)}
+.bar.warn span{background:var(--sig-open)}
+.pct{font-family:var(--fs-mono);font-size:11px;color:var(--ink-1);min-width:34px;display:inline-block;text-align:right}
+
+.desk{display:grid;grid-template-columns:1fr 372px;height:100%;min-height:0}
+.desk-l{display:flex;flex-direction:column;min-width:0;border-right:1px solid var(--line)}
+.desk-r{display:flex;flex-direction:column;min-height:0;background:var(--bg-1)}
+.player{background:#06080a;position:relative;flex:none;aspect-ratio:16/9;max-height:44vh;
+  display:flex;align-items:center;justify-content:center;overflow:hidden}
+.player-frame{position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 50% at 32% 42%, rgba(120,150,180,.16), transparent 62%),
+    radial-gradient(ellipse 45% 60% at 74% 58%, rgba(200,140,80,.13), transparent 60%),
+    linear-gradient(168deg,#12171d 0%,#090b0e 55%,#0d1014 100%)}
+.player-grid{position:absolute;inset:0;opacity:.16;
+  background-image:linear-gradient(var(--line-2) 1px,transparent 1px),linear-gradient(90deg,var(--line-2) 1px,transparent 1px);
+  background-size:33.33% 33.33%}
+.player-safe{position:absolute;inset:10%;border:1px dashed rgba(255,255,255,.09);border-radius:2px}
+.player-meta{position:absolute;top:11px;left:13px;font-family:var(--fs-mono);font-size:10.5px;
+  color:rgba(255,255,255,.42);letter-spacing:.04em;line-height:1.8}
+.player-tc{position:absolute;top:11px;right:13px;font-family:var(--fs-mono);font-size:14px;font-weight:600;
+  color:#fff;background:rgba(0,0,0,.55);padding:3px 8px;border-radius:var(--r-s);
+  border:1px solid rgba(255,255,255,.12);letter-spacing:.02em}
+.player-rec{position:absolute;bottom:13px;left:13px;display:flex;align-items:center;gap:6px;
+  font-family:var(--fs-mono);font-size:10px;color:rgba(255,255,255,.5)}
+.player-ctr{position:absolute;bottom:11px;right:13px;display:flex;gap:5px}
+.pbtn{width:27px;height:27px;border-radius:var(--r-s);border:1px solid rgba(255,255,255,.13);
+  background:rgba(0,0,0,.5);color:rgba(255,255,255,.8);display:grid;place-items:center;cursor:pointer;
+  transition:background .12s}
+.pbtn:hover{background:rgba(255,255,255,.14)}
+.pbtn svg{width:13px;height:13px;fill:currentColor}
+
+.timeline{flex:none;background:var(--bg-1);border-top:1px solid var(--line);padding:11px 14px 13px}
+.tl-hd{display:flex;align-items:center;gap:12px;margin-bottom:9px}
+.tl-legend{display:flex;gap:13px;margin-left:auto;font-size:10px;color:var(--ink-2)}
+.tl-legend i{display:inline-block;width:8px;height:8px;border-radius:1px;margin-right:4px;vertical-align:-1px}
+.curve-wrap{position:relative;height:96px;background:var(--bg-0);border:1px solid var(--line);
+  border-radius:var(--r-s);overflow:hidden}
+.curve-wrap svg{display:block;width:100%;height:100%}
+.tl-axis{display:flex;justify-content:space-between;margin-top:5px;font-family:var(--fs-mono);
+  font-size:9.5px;color:var(--ink-3)}
+.hot{position:absolute;top:0;bottom:0;background:rgba(192,57,43,.13);
+  border-left:1px solid rgba(192,57,43,.45);border-right:1px solid rgba(192,57,43,.45);pointer-events:none}
+.hot-lbl{position:absolute;top:3px;left:50%;transform:translateX(-50%);white-space:nowrap;
+  font-size:9px;font-family:var(--fs-mono);color:#e08074;background:rgba(0,0,0,.6);padding:1px 4px;border-radius:2px}
+.pin{position:absolute;bottom:0;width:2px;background:var(--sig-open);cursor:pointer;transition:height .15s}
+.pin::after{content:'';position:absolute;top:-4px;left:50%;transform:translateX(-50%);
+  width:7px;height:7px;border-radius:50%;background:inherit;border:1.5px solid var(--bg-0)}
+.playhead{position:absolute;top:0;bottom:0;width:1px;background:#fff;pointer-events:none;z-index:5}
+.playhead::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+  border-left:5px solid transparent;border-right:5px solid transparent;border-top:6px solid #fff}
+
+.notes-hd{flex:none;padding:11px 13px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px}
+.notes-hd h3{margin:0;font-size:12.5px;font-weight:600}
+.cnt{font-family:var(--fs-mono);font-size:11px;color:var(--ink-2);background:var(--bg-3);
+  padding:1px 6px;border-radius:9px;border:1px solid var(--line)}
+.filters{flex:none;display:flex;gap:5px;padding:9px 13px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.fchip{height:22px;padding:0 8px;border-radius:11px;border:1px solid var(--line-2);background:transparent;
+  color:var(--ink-2);font-family:inherit;font-size:11px;cursor:pointer;transition:all .12s}
+.fchip:hover{color:var(--ink-0);border-color:#414b55}
+.fchip[aria-pressed="true"]{background:var(--bg-4);color:var(--ink-0);border-color:#4a5560}
+.notes{flex:1;overflow-y:auto;min-height:0}
+.note{padding:11px 13px;border-bottom:1px solid var(--line);cursor:pointer;
+  transition:background .1s;position:relative}
+.note:hover{background:var(--bg-2)}
+.note[data-sel="1"]{background:var(--bg-2)}
+.note[data-sel="1"]::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--sig-open)}
+.note-top{display:flex;align-items:center;gap:6px;margin-bottom:6px;flex-wrap:wrap}
+.note-tc{font-family:var(--fs-mono);font-size:11.5px;font-weight:600;color:var(--ink-0);
+  background:var(--bg-3);padding:1px 5px;border-radius:2px;border:1px solid var(--line-2)}
+.note-body{font-size:12.5px;line-height:1.6;color:var(--ink-0);margin:0 0 7px}
+.note-foot{display:flex;align-items:center;gap:8px;font-size:10.5px;color:var(--ink-3)}
+.note-author{color:var(--ink-2)}
+.note-conflict{margin-top:7px;padding:6px 8px;border-radius:var(--r-s);
+  background:rgba(217,70,172,.09);border:1px solid rgba(217,70,172,.26);
+  font-size:11px;color:#e491cf;display:flex;align-items:center;gap:6px}
+.note-conflict svg{width:12px;height:12px;flex:none;stroke:currentColor;fill:none;stroke-width:1.8}
+
+.dispo{display:grid;grid-template-columns:1fr 400px;gap:16px;align-items:start}
+.dz{padding:13px}
+.dz-note{background:var(--bg-2);border:1px solid var(--line-2);border-radius:var(--r-m);
+  padding:13px;margin-bottom:14px}
+.dz-note .note-body{font-size:13.5px}
+.opts{display:grid;gap:8px;margin-bottom:14px}
+.opt{display:flex;gap:10px;align-items:flex-start;padding:11px 12px;border:1px solid var(--line-2);
+  border-radius:var(--r-m);background:var(--bg-2);cursor:pointer;transition:all .14s}
+.opt:hover{border-color:#414b55;background:var(--bg-3)}
+.opt[aria-checked="true"]{border-color:var(--sig-reject);background:rgba(224,92,75,.07)}
+.opt[aria-checked="true"][data-v="accept"]{border-color:var(--sig-closed);background:rgba(45,212,167,.07)}
+.opt[aria-checked="true"][data-v="defer"]{border-color:var(--sig-defer);background:rgba(124,139,153,.08)}
+.opt-radio{width:15px;height:15px;border-radius:50%;border:1.5px solid var(--line-2);flex:none;
+  margin-top:1px;display:grid;place-items:center;transition:border-color .14s}
+.opt[aria-checked="true"] .opt-radio{border-color:currentColor}
+.opt[aria-checked="true"] .opt-radio::after{content:'';width:7px;height:7px;border-radius:50%;background:currentColor}
+.opt[aria-checked="true"][data-v="accept"]{color:var(--sig-closed)}
+.opt[aria-checked="true"][data-v="reject"]{color:var(--sig-reject)}
+.opt[aria-checked="true"][data-v="defer"]{color:var(--sig-defer)}
+.opt-txt{flex:1;min-width:0}
+.opt-t{font-size:13px;font-weight:600;color:var(--ink-0);margin-bottom:3px}
+.opt-d{font-size:11px;color:var(--ink-2);line-height:1.55}
+
+.req{border:1px solid var(--sig-reject);border-radius:var(--r-m);background:rgba(224,92,75,.06);
+  padding:12px;margin-bottom:14px;animation:slideIn .22s ease-out both}
+@keyframes slideIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.req-hd{display:flex;align-items:center;gap:7px;margin-bottom:9px}
+.req-hd .lbl{color:var(--sig-reject);letter-spacing:.1em}
+.req-star{color:var(--sig-reject);font-size:13px;line-height:1}
+textarea.ta{width:100%;min-height:78px;resize:vertical;padding:9px 10px;border-radius:var(--r-s);
+  border:1px solid var(--line-2);background:var(--bg-0);color:var(--ink-0);
+  font-family:inherit;font-size:12.5px;line-height:1.6}
+textarea.ta:focus{outline:none;border-color:var(--focus);box-shadow:0 0 0 2px rgba(74,158,255,.15)}
+textarea.ta::placeholder{color:var(--ink-3)}
+.req-hint{font-size:10.5px;color:var(--ink-2);margin-top:7px;line-height:1.6}
+.presets{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.preset{height:22px;padding:0 8px;border-radius:11px;border:1px dashed var(--line-2);background:transparent;
+  color:var(--ink-2);font-family:inherit;font-size:11px;cursor:pointer;transition:all .12s}
+.preset:hover{border-style:solid;color:var(--ink-0);border-color:#4a5560;background:var(--bg-3)}
+.gate{display:flex;align-items:center;gap:9px;padding:10px 12px;border-radius:var(--r-m);
+  background:var(--bg-2);border:1px solid var(--line);font-size:11.5px;color:var(--ink-2);margin-bottom:12px}
+.gate svg{width:15px;height:15px;flex:none;stroke:var(--sig-open);fill:none;stroke-width:1.7}
+.actions{display:flex;gap:8px}
+.btn-lg{height:32px;padding:0 15px;font-size:12.5px}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+
+.hist{position:relative;padding-left:15px}
+.hist::before{content:'';position:absolute;left:4px;top:5px;bottom:5px;width:1px;background:var(--line-2)}
+.hist-i{position:relative;padding-bottom:15px}
+.hist-i::before{content:'';position:absolute;left:-14px;top:4px;width:7px;height:7px;border-radius:50%;
+  background:var(--bg-1);border:1.5px solid var(--line-2)}
+.hist-i[data-k="reject"]::before{border-color:var(--sig-reject);background:var(--sig-reject)}
+.hist-i[data-k="accept"]::before{border-color:var(--sig-closed);background:var(--sig-closed)}
+.hist-t{font-size:11.5px;color:var(--ink-0);margin-bottom:3px;font-weight:500}
+.hist-m{font-size:10.5px;color:var(--ink-3);font-family:var(--fs-mono)}
+.hist-r{font-size:11.5px;color:var(--ink-1);margin-top:5px;padding:7px 9px;background:var(--bg-2);
+  border-radius:var(--r-s);border-left:2px solid var(--line-2);line-height:1.6}
+
+.mx-scroll{overflow:auto;border:1px solid var(--line);border-radius:var(--r-m);background:var(--bg-1)}
+table.mx{border-collapse:separate;border-spacing:0;font-size:12px;width:100%}
+table.mx th,table.mx td{border-bottom:1px solid var(--line);padding:0}
+table.mx thead th{position:sticky;top:0;z-index:3;background:var(--bg-1);padding:9px 10px;
+  font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);font-weight:600;
+  border-bottom:1px solid var(--line-2);text-align:center;white-space:nowrap}
+table.mx thead th:first-child{text-align:left;z-index:4;left:0;min-width:330px}
+table.mx tbody th{position:sticky;left:0;z-index:2;background:var(--bg-1);text-align:left;
+  padding:9px 10px;font-weight:400;border-right:1px solid var(--line)}
+table.mx tbody tr:hover th,table.mx tbody tr:hover td{background:var(--bg-2)}
+.mx-note{display:flex;align-items:center;gap:7px;min-width:0}
+.mx-txt{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:210px;font-size:12px;color:var(--ink-1)}
+.cell{width:78px;height:38px;display:grid;place-items:center}
+.dot{width:19px;height:19px;border-radius:var(--r-s);display:grid;place-items:center;font-size:10px;
+  font-family:var(--fs-mono);font-weight:600}
+.d-open{background:rgba(245,165,36,.16);color:var(--sig-open);border:1px solid rgba(245,165,36,.34)}
+.d-closed{background:rgba(45,212,167,.16);color:var(--sig-closed);border:1px solid rgba(45,212,167,.34)}
+.d-reject{background:rgba(224,92,75,.15);color:var(--sig-reject);border:1px solid rgba(224,92,75,.32)}
+.d-defer{background:rgba(124,139,153,.14);color:var(--sig-defer);border:1px solid rgba(124,139,153,.3)}
+.d-na{color:var(--ink-3);font-size:11px}
+.mx-foot{display:flex;gap:16px;padding:11px 13px;font-size:11px;color:var(--ink-2);flex-wrap:wrap;
+  border-top:1px solid var(--line);background:var(--bg-1)}
+.mx-foot .st{font-size:11px}
+.roll{margin-top:14px;padding:12px 14px;border-radius:var(--r-m);background:rgba(245,165,36,.06);
+  border:1px solid rgba(245,165,36,.24);display:flex;gap:11px;align-items:flex-start}
+.roll svg{width:16px;height:16px;flex:none;stroke:var(--sig-open);fill:none;stroke-width:1.7;margin-top:1px}
+.roll-t{font-size:12.5px;font-weight:600;color:var(--ink-0);margin-bottom:4px}
+.roll-d{font-size:11.5px;color:var(--ink-1);line-height:1.65}
+
+.cf{display:grid;grid-template-columns:1fr 46px 1fr;gap:0;align-items:stretch;margin-bottom:16px}
+.cf-side{background:var(--bg-1);border:1px solid var(--line);border-radius:var(--r-m);padding:14px;
+  display:flex;flex-direction:column}
+.cf-side[data-w="a"]{border-color:rgba(74,158,255,.3)}
+.cf-side[data-w="b"]{border-color:rgba(245,165,36,.3)}
+.cf-mid{display:grid;place-items:center;position:relative}
+.cf-mid::before,.cf-mid::after{content:'';position:absolute;left:50%;width:1px;
+  background:linear-gradient(var(--line-2),transparent);height:calc(50% - 20px)}
+.cf-mid::before{top:0}
+.cf-mid::after{bottom:0;background:linear-gradient(transparent,var(--line-2))}
+.cf-vs{width:34px;height:34px;border-radius:50%;background:var(--bg-0);
+  border:1.5px solid var(--sig-conflict);display:grid;place-items:center;
+  font-family:var(--fs-mono);font-size:10px;font-weight:700;color:var(--sig-conflict);
+  box-shadow:0 0 0 4px var(--bg-0),0 0 18px rgba(217,70,172,.3);z-index:2}
+.cf-tc{font-family:var(--fs-mono);font-size:12px;font-weight:600;margin-bottom:9px;
+  display:flex;align-items:center;gap:7px}
+.cf-body{font-size:13px;line-height:1.65;color:var(--ink-0);margin:9px 0 12px;flex:1}
+.cf-meta{font-size:10.5px;color:var(--ink-3);display:flex;align-items:center;gap:7px;
+  padding-top:10px;border-top:1px solid var(--line)}
+.cf-res{background:var(--bg-1);border:1px solid var(--line);border-radius:var(--r-m);padding:14px}
+.cf-res-hd{display:flex;align-items:center;gap:8px;margin-bottom:11px}
+.cf-opts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.cf-opt{padding:10px 11px;border:1px solid var(--line-2);border-radius:var(--r-m);background:var(--bg-2);
+  cursor:pointer;transition:all .14s;text-align:left}
+.cf-opt:hover{border-color:#414b55;background:var(--bg-3)}
+.cf-opt[aria-checked="true"]{border-color:var(--sig-conflict);background:rgba(217,70,172,.08)}
+.cf-opt-t{font-size:12px;font-weight:600;color:var(--ink-0);margin-bottom:3px}
+.cf-opt-d{font-size:10.5px;color:var(--ink-2);line-height:1.5}
+.esc{display:flex;align-items:center;gap:9px;padding:10px 12px;border-radius:var(--r-m);
+  background:var(--bg-2);border:1px dashed var(--line-2);font-size:11.5px;color:var(--ink-2)}
+
+.spec-grid{display:grid;gap:20px}
+.sw-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:9px}
+.sw{border:1px solid var(--line);border-radius:var(--r-m);overflow:hidden;background:var(--bg-1)}
+.sw-chip{height:52px}
+.sw-meta{padding:8px 10px;font-size:10.5px}
+.sw-n{color:var(--ink-0);font-weight:600;margin-bottom:2px}
+.sw-v{color:var(--ink-3);font-family:var(--fs-mono);font-size:10px}
+.type-row{display:flex;align-items:baseline;gap:16px;padding:11px 0;border-bottom:1px solid var(--line)}
+.type-row:last-child{border:0}
+.type-lbl{width:150px;flex:none;font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-2);font-weight:600}
+.type-spec{margin-left:auto;font-family:var(--fs-mono);font-size:10.5px;color:var(--ink-3);white-space:nowrap}
+.rules{display:grid;gap:9px}
+.rule{display:flex;gap:11px;padding:11px 13px;background:var(--bg-1);border:1px solid var(--line);border-radius:var(--r-m)}
+.rule-n{font-family:var(--fs-mono);font-size:11px;color:var(--sig-open);font-weight:600;flex:none;width:20px}
+.rule-t{font-size:12.5px;color:var(--ink-0);margin-bottom:4px;font-weight:600}
+.rule-d{font-size:11.5px;color:var(--ink-2);line-height:1.65}
+.rule-d em{color:var(--ink-1);font-style:normal;font-family:var(--fs-mono);font-size:11px}
+.note-box{padding:13px 15px;border-radius:var(--r-m);background:rgba(74,158,255,.06);
+  border:1px solid rgba(74,158,255,.2);font-size:11.5px;color:var(--ink-1);line-height:1.7}
+.note-box b{color:var(--ink-0)}
+
+::-webkit-scrollbar{width:9px;height:9px}
+::-webkit-scrollbar-track{background:var(--bg-0)}
+::-webkit-scrollbar-thumb{background:#2c333a;border-radius:5px;border:2px solid var(--bg-0)}
+::-webkit-scrollbar-thumb:hover{background:#3a434c}
+
+@media (max-width:1180px){
+  .desk{grid-template-columns:1fr}
+  .desk-r{border-top:1px solid var(--line);max-height:52vh}
+  .dispo{grid-template-columns:1fr}
+  .kpis{grid-template-columns:repeat(2,1fr)}
+}
+
+/* 尊重系统的「减少动态效果」设置。原来没有这一段，是 UI 审查查出来的。 */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+    scroll-behavior:auto !important;
+  }
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <aside class="rail">
+    <div class="brand">
+      <div class="brand-mark">
+        <span class="brand-dot"></span>
+        <span class="brand-name">评审核销台</span>
+      </div>
+      <div class="brand-sub">REVIEW LEDGER v0.1</div>
+    </div>
+    <nav class="nav">
+      <div class="nav-sec">工作台</div>
+      <button class="nav-item" data-go="p1">
+        <svg class="nav-ico" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+        版本台账</button>
+      <button class="nav-item" data-go="p2" aria-current="true">
+        <svg class="nav-ico" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>
+        评审工作台<span class="nav-badge">7</span></button>
+      <button class="nav-item" data-go="p3">
+        <svg class="nav-ico" viewBox="0 0 24 24"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h9"/></svg>
+        意见处置</button>
+      <div class="nav-sec">汇总</div>
+      <button class="nav-item" data-go="p4">
+        <svg class="nav-ico" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        关闭矩阵</button>
+      <button class="nav-item" data-go="p5">
+        <svg class="nav-ico" viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L14.7 3.9a2 2 0 00-3.4 0z"/></svg>
+        冲突仲裁<span class="nav-badge">1</span></button>
+      <div class="nav-sec">规范</div>
+      <button class="nav-item" data-go="p6">
+        <svg class="nav-ico" viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="6.5" cy="12" r="2.5"/><circle cx="15" cy="17" r="2.5"/><path d="M11 7.5L9 11M9.5 13.5l3.5 2.5"/></svg>
+        视觉规范</button>
+    </nav>
+    <div class="rail-foot">
+      <b>作品原型 · 非真实系统</b><br>
+      数据按公开资料模拟<br>
+      马准名 · 2026-08
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="crumb">
+        <b>飓风主频道</b><span class="sep">/</span>
+        <span class="crumb-title" id="topTitle">4000元 vs 40万的镜头，观众分得出来吗</span>
+      </div>
+      <span class="chip"><span class="chip-dot" style="color:var(--sig-open)"></span>B-Copy</span>
+      <div class="spacer"></div>
+      <span class="chip" id="topStat" style="color:var(--sig-open)">7 条待处置</span>
+      <button class="btn btn-ghost">导出交接单</button>
+      <button class="btn btn-primary" data-go="p3">开始处置</button>
+    </header>
+
+    <!-- ========== P1 版本台账 ========== -->
+    <section class="page" data-page="p1">
+      <div class="p-wrap">
+        <div class="p-head">
+          <h2>版本台账</h2>
+          <p>每个版本记录它关闭了哪些意见、还欠哪些。没有版本，意见就没有落点。这是整个产品的地基。</p>
+        </div>
+
+        <div class="kpis">
+          <div class="kpi" style="--accent:var(--sig-open)">
+            <span class="lbl">待处置意见</span>
+            <div class="kpi-v">7<small>/ 22</small></div>
+            <div class="kpi-sub">其中 P0 两条</div>
+          </div>
+          <div class="kpi" style="--accent:var(--sig-closed)">
+            <span class="lbl">意见关闭率</span>
+            <div class="kpi-v">68<small>%</small></div>
+            <div class="kpi-sub">观测量，不设及格线（见下）</div>
+          </div>
+          <div class="kpi" style="--accent:var(--ink-2)">
+            <span class="lbl">平均关闭轮次</span>
+            <div class="kpi-v">1.6<small>轮</small></div>
+            <div class="kpi-sub">滚动次数即返工次数</div>
+          </div>
+          <div class="kpi" style="--accent:var(--sig-conflict)">
+            <span class="lbl">未仲裁冲突</span>
+            <div class="kpi-v">1</div>
+            <div class="kpi-sub">04:12 客户与编导相反</div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-hd">
+            <h3>版本列表</h3>
+            <span class="lbl">4 个版本 · 时间码基准 00:00:00:00 · 25fps</span>
+          </div>
+          <table class="tbl">
+            <thead><tr>
+              <th style="width:104px">版本</th><th style="width:118px">时长</th>
+              <th>差异说明</th><th style="width:80px">收到</th>
+              <th style="width:80px">关闭</th><th style="width:172px">关闭率</th>
+              <th style="width:118px">导出人</th>
+            </tr></thead>
+            <tbody>
+              <tr><td><span class="v-tag">A-Copy</span></td>
+                <td class="tc">00:08:41:12</td>
+                <td style="color:var(--ink-1)">首版粗剪，未调色未包装</td>
+                <td class="num">18</td><td class="num">15</td>
+                <td><div style="display:flex;align-items:center;gap:8px"><div class="bar"><span style="width:83%"></span></div><span class="pct">83%</span></div></td>
+                <td style="color:var(--ink-2)">刘 · 08-14</td></tr>
+              <tr data-cur="1"><td><span class="v-tag" style="color:var(--sig-open)">B-Copy</span></td>
+                <td class="tc">00:08:24:06</td>
+                <td style="color:var(--ink-1)">按 A 轮意见重剪中段，加动效，未终调</td>
+                <td class="num">22</td><td class="num">15</td>
+                <td><div style="display:flex;align-items:center;gap:8px"><div class="bar warn"><span style="width:68%"></span></div><span class="pct">68%</span></div></td>
+                <td style="color:var(--ink-2)">刘 · 08-18</td></tr>
+              <tr style="opacity:.45"><td><span class="v-tag">v3</span></td>
+                <td class="tc" style="color:var(--ink-3)">—</td>
+                <td style="color:var(--ink-3)">未生成</td>
+                <td class="num" style="color:var(--ink-3)">—</td><td class="num" style="color:var(--ink-3)">—</td>
+                <td><div style="display:flex;align-items:center;gap:8px"><div class="bar"><span style="width:0"></span></div><span class="pct">—</span></div></td>
+                <td style="color:var(--ink-3)">—</td></tr>
+              <tr style="opacity:.45"><td><span class="v-tag">Final</span></td>
+                <td class="tc" style="color:var(--ink-3)">—</td>
+                <td style="color:var(--ink-3)">未生成</td>
+                <td class="num" style="color:var(--ink-3)">—</td><td class="num" style="color:var(--ink-3)">—</td>
+                <td><div style="display:flex;align-items:center;gap:8px"><div class="bar"><span style="width:0"></span></div><span class="pct">—</span></div></td>
+                <td style="color:var(--ink-3)">—</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="note-box" style="margin-top:14px">
+          <b>为什么关闭率不设及格线。</b>关闭率是观测量，不做判据。它高可能只是因为意见都被草率地"采纳"了。判据在评测文档里：汇总耗时 G1、重复识别 G2、冲突配对 G3、AI 归类 G4。这张表只负责让人看见还欠多少。
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== P2 评审工作台 ========== -->
+    <section class="page" data-page="p2" data-active="true">
+      <div class="desk">
+        <div class="desk-l">
+          <div class="player">
+            <div class="player-frame"></div>
+            <div class="player-grid"></div>
+            <div class="player-safe"></div>
+            <div class="player-meta">B-COPY · 3840×2160 · 25p<br>REC.709 · GAMMA 2.4</div>
+            <div class="player-tc" id="pvTc">00:04:12:08</div>
+            <div class="player-rec"><span style="width:6px;height:6px;border-radius:50%;background:var(--sig-dislike);display:inline-block"></span>踩密集区 · 04:08–04:22</div>
+            <div class="player-ctr">
+              <button class="pbtn" type="button" title="上一条意见" aria-label="跳到上一条意见"><svg viewBox="0 0 24 24"><path d="M19 20L9 12l10-8v16zM5 19V5h2v14H5z"/></svg></button>
+              <button class="pbtn" type="button" title="播放" aria-label="播放"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="pbtn" type="button" title="下一条意见" aria-label="跳到下一条意见"><svg viewBox="0 0 24 24"><path d="M5 4l10 8-10 8V4zm12 1h2v14h-2V5z"/></svg></button>
+            </div>
+          </div>
+
+          <div class="timeline">
+            <div class="tl-hd">
+              <span class="lbl">点映赞踩曲线 × 意见锚点</span>
+              <div class="tl-legend">
+                <span><i style="background:var(--sig-like)"></i>赞</span>
+                <span><i style="background:var(--sig-dislike)"></i>踩</span>
+                <span><i style="background:var(--sig-open)"></i>意见</span>
+                <span><i style="background:rgba(192,57,43,.5)"></i>踩密集区</span>
+              </div>
+            </div>
+            <div class="curve-wrap" id="curveWrap">
+              <svg viewBox="0 0 1000 200" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="gLike" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#3d9970" stop-opacity=".55"/>
+                    <stop offset="100%" stop-color="#3d9970" stop-opacity=".04"/>
+                  </linearGradient>
+                  <linearGradient id="gDis" x1="0" y1="1" x2="0" y2="0">
+                    <stop offset="0%" stop-color="#c0392b" stop-opacity=".55"/>
+                    <stop offset="100%" stop-color="#c0392b" stop-opacity=".04"/>
+                  </linearGradient>
+                </defs>
+                <line x1="0" y1="100" x2="1000" y2="100" stroke="#333b43" stroke-width="1"/>
+                <path id="pLike" fill="url(#gLike)" stroke="#3d9970" stroke-width="1.4"/>
+                <path id="pDis"  fill="url(#gDis)"  stroke="#c0392b" stroke-width="1.4"/>
+              </svg>
+              <div class="hot" style="left:49.2%;width:2.8%"><span class="hot-lbl">−38</span></div>
+              <div class="playhead" style="left:50%"></div>
+            </div>
+            <div class="tl-axis">
+              <span>00:00</span><span>01:24</span><span>02:48</span><span>04:12</span>
+              <span>05:36</span><span>07:00</span><span>08:24</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="desk-r">
+          <div class="notes-hd">
+            <h3>意见流</h3>
+            <span class="cnt">22 条 · 7 待处置</span>
+          </div>
+          <div class="filters">
+            <button class="fchip" aria-pressed="true">全部</button>
+            <button class="fchip">待处置 7</button>
+            <button class="fchip">点映 6</button>
+            <button class="fchip">AI 点映团 8</button>
+            <button class="fchip">编导 5</button>
+            <button class="fchip">客户 3</button>
+          </div>
+          <div class="notes" id="noteList"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== P3 意见处置 ========== -->
+    <section class="page" data-page="p3">
+      <div class="p-wrap">
+        <div class="p-head">
+          <h2>意见处置</h2>
+          <p>一条意见只有三种正当结局：改了、决定不改并说明为什么、明确延后。缺了第二种，剪辑师就只能假装没看见，于是同一条意见下一轮再来一次。</p>
+        </div>
+
+        <div class="dispo">
+          <div>
+            <div class="panel dz">
+              <div class="dz-note">
+                <div class="note-top">
+                  <span class="note-tc">00:04:12:08</span>
+                  <span class="badge b-client">客户</span>
+                  <span class="badge b-p0">P0</span>
+                  <span class="badge b-p2" style="background:transparent">合规</span>
+                </div>
+                <p class="note-body">品牌 logo 出现时长不足 3 秒，合同约定为 5 秒，需要延长。</p>
+                <div class="note-foot"><span class="note-author">客户 · 王（品牌方）</span><span>·</span><span class="tc">08-18 14:22</span></div>
+                <div class="note-conflict">
+                  <svg viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L14.7 3.9a2 2 0 00-3.4 0z"/></svg>
+                  与编导在 00:04:14:00 的意见冲突 · 需先仲裁
+                </div>
+              </div>
+
+              <div class="lbl" style="margin-bottom:9px">选择处置方式</div>
+              <div class="opts" id="opts">
+                <div class="opt" data-v="accept" role="radio" aria-checked="false" tabindex="0">
+                  <div class="opt-radio"></div>
+                  <div class="opt-txt">
+                    <div class="opt-t">采纳</div>
+                    <div class="opt-d">在下一个版本中修改。生成新版本时自动标记此条已关闭。</div>
+                  </div>
+                </div>
+                <div class="opt" data-v="reject" role="radio" aria-checked="true" tabindex="0">
+                  <div class="opt-radio"></div>
+                  <div class="opt-txt">
+                    <div class="opt-t">不采纳<span style="color:var(--sig-reject);margin-left:6px;font-size:11px;font-weight:500">必须填写理由</span></div>
+                    <div class="opt-d">决定不改。理由会永久保留在这条意见上，下一轮有人再提时直接显示。</div>
+                  </div>
+                </div>
+                <div class="opt" data-v="defer" role="radio" aria-checked="false" tabindex="0">
+                  <div class="opt-radio"></div>
+                  <div class="opt-txt">
+                    <div class="opt-t">延后</div>
+                    <div class="opt-d">本版不处理，自动滚动到下一版待处置队列。</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="req" id="reqBox">
+                <div class="req-hd">
+                  <span class="req-star">✳</span>
+                  <span class="lbl">不采纳理由</span>
+                  <span style="margin-left:auto;font-size:10.5px;color:var(--ink-3)" id="charCount">0 / 200</span>
+                </div>
+                <textarea class="ta" id="reasonTa" placeholder="写清楚为什么不改。这段话会跟着这条意见走到项目结束。下次有人再提同样的问题，看到的就是这句。"></textarea>
+                <div class="presets">
+                  <button class="preset">与已定的片长冲突</button>
+                  <button class="preset">与更高优先级意见冲突</button>
+                  <button class="preset">技术上无法实现</button>
+                  <button class="preset">已在别处解决</button>
+                  <button class="preset">留待下一支片子</button>
+                </div>
+                <div class="req-hint">这是产品里唯一一个不能跳过的字段。它把"意见"从噪声变成可以关闭的事项。</div>
+              </div>
+
+              <div class="gate">
+                <svg viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>
+                本条存在未仲裁冲突，处置将暂存但不生效，需先在冲突仲裁页决定采信哪一方。
+              </div>
+
+              <div class="actions">
+                <button class="btn btn-primary btn-lg" id="submitBtn" disabled>提交处置</button>
+                <button class="btn btn-lg">跳到下一条</button>
+                <button class="btn btn-ghost btn-lg">在时间线中定位</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel dz">
+            <div class="lbl" style="margin-bottom:13px">这条意见的处置历史</div>
+            <div class="hist">
+              <div class="hist-i" data-k="reject">
+                <div class="hist-t">不采纳 · A-Copy 轮</div>
+                <div class="hist-m">刘（剪辑） · 08-15 19:40</div>
+                <div class="hist-r">A 轮片尾已给了品牌 4 秒特写，再加会破坏结尾节奏。建议客户看 A-Copy 07:52 那段后再定。</div>
+              </div>
+              <div class="hist-i">
+                <div class="hist-t">客户重新提出 · B-Copy 轮</div>
+                <div class="hist-m">王（品牌方） · 08-18 14:22</div>
+                <div class="hist-r">合同白纸黑字写 5 秒，07:52 那处是产品特写不是 logo，两回事。</div>
+              </div>
+              <div class="hist-i" style="padding-bottom:0">
+                <div class="hist-t" style="color:var(--sig-open)">待处置</div>
+                <div class="hist-m">等待 刘（剪辑）</div>
+              </div>
+            </div>
+            <hr class="hr" style="margin:5px 0 13px">
+            <div class="note-box" style="background:var(--bg-2);border-color:var(--line)">
+              <b>这一段就是产品的价值。</b>没有核销机制时，这条意见会在每一轮重新出现一次，每次都要有人重新解释一遍；有了之后，第二次提出时系统直接把上一轮的理由摆在面前，讨论从"改不改"变成"上次那个理由还成不成立"。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== P4 关闭矩阵 ========== -->
+    <section class="page" data-page="p4">
+      <div class="p-wrap">
+        <div class="p-head">
+          <h2>关闭矩阵</h2>
+          <p>横轴是版本，纵轴是意见。这张表回答一个问题：这一版到底改完了没有，以及哪些是被明确决定不改的，哪些是漏掉的。</p>
+        </div>
+
+        <div class="mx-scroll">
+          <table class="mx">
+            <thead><tr>
+              <th>意见</th><th>A-Copy</th><th>B-Copy</th><th>v3</th><th>Final</th>
+            </tr></thead>
+            <tbody id="mxBody"></tbody>
+          </table>
+          <div class="mx-foot">
+            <span class="st st-closed">已关闭（本版改掉）</span>
+            <span class="st st-reject">不采纳（有理由）</span>
+            <span class="st st-defer">延后</span>
+            <span class="st st-open">待处置</span>
+            <span style="color:var(--ink-3)">— 该版本时尚未提出</span>
+          </div>
+        </div>
+
+        <div class="roll">
+          <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1015-6.7L21 8"/><path d="M21 3v5h-5"/></svg>
+          <div>
+            <div class="roll-t">生成 v3 时，7 条未关闭意见将自动滚动过去</div>
+            <div class="roll-d">其中 2 条是第三次滚动（N-04 MTF 段落、N-09 结尾太快）。<b style="color:var(--sig-open)">连续滚动三轮以上的意见会被标红</b>。滚这么多轮通常说明意见本身有分歧，却没人做决定。这类意见应该强制升级为一次仲裁，不该继续滚。</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== P5 冲突仲裁 ========== -->
+    <section class="page" data-page="p5">
+      <div class="p-wrap">
+        <div class="p-head">
+          <h2>冲突仲裁</h2>
+          <p>同一时间码 ±3 秒内出现方向相反的意见，自动配对。人肉合并做不到这件事。两条意见分别躺在微信群和阅流批注里时，没有人会发现它们互相矛盾。</p>
+        </div>
+
+        <div class="cf">
+          <div class="cf-side" data-w="a">
+            <div class="cf-tc"><span class="note-tc">00:04:12:08</span><span class="badge b-client">客户</span><span class="badge b-p0">P0</span></div>
+            <p class="cf-body">品牌 logo 出现时长不足 3 秒，合同约定为 5 秒，需要延长。</p>
+            <div class="cf-meta"><span>客户 · 王（品牌方）</span><span>·</span><span class="tc">08-18 14:22</span></div>
+          </div>
+          <div class="cf-mid"><div class="cf-vs">VS</div></div>
+          <div class="cf-side" data-w="b">
+            <div class="cf-tc"><span class="note-tc">00:04:14:00</span><span class="badge b-editor">编导</span><span class="badge b-p1">P1</span></div>
+            <p class="cf-body">logo 那段已经够久了，再长就很硬广，观众会跳。这条片子的调性不该这样收。</p>
+            <div class="cf-meta"><span>编导 · 陈</span><span>·</span><span class="tc">08-18 16:05</span></div>
+          </div>
+        </div>
+
+        <div class="cf-res">
+          <div class="cf-res-hd">
+            <span class="lbl">仲裁</span>
+            <span style="font-size:11px;color:var(--ink-3);margin-left:auto">时间差 1.7 秒 · 判定为同一处争议</span>
+          </div>
+          <div class="cf-opts">
+            <button class="cf-opt" role="radio" aria-checked="false">
+              <div class="cf-opt-t">采信客户</div>
+              <div class="cf-opt-d">编导那条自动转为"不采纳"，理由自动填入"合同条款优先"</div>
+            </button>
+            <button class="cf-opt" role="radio" aria-checked="true">
+              <div class="cf-opt-t">采信编导</div>
+              <div class="cf-opt-d">客户那条转为"不采纳"，需要写清楚对客户的答复口径</div>
+            </button>
+            <button class="cf-opt" role="radio" aria-checked="false">
+              <div class="cf-opt-t">升级</div>
+              <div class="cf-opt-d">两条都保持待处置，指派给能拍板的人</div>
+            </button>
+          </div>
+          <div class="esc">
+            <span class="lbl" style="letter-spacing:.08em">建议</span>
+            这条涉及合同义务，剪辑师不该独自决定。产品在这里只做一件事：<b style="color:var(--ink-0)">保证这个判断有人做过、并且被记下来了</b>。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== P6 视觉规范 ========== -->
+    <section class="page" data-page="p6">
+      <div class="p-wrap" style="max-width:1080px">
+        <div class="p-head">
+          <h2>视觉规范</h2>
+          <p>这是为"剪辑房里那块副屏"定的规则，不求通用。它要和 DaVinci 并排摆着不违和，且在暗环境下长时间盯不累眼。</p>
+        </div>
+
+        <div class="spec-grid">
+          <div class="panel" style="padding:15px">
+            <div class="lbl" style="margin-bottom:11px">底色 · 真中性灰阶</div>
+            <div class="sw-row">
+              <div class="sw"><div class="sw-chip" style="background:#0b0d0f"></div><div class="sw-meta"><div class="sw-n">bg-0 最底</div><div class="sw-v">#0b0d0f</div></div></div>
+              <div class="sw"><div class="sw-chip" style="background:#121518"></div><div class="sw-meta"><div class="sw-n">bg-1 面板</div><div class="sw-v">#121518</div></div></div>
+              <div class="sw"><div class="sw-chip" style="background:#181c20"></div><div class="sw-meta"><div class="sw-n">bg-2 卡片</div><div class="sw-v">#181c20</div></div></div>
+              <div class="sw"><div class="sw-chip" style="background:#20252a"></div><div class="sw-meta"><div class="sw-n">bg-3 输入</div><div class="sw-v">#20252a</div></div></div>
+              <div class="sw"><div class="sw-chip" style="background:#2a3037"></div><div class="sw-meta"><div class="sw-n">bg-4 高亮</div><div class="sw-v">#2a3037</div></div></div>
+            </div>
+            <div class="note-box" style="margin-top:12px">
+              <b>为什么不用带蓝调的深色。</b>多数深色 UI 会在灰里掺蓝显得"高级"。这个工具会摆在调色师的视野边缘，偏蓝的界面会影响对画面白平衡的判断。所以全部灰阶取真中性，色相偏差控制在 ±2。
+            </div>
+          </div>
+
+          <div class="panel" style="padding:15px">
+            <div class="lbl" style="margin-bottom:11px">信号色 · 一个状态一个色，绝不复用</div>
+            <div class="sw-row">
+              <div class="sw"><div class="sw-chip" style="background:#f5a524"></div><div class="sw-meta"><div class="sw-n">待处置</div><div class="sw-v">#f5a524</div></div></div>
+              <div class="sw"><div class="sw-chip" style="background:#2dd4a7"></div><div class="sw-meta"><div class="sw-n">已关闭</div><div class="sw-v">#2dd4a7</div></div></div>
+              <div class="sw"><div class="sw-chip" style="background:#e05c4b"></div><div class="sw-meta"><div class="sw-n">不采纳</div><div class="sw-v">#e05c4b</div></div></div>
+              <div class="sw"><div class="sw-chip" style="background:#7c8b99"></div><div class="sw-meta"><div class="sw-n">延后</div><div class="sw-v">#7c8b99</div></div></div>
+              <div class="sw"><div class="sw-chip" style="background:#d946ac"></div><div class="sw-meta"><div class="sw-n">冲突</div><div class="sw-v">#d946ac</div></div></div>
+              <div class="sw"><div class="sw-chip" style="background:linear-gradient(90deg,#3d9970 50%,#c0392b 50%)"></div><div class="sw-meta"><div class="sw-n">赞 / 踩</div><div class="sw-v">#3d9970 / #c0392b</div></div></div>
+            </div>
+          </div>
+
+          <div class="panel" style="padding:15px">
+            <div class="lbl" style="margin-bottom:5px">字体</div>
+            <div class="type-row">
+              <span class="type-lbl">时间码 / 数字</span>
+              <span class="tc" style="font-size:19px;font-weight:600">00:04:12:08</span>
+              <span class="type-spec">IBM Plex Mono 600 · tabular-nums</span>
+            </div>
+            <div class="type-row">
+              <span class="type-lbl">页面标题</span>
+              <span style="font-size:18px;font-weight:600">冲突仲裁</span>
+              <span class="type-spec">Plex Sans / Noto Sans SC 600 · 18px</span>
+            </div>
+            <div class="type-row">
+              <span class="type-lbl">意见正文</span>
+              <span style="font-size:12.5px">logo 那段已经够久了，再长就很硬广</span>
+              <span class="type-spec">12.5px / 1.6</span>
+            </div>
+            <div class="type-row">
+              <span class="type-lbl">字段标签</span>
+              <span class="lbl">不采纳理由</span>
+              <span class="type-spec">10px · +0.13em · uppercase</span>
+            </div>
+            <div class="note-box" style="margin-top:12px">
+              <b>时间码必须等宽且用表格数字。</b>剪辑师是竖着扫时间码列的，比例数字会让每一行的冒号错位，扫不下去。这是这套界面里唯一一条不能商量的排版规则。
+            </div>
+          </div>
+
+          <div class="panel" style="padding:15px">
+            <div class="lbl" style="margin-bottom:11px">六条交互规则</div>
+            <div class="rules">
+              <div class="rule"><span class="rule-n">01</span><div>
+                <div class="rule-t">任何意见必须挂在时间码上</div>
+                <div class="rule-d">没有 <em>tc_in</em> 的意见不允许入库。"整体节奏有点拖"这种意见，收的时候就要求提出者划定区间。否则它对剪辑师等于没说。</div></div></div>
+              <div class="rule"><span class="rule-n">02</span><div>
+                <div class="rule-t">不采纳时理由框是硬阻断，不是提示</div>
+                <div class="rule-d">提交按钮保持 <em>disabled</em>，不用 toast、不用二次确认。这条约束一旦能被点掉，产品就白做了。</div></div></div>
+              <div class="rule"><span class="rule-n">03</span><div>
+                <div class="rule-t">来源用颜色区分，优先级用形状区分</div>
+                <div class="rule-d">四个来源四种色相；P0/P1/P2 只改边框与字重不改色相。同时用颜色编两套信息，会让人两套都记不住。</div></div></div>
+              <div class="rule"><span class="rule-n">04</span><div>
+                <div class="rule-t">赞踩曲线与意见锚点共用一根时间轴</div>
+                <div class="rule-d">曲线在上、锚点在下、播放头贯穿。三者任一被单独放到别的地方，这个产品最有价值的一眼就没了。</div></div></div>
+              <div class="rule"><span class="rule-n">05</span><div>
+                <div class="rule-t">AI 的输出永远标注来源与人设</div>
+                <div class="rule-d">AI 点映团的意见和真人意见在视觉上必须能一眼分开，且不允许 AI 直接改变意见状态。对齐他们公开的原则：AI 是辅助，人在关键节点判断。</div></div></div>
+              <div class="rule"><span class="rule-n">06</span><div>
+                <div class="rule-t">低置信度的自动归类必须弃权</div>
+                <div class="rule-d">AI 归类置信度低于阈值时留空并标"待人工"，不猜。判据 G4 要求给出混淆矩阵，就是为了看清它在哪一类上爱猜。</div></div></div>
+            </div>
+          </div>
+
+          <div class="note-box">
+            <b>这份规范证明不了什么。</b>它没有经过真实用户测试，配色可读性只在我自己的显示器上验证过，未做色觉障碍模拟，也没有在真实剪辑房的环境光下看过。它证明的是我能把交互决策讲出理由，不是这套界面已经好用。
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+/* 数据：按公开资料模拟，非真实数据 */
+const NOTES=[
+ {id:'N-01',tc:'00:00:18:04',src:'screening',srcL:'点映',pri:'P0',cat:'节奏',
+  body:'开头 18 秒还在念设备参数，赞踩曲线在这里第一次翻负，观众没等到"要比什么"就走了。',
+  who:'点映 · 32 人现场',time:'08-18 10:30',st:'open'},
+ {id:'N-02',tc:'00:01:32:12',src:'ai',srcL:'AI 点映团',persona:'公关专家',pri:'P1',cat:'合规',
+  body:'"碾压"这个词指向具体品牌型号，对被比较方有风险，建议改为中性表述。',
+  who:'AI 点映团',time:'08-18 09:12',st:'open'},
+ {id:'N-03',tc:'00:02:47:00',src:'editor',srcL:'编导',pri:'P1',cat:'画面',
+  body:'对比图缺标注，观众不知道左边是哪台机器。加一个角标就行。',
+  who:'编导 · 陈',time:'08-18 11:48',st:'closed'},
+ {id:'N-04',tc:'00:03:15:20',src:'ai',srcL:'AI 点映团',persona:'科技博主',pri:'P2',cat:'节奏',
+  body:'MTF 曲线这段 4 秒就过了，硬核观众正想看清楚。建议放慢或加一次定格。',
+  who:'AI 点映团',time:'08-18 09:12',st:'open',dup:'与 N-11 语义重复 · 已合并'},
+ {id:'N-05',tc:'00:04:12:08',src:'client',srcL:'客户',pri:'P0',cat:'合规',
+  body:'品牌 logo 出现时长不足 3 秒，合同约定为 5 秒，需要延长。',
+  who:'客户 · 王（品牌方）',time:'08-18 14:22',st:'open',conflict:'与编导 00:04:14:00 冲突'},
+ {id:'N-06',tc:'00:04:14:00',src:'editor',srcL:'编导',pri:'P1',cat:'包装',
+  body:'logo 那段已经够久了，再长就很硬广，观众会跳。这条片子的调性不该这样收。',
+  who:'编导 · 陈',time:'08-18 16:05',st:'open',conflict:'与客户 00:04:12:08 冲突'},
+ {id:'N-07',tc:'00:05:30:00',src:'screening',srcL:'点映',pri:'P1',cat:'节奏',
+  body:'这一段踩了 21 次，是全片第二密集处。现场反馈是"看不懂在测什么"。',
+  who:'点映 · 32 人现场',time:'08-18 10:30',st:'closed'},
+ {id:'N-08',tc:'00:06:02:16',src:'ai',srcL:'AI 点映团',persona:'普通路人',pri:'P1',cat:'节奏',
+  body:'连续出现 6 个专业名词且都没解释，非摄影观众在这里会掉线。',
+  who:'AI 点映团',time:'08-18 09:12',st:'open'},
+ {id:'N-09',tc:'00:07:44:02',src:'editor',srcL:'编导',pri:'P1',cat:'节奏',
+  body:'结尾收得太快，缺一个总结镜头把前面的对比拉回来。',
+  who:'编导 · 陈',time:'08-18 11:48',st:'open'},
+ {id:'N-10',tc:'00:08:10:00',src:'client',srcL:'客户',pri:'P2',cat:'包装',
+  body:'片尾需要加产品购买链接卡片。',
+  who:'客户 · 王（品牌方）',time:'08-18 14:22',st:'defer'}
+];
+const SRC_CLS={screening:'b-screening',ai:'b-ai',editor:'b-editor',client:'b-client'};
+const PRI_CLS={P0:'b-p0',P1:'b-p1',P2:'b-p2'};
+const ST_CLS={open:'st-open',closed:'st-closed',reject:'st-reject',defer:'st-defer'};
+const ST_TXT={open:'待处置',closed:'已关闭',reject:'不采纳',defer:'延后'};
+
+const list=document.getElementById('noteList');
+list.innerHTML=NOTES.map((n,i)=>`
+ <article class="note" data-sel="${n.id==='N-05'?1:0}" tabindex="0" style="animation:fade .3s ease-out ${i*.028}s both">
+   <div class="note-top">
+     <span class="note-tc">${n.tc}</span>
+     <span class="badge ${SRC_CLS[n.src]}">${n.srcL}</span>
+     ${n.persona?`<span class="badge b-persona">${n.persona}</span>`:''}
+     <span class="badge ${PRI_CLS[n.pri]}">${n.pri}</span>
+     <span style="margin-left:auto" class="st ${ST_CLS[n.st]}">${ST_TXT[n.st]}</span>
+   </div>
+   <p class="note-body">${n.body}</p>
+   <div class="note-foot">
+     <span class="note-author">${n.who}</span><span>·</span><span class="tc">${n.time}</span>
+     <span style="margin-left:auto;font-family:var(--fs-mono);color:var(--ink-3)">${n.id}</span>
+   </div>
+   ${n.conflict?`<div class="note-conflict"><svg viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L14.7 3.9a2 2 0 00-3.4 0z"/></svg>${n.conflict}</div>`:''}
+   ${n.dup?`<div class="note-conflict" style="background:rgba(124,139,153,.09);border-color:var(--line-2);color:var(--ink-2)"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg>${n.dup}</div>`:''}
+ </article>`).join('');
+list.addEventListener('click',e=>{
+  const el=e.target.closest('.note'); if(!el)return;
+  list.querySelectorAll('.note').forEach(n=>n.dataset.sel='0'); el.dataset.sel='1';
+  document.getElementById('pvTc').textContent=el.querySelector('.note-tc').textContent;
+});
+
+/* 赞踩曲线 */
+(function(){
+  const like=[4,9,14,11,7,12,18,22,19,15,21,26,24,18,14,17,23,28,25,20,16,12,15,19,22,18,14,11,9,13,17,20,16,12,9,7,11,15,18,14,10,7,5,9,12,16,13,9,6,4],
+        dis =[2,3,6,14,22,17,9,5,4,7,6,4,3,5,9,7,4,3,4,6,11,19,31,38,34,22,13,8,6,5,4,7,12,17,13,8,5,4,6,9,7,5,4,6,9,14,11,7,5,3];
+  const W=1000,M=100,S=W/(like.length-1),maxL=Math.max(...like),maxD=Math.max(...dis);
+  const path=(arr,max,dir)=>{
+    let d=`M0,${M}`;
+    arr.forEach((v,i)=>{ d+=` L${(i*S).toFixed(1)},${(M-dir*(v/max)*88).toFixed(1)}`; });
+    return d+` L${W},${M} Z`;
+  };
+  document.getElementById('pLike').setAttribute('d',path(like,maxL,1));
+  document.getElementById('pDis').setAttribute('d',path(dis,maxD,-1));
+  const wrap=document.getElementById('curveWrap'), total=8*60+24;
+  NOTES.forEach(n=>{
+    const p=n.tc.split(':'), sec=+p[1]*60 + +p[2];
+    const pin=document.createElement('div');
+    pin.className='pin';
+    pin.style.left=(sec/total*100)+'%';
+    pin.style.height=(n.pri==='P0'?34:n.pri==='P1'?25:17)+'px';
+    if(n.conflict) pin.style.background='var(--sig-conflict)';
+    else if(n.st==='closed') pin.style.background='var(--sig-closed)';
+    pin.title=`${n.tc} ${n.srcL} · ${n.body.slice(0,26)}…`;
+    wrap.appendChild(pin);
+  });
+})();
+
+/* 关闭矩阵 */
+const MX=[
+ ['N-01','点映','screening','P0','开头 18 秒念参数，曲线翻负',   ['closed','na','na','na']],
+ ['N-02','AI','ai','P1','"碾压"用词对品牌方有风险',              ['na','open','na','na']],
+ ['N-03','编导','editor','P1','对比图缺标注',                     ['open','closed','na','na']],
+ ['N-04','AI','ai','P2','MTF 那段太快',                           ['open','open','na','na']],
+ ['N-05','客户','client','P0','logo 时长不足合同要求',            ['reject','open','na','na']],
+ ['N-06','编导','editor','P1','logo 再长就很硬广',                ['na','open','na','na']],
+ ['N-07','点映','screening','P1','5:30 处踩 21 次',               ['open','closed','na','na']],
+ ['N-08','AI','ai','P1','连续 6 个专业名词无解释',                ['open','open','na','na']],
+ ['N-09','编导','editor','P1','结尾收得太快',                     ['open','open','na','na']],
+ ['N-10','客户','client','P2','片尾加购买链接',                   ['na','defer','na','na']],
+ ['N-11','AI','ai','P2','MTF 段落节奏（与 N-04 重复）',           ['na','reject','na','na']],
+ ['N-12','点映','screening','P1','2:10 处赞集中，可作封面素材',   ['closed','na','na','na']]
+];
+const CD={closed:['d-closed','✓'],reject:['d-reject','✕'],defer:['d-defer','»'],open:['d-open','●'],na:['d-na','—']};
+document.getElementById('mxBody').innerHTML=MX.map(r=>`
+ <tr><th><div class="mx-note">
+     <span class="tc" style="font-size:11px;color:var(--ink-3)">${r[0]}</span>
+     <span class="badge ${SRC_CLS[r[2]]}">${r[1]}</span>
+     <span class="badge ${PRI_CLS[r[3]]}">${r[3]}</span>
+     <span class="mx-txt">${r[4]}</span>
+   </div></th>
+   ${r[5].map(s=>`<td><div class="cell"><span class="dot ${CD[s][0]}">${CD[s][1]}</span></div></td>`).join('')}
+ </tr>`).join('');
+
+/* 处置：不采纳 → 理由硬阻断 */
+const opts=document.getElementById('opts'), reqBox=document.getElementById('reqBox'),
+      ta=document.getElementById('reasonTa'), btn=document.getElementById('submitBtn'),
+      cc=document.getElementById('charCount');
+function sync(){
+  const cur=opts.querySelector('[aria-checked="true"]');
+  const need=cur && cur.dataset.v==='reject';
+  reqBox.style.display=need?'':'none';
+  btn.disabled=need ? ta.value.trim().length<8 : !cur;
+  btn.textContent=(need&&ta.value.trim().length<8) ? '请先写明不采纳理由' : '提交处置';
+}
+opts.addEventListener('click',e=>{
+  const o=e.target.closest('.opt'); if(!o)return;
+  opts.querySelectorAll('.opt').forEach(x=>x.setAttribute('aria-checked','false'));
+  o.setAttribute('aria-checked','true'); sync();
+});
+ta.addEventListener('input',()=>{ cc.textContent=`${ta.value.length} / 200`; sync(); });
+document.querySelectorAll('.preset').forEach(p=>p.addEventListener('click',()=>{
+  ta.value=(ta.value?ta.value.replace(/\s*$/,'')+'；':'')+p.textContent;
+  ta.dispatchEvent(new Event('input')); ta.focus();
+}));
+document.querySelectorAll('.cf-opt').forEach(o=>o.addEventListener('click',()=>{
+  document.querySelectorAll('.cf-opt').forEach(x=>x.setAttribute('aria-checked','false'));
+  o.setAttribute('aria-checked','true');
+}));
+document.querySelectorAll('.fchip').forEach(c=>c.addEventListener('click',()=>{
+  document.querySelectorAll('.fchip').forEach(x=>x.setAttribute('aria-pressed','false'));
+  c.setAttribute('aria-pressed','true');
+}));
+sync();
+
+/* 页面切换 */
+const TITLES={
+  p1:['版本台账','4 个版本 · 22 条意见'],
+  p2:['4000元 vs 40万的镜头，观众分得出来吗','7 条待处置'],
+  p3:['意见处置 · N-05','存在未仲裁冲突'],
+  p4:['关闭矩阵','12 条意见 × 4 版本'],
+  p5:['冲突仲裁 · 04:12','1 条待仲裁'],
+  p6:['视觉规范','设计令牌与交互规则']
+};
+function go(id){
+  document.querySelectorAll('.page').forEach(p=>p.dataset.active=String(p.dataset.page===id));
+  document.querySelectorAll('.nav-item').forEach(n=>n.setAttribute('aria-current',String(n.dataset.go===id)));
+  document.documentElement.dataset.page=id;
+  document.getElementById('topTitle').textContent=TITLES[id][0];
+  document.getElementById('topStat').textContent=TITLES[id][1];
+  const cur=document.querySelector('.page[data-active="true"]'); if(cur) cur.scrollTop=0;
+}
+document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
+document.addEventListener('keydown',e=>{
+  if(e.target.tagName==='TEXTAREA')return;
+  const m={'1':'p1','2':'p2','3':'p3','4':'p4','5':'p5','6':'p6'};
+  if(m[e.key]) go(m[e.key]);
+});
+</script>
+</body>
+</html>
