@@ -4,25 +4,25 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>Zhunming Ma 马准名 · The Decision Ledger 决策台账</title>
-<meta name="description" content="马准名的作品集 — 三个代表项目：DecisionOps AI（AI 产品与 Agent）、电商经营决策模拟盘（经营分析与定价）、平台战略行业研究。AI Product × Business Analytics × Platform Strategy." />
+<meta name="description" content="马准名的作品集 — AI-native builder for marketing analytics, growth tooling and decision automation：兴盛塑料 AI 选品与直播电商 GTM、Agentic Data Platform、DecisionOps AI、Peak Calendar、品类经营与促销情景模拟盘。用 AI、数据与工程把营销与经营问题做成可用、可核验的工具。" />
 <meta property="og:title" content="Zhunming Ma 马准名 · The Decision Ledger" />
-<meta property="og:description" content="AI product × business analytics × platform strategy — three representative projects; every figure in the work is verifiable." />
+<meta property="og:description" content="AI-native builder for marketing analytics, growth tooling and decision automation — AI product discovery, agent and data infrastructure, human-confirmed decision tools. Project figures trace to public repos or are marked internal." />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="The Decision Ledger" />
 <meta property="og:url" content="https://zhunmingma-portfolio.vercel.app/" />
 <meta property="og:image" content="https://zhunmingma-portfolio.vercel.app/og.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="The Decision Ledger — Zhunming Ma's portfolio: 3 projects, 112,650 order lines, 200 agent evals, 60+ cited sources" />
+<meta property="og:image:alt" content="The Decision Ledger — Zhunming Ma's portfolio: AI marketing analytics and growth tooling; 5 projects, 112,650 order lines, 200 agent evals" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Zhunming Ma 马准名 · The Decision Ledger" />
-<meta name="twitter:description" content="Three representative projects — conclusions are verified, not asserted." />
+<meta name="twitter:description" content="AI-native builder for marketing analytics, growth tooling and decision automation — conclusions are verified, not asserted." />
 <meta name="twitter:image" content="https://zhunmingma-portfolio.vercel.app/og.png" />
 <link rel="canonical" href="https://zhunmingma-portfolio.vercel.app/" />
 <meta name="theme-color" content="#f1e8d8" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='29' fill='%23f1e8d8' stroke='%23b4432f' stroke-width='3'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='30' text-anchor='middle' fill='%232a2119'%3E准%3C/text%3E%3C/svg%3E" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Person","name":"Zhunming Ma","alternateName":"马准名","url":"https://zhunmingma-portfolio.vercel.app/","email":"mailto:zhunmingm@gmail.com","sameAs":["https://github.com/Martin-cell-blip","https://linkedin.com/in/zhunming-ma","https://zhunmingma.vercel.app/"],"knowsAbout":["Data Analytics","LLM Agents","Financial Reconciliation","Audit","Industry Research"],"alumniOf":[{"@type":"CollegeOrUniversity","name":"University College Dublin"},{"@type":"CollegeOrUniversity","name":"Johns Hopkins University"},{"@type":"CollegeOrUniversity","name":"Shandong University"}]}
+{"@context":"https://schema.org","@type":"Person","name":"Zhunming Ma","alternateName":"马准名","url":"https://zhunmingma-portfolio.vercel.app/","email":"mailto:zhunmingm@gmail.com","sameAs":["https://github.com/Martin-cell-blip","https://linkedin.com/in/zhunming-ma","https://zhunmingma.vercel.app/"],"knowsAbout":["Marketing Analytics","Growth Tooling","LLM Agents","AI Workflow Automation","Data Products","E-commerce GTM","Decision Automation"],"alumniOf":[{"@type":"CollegeOrUniversity","name":"University College Dublin"},{"@type":"CollegeOrUniversity","name":"Johns Hopkins University"},{"@type":"CollegeOrUniversity","name":"Shandong University"}]}
 </script>
 
 <!-- Fonts — 自托管（原为 Google Fonts CDN，在中国大陆被墙会导致整站排版塌回系统字体）
@@ -511,6 +511,83 @@ main{position:relative;z-index:1}
 .card.mini>p{font-size:.84rem}
 .card.mini .chips span{font-size:.56rem;padding:3px 8px}
 
+/* ---- 2026-10-14 AI marketing ops 改版：五段式项目卡、流程条、能力地图 / 治理清单面板 ---- */
+/* 代表项目网格：最小 330px 列；宽屏 3 列时 featured 卡横跨 2 列，窄屏回到单列避免隐式列溢出 */
+.cards.flagship{grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr))}
+.cards.flagship .card.featured{grid-column:span 2}
+/* 「更多构建」四张小卡：列最小 250px，1280 宽下正好一行四列，不留孤卡 */
+.cards.quad{grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))}
+.card.featured .f-body{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);gap:clamp(16px,2.2vw,28px);align-items:start}
+.card.featured .f-main{display:flex;flex-direction:column;gap:14px;min-width:0}
+.card.featured .f-main>p{flex:0 0 auto;color:var(--ink-soft);font-size:.9rem}  /* 嵌套一层后 .card>p 不再命中，补回同样式 */
+@media (max-width:780px){
+  .cards.flagship .card.featured{grid-column:auto}
+  .card.featured .f-body{grid-template-columns:1fr}
+}
+/* 五段式：问题 / 做了什么 / AI·数据 / 营销关联 / 证据边界 */
+.card .facets{display:grid;gap:7px;margin:0;padding:11px 0 0;border-top:1px dashed var(--line)}
+.card .facets>div{display:grid;grid-template-columns:6.4rem minmax(0,1fr);gap:10px;align-items:start}
+.card .facets dt{
+  font-family:var(--font-mono);font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--seal);line-height:1.6;padding-top:.28em;overflow-wrap:anywhere;
+}
+.card .facets dd{margin:0;font-size:.83rem;line-height:1.66;color:var(--ink-soft)}
+.card .facets dd b{color:var(--ink);font-weight:600}
+.card .facets .edge dt{color:var(--ink-faint)}
+.card .facets .edge dd{font-style:italic;opacity:.88}
+.card.mini .facets dd{font-size:.8rem}
+@media (max-width:640px){.card .facets>div{grid-template-columns:1fr;gap:2px}}
+/* 选品→直播反馈闭环：编号步骤条 */
+.loop{list-style:none;display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;margin:0;padding:0;counter-reset:step}
+.loop li{
+  font-family:var(--font-mono);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);
+  border:1px solid var(--line);border-radius:8px;padding:6px 9px;
+  background:color-mix(in srgb,var(--bg) 40%,transparent);
+  position:relative;display:inline-flex;align-items:center;gap:7px;line-height:1.3;
+}
+.loop li::before{counter-increment:step;content:counter(step);font-size:.5rem;font-weight:700;color:var(--seal)}
+.loop li+li::after{content:'→';position:absolute;left:-15px;top:50%;transform:translateY(-50%);color:var(--ink-faint);font-size:.7rem;line-height:1}
+.loop li.back{border-style:dashed}
+/* 面板：能力地图（#skills）与治理清单（#work 末尾）共用 */
+.fit-panel{
+  margin-top:clamp(34px,6vh,58px);
+  padding:clamp(22px,3vw,34px);
+  border:1px solid var(--line);border-radius:16px;
+  background:
+    linear-gradient(135deg,color-mix(in srgb,var(--paper) 92%,var(--wash-3)) 0%,var(--paper) 52%,color-mix(in srgb,var(--paper) 90%,var(--wash-1)) 100%);
+  position:relative;
+}
+.fit-panel::before{
+  content:attr(data-stamp);position:absolute;right:18px;top:14px;
+  font-family:var(--font-mono);font-size:.56rem;letter-spacing:.3em;color:var(--ink-faint);
+}
+.fit-top{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:clamp(18px,2.8vh,28px);padding-right:clamp(0px,9vw,130px)}
+.fit-top h3{font-family:var(--font-display);font-size:clamp(1.4rem,2.4vw,1.95rem);font-weight:600}
+.fit-top p{color:var(--ink-soft);max-width:70ch;font-size:.93rem}
+.fit-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.8vw,20px)}
+.fit-card{border:1px solid var(--line);border-radius:12px;background:color-mix(in srgb,var(--bg) 54%,transparent);padding:clamp(16px,2vw,22px);min-width:0}
+.fit-card>b{
+  display:block;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--seal);margin-bottom:10px;
+}
+.fit-card p{font-size:.86rem;color:var(--ink-soft);line-height:1.75;margin-bottom:10px}
+.fit-card p strong{color:var(--ink);font-weight:620}
+.fit-card ul{list-style:none;display:grid;gap:8px}
+.fit-card li{font-size:.84rem;color:var(--ink-soft);position:relative;padding-left:14px;line-height:1.65}
+.fit-card li::before{content:'';position:absolute;left:0;top:.72em;width:5px;height:5px;border-radius:50%;background:var(--wash-3)}
+.fit-card li strong{color:var(--ink);font-weight:600}
+.fit-card li .ref{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.06em;color:var(--ink-faint);white-space:nowrap}
+.fit-card.tier-transfer li::before{background:var(--wash-2)}
+.fit-card.tier-build{border-style:dashed}
+.fit-card.tier-build li::before{background:transparent;border:1px solid var(--line-strong)}
+.fit-card li.check{color:var(--ink-faint);font-style:italic}
+.fit-card li.check::before{background:transparent;border:1px solid var(--line-strong)}
+.gov-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:1100px){.gov-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:900px){.fit-grid{grid-template-columns:1fr}.fit-top{padding-right:0}.fit-panel::before{position:static;display:block;margin-bottom:10px}}
+@media (max-width:900px) and (min-width:641px){.gov-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.gov-grid{grid-template-columns:1fr}}
+
 /* ============================================================
    SKILLS — index cards
    ============================================================ */
@@ -753,7 +830,7 @@ main{position:relative;z-index:1}
   /* 唯一权威的打印清单：新增任何章节都必须写进这一处。
      id 与 class 双写 —— 改类名或改 id 都还剩一道保险。 */
   .ambience,.grain,.nav,.mmenu,.hero,#work,#skills,#about,#education,#gallery,#contact,
-  .contact,.closer,.prev,.deck,.footer,.integrity,
+  .contact,.closer,.prev,.deck,.footer,.integrity,.fit-panel,
   .preloader,.toast,.cursor-dot,.cursor-ring,.resume-head-row .btn,.scrollhint{display:none!important}
   body{background:#fff;color:#111}
   .sect{padding:0;max-width:100%}
@@ -988,7 +1065,7 @@ main{position:relative;z-index:1}
 }
 @media (max-width:640px){
   .hero{padding-top:calc(var(--nav-h) + 1.2vh)}
-  .hero h1{font-size:clamp(1.6rem,6.4vw,2.2rem)}
+  .hero h1{font-size:clamp(1.5rem,5.9vw,2.2rem)}  /* 2026-10-14：24→22px，375px 下「…的 AI 工具。」不再掉出「具。」孤行 */
   .hero .kicker{font-size:.62rem;letter-spacing:.16em;padding:6px 13px}
   .hero .role{font-size:.66rem;letter-spacing:.12em}
   .hero-band{font-size:.58rem;letter-spacing:.18em;gap:10px}
@@ -1342,13 +1419,13 @@ html[data-theme="nocturne"] .closer{
         </div>
 
         <h1>
-          <span class="line"><span><span class="i-zh">从真实业务问题出发，</span><span class="i-en">From a real business problem</span></span></span>
-          <span class="line"><span><span class="i-zh">把 AI 做成<em>可验证、能上线</em>的产品。</span><span class="i-en">to an AI product that is <em>verifiable and shippable</em>.</span></span></span>
+          <span class="line"><span><span class="i-zh">从营销与经营问题出发，</span><span class="i-en">From a marketing or ops problem</span></span></span>
+          <span class="line"><span><span class="i-zh">做成<em>可用、可核验</em>的 AI 工具。</span><span class="i-en">to an AI tool that is <em>usable and verifiable</em>.</span></span></span>
         </h1>
 
         <div class="role" data-reveal>
-          <span class="i-zh">AI 产品 Builder</span>
-          <span class="i-en">AI Product Builder</span>
+          <span class="i-zh">AI 原生构建者 · 营销分析 · 增长工具 · 决策自动化</span>
+          <span class="i-en">AI-native builder · Marketing analytics · Growth tooling · Decision automation</span>
         </div>
 
         <div class="hero-band">
@@ -1358,20 +1435,23 @@ html[data-theme="nocturne"] .closer{
         </div>
 
         <p class="hero-lede">
-          <span class="lede-l"><span class="i-zh">独立完成用户研究、PRD、Agent 工作流、原型开发与评测。</span><span class="i-en">User research, PRDs, agent workflows, prototypes and evaluation — end to end, on my own.</span></span>
-          <span class="lede-l"><span class="i-zh">兼具产品判断、数据分析与快速构建能力，关注业务结果，而不止于 Demo。</span><span class="i-en">Product judgment, data analysis and fast building — measured by business outcomes, not demos.</span></span>
+          <span class="lede-l"><span class="i-zh">独立完成从需求到上线：数据管线、LLM Agent 工作流、评测与人工确认机制，用 Python / TypeScript 与 Claude Code、Cursor 高密度构建。</span><span class="i-en">End to end, on my own: data pipelines, LLM agent workflows, evals and human-confirmation gates — built fast in Python and TypeScript with Claude Code and Cursor.</span></span>
+          <span class="lede-l"><span class="i-zh">判断标准不是 Demo 好不好看，而是它能不能被复算、被追问、被业务接手。</span><span class="i-en">The bar is not whether the demo looks good, but whether it can be recomputed, questioned and taken over by the business.</span></span>
         </p>
 
         <div class="hero-chips">
-          <span><span class="i-zh">AI 产品与 Agent</span><span class="i-en">AI Product &amp; Agents</span></span>
-          <span><span class="i-zh">商业与战略分析</span><span class="i-en">Business &amp; Strategy</span></span>
-          <span><span class="i-zh">数据分析与工程</span><span class="i-en">Data &amp; Engineering</span></span>
-          <span><span class="i-zh">团队管理与交付</span><span class="i-en">Team &amp; Delivery</span></span>
+          <span><span class="i-zh">AI 工作流</span><span class="i-en">AI Workflow</span></span>
+          <span><span class="i-zh">LLM Agent</span><span class="i-en">LLM Agents</span></span>
+          <span><span class="i-zh">营销分析</span><span class="i-en">Marketing Analytics</span></span>
+          <span><span class="i-zh">GTM 决策</span><span class="i-en">GTM Decisioning</span></span>
+          <span><span class="i-zh">数据产品</span><span class="i-en">Data Products</span></span>
+          <span>Python · TypeScript</span>
+          <span><span class="i-zh">人工确认</span><span class="i-en">Human-in-the-loop</span></span>
         </div>
 
         <div class="cta" data-reveal>
-          <a href="#work" class="btn solid" data-magnetic data-hover><span class="i-zh">查看代表项目</span><span class="i-en">See the flagship work</span> ↓</a>
-          <a href="#resume" class="btn" data-magnetic data-hover><span class="i-zh">阅读简历</span><span class="i-en">Read the résumé</span></a>
+          <a href="#work" class="btn solid" data-magnetic data-hover><span class="i-zh">查看代表项目</span><span class="i-en">See the work</span> ↓</a>
+          <a href="#skills" class="btn" data-magnetic data-hover><span class="i-zh">能力地图</span><span class="i-en">Capability map</span> →</a>
         </div>
       </div>
 
@@ -1401,10 +1481,10 @@ html[data-theme="nocturne"] .closer{
     </div>
 
     <div class="stats">
-    <div class="stat" data-reveal><b data-count="3">0</b><small><span class="i-zh">代表项目</span><span class="i-en">Projects</span></small></div>
+    <div class="stat" data-reveal><b data-count="5">0</b><small><span class="i-zh">代表项目</span><span class="i-en">Projects</span></small></div>
     <div class="stat" data-reveal><b data-count="112650">0</b><small><span class="i-zh">订单明细</span><span class="i-en">Order lines</span></small></div>
     <div class="stat" data-reveal><b data-count="200">0</b><small><span class="i-zh">Agent 评测例</span><span class="i-en">Agent evals</span></small></div>
-    <div class="stat" data-reveal><b data-count="60" data-suffix="+">0</b><small><span class="i-zh">可溯源来源</span><span class="i-en">Cited sources</span></small></div>
+    <div class="stat" data-reveal><b data-count="25">0</b><small><span class="i-zh">天 · 新品上架周期</span><span class="i-en">Days to shelf</span></small></div>
     </div>
   </div>
 
@@ -1427,48 +1507,80 @@ html[data-theme="nocturne"] .closer{
     <span class="i-en">A model can tell you sales will fall next month. There is no action anywhere in that sentence. Four actions are open: cut the price, cut stock, spend more on ads, exit the category. Which one wins depends on whether this category is run for revenue or for margin, how much risk it can carry, and how much budget and inventory are left. The cost of giving up the other three counts too. Once objectives and authority are set down, AI can rank, recommend and even execute. It cannot settle what this company puts first, and it does not answer for the result.</span>
   </p>
   <p class="sec-sub" data-reveal>
-    <span class="i-zh">四件代表作落在四类业务——消费影像、平台结算风控、采销经营、家居日用，数据、规则与决策目标各不相同。进入陌生领域，我先弄清谁在做决策、哪些指标真正影响结果，再决定用什么数据和方法。</span>
-    <span class="i-en">Four flagship builds across four businesses — consumer imaging, platform settlement risk, category buying and home goods — each with its own data, rules and decision targets. Entering an unfamiliar one, I work out who decides and which metrics actually move the outcome before picking data or method.</span>
+    <span class="i-zh">五件代表作落在五类业务——电商选品与直播 GTM、数据与 Agent 基础设施、结算与经营决策、消费健康产品、品类经营与促销。数据、规则与决策目标各不相同，做法是同一套：先弄清谁在做决策、哪些指标真正影响结果，再决定用什么数据、什么模型、哪一步交给人确认。</span>
+    <span class="i-en">Five flagship builds across five businesses — e-commerce product discovery and livestream GTM, data and agent infrastructure, settlement and operating decisions, a consumer health product, category and promotion management. Data, rules and decision targets differ; the method does not: work out who decides and which metrics actually move the outcome, then choose the data, the model, and the step a human must confirm.</span>
   </p>
 
-  <!-- Category 1 · Decision Systems -->
+  <!-- Category 1 · Representative projects (2026-10-14 重排：面向 AI marketing ops / growth tooling) -->
   <div class="cat">
     <div class="cat-head" data-reveal>
       <h3><span class="i-zh">代表项目</span><span class="i-en">Representative Projects</span></h3>
-      <span class="cat-count">4 <span class="i-zh">个项目</span><span class="i-en">projects</span></span>
+      <span class="cat-count">5 <span class="i-zh">个项目</span><span class="i-en">projects</span></span>
     </div>
     <p class="cat-sub" data-reveal>
-      <span class="i-zh">消费影像产品 · AI 产品与 Agent · 经营分析与定价 · 平台战略——代码与演示都在 </span>
-      <span class="i-en">Consumer imaging product · AI product &amp; agents · business analytics &amp; pricing · platform strategy — code and demos on </span>
+      <span class="i-zh">AI 选品与电商 GTM · 数据与 Agent 基础设施 · 人工确认的决策自动化 · AI 原生产品原型 · 促销与定价情景——代码与演示都在 </span>
+      <span class="i-en">AI product discovery &amp; e-commerce GTM · data &amp; agent infrastructure · human-confirmed decision automation · AI-native prototyping · promotion &amp; pricing scenarios — code and demos on </span>
       <a href="https://github.com/Martin-cell-blip" target="_blank" rel="noopener" data-hover>GitHub →</a>
     </p>
-    <div class="cards">
-      <article class="card featured" style="--tile:var(--wash-4)">
-        <div class="prev" data-prev="dji/"
-             data-prev-title-zh="DJI Mimo 一键成片 PRD 预览" data-prev-title-en="DJI Mimo one-tap edit PRD preview">
-          <span class="prev-skel" aria-hidden="true">
-            <i></i><i></i><i></i><i></i>
-            <b class="prev-msg"><span class="i-zh">预览加载中</span><span class="i-en">Loading preview</span></b>
-            <b class="prev-msg-alt"><span class="i-zh">预览未加载</span><span class="i-en">Preview not loaded</span></b>
-            <b class="prev-msg-off"><span class="i-zh">预览已关闭</span><span class="i-en">Preview off</span></b>
-          </span>
-          <span class="prev-hit" data-open="dji/" aria-hidden="true" data-hover></span>
-          <span class="prev-tag"><i class="dot" aria-hidden="true"></i><span class="i-zh">实时预览 ↗</span><span class="i-en">Live preview ↗</span></span>
+    <div class="cards flagship">
+
+      <!-- 1 · 兴盛塑料 -->
+      <article class="card featured" style="--tile:var(--wash-3)">
+        <div class="tile" aria-hidden="true">📈</div>
+        <h4><span class="i-zh">兴盛塑料 · AI 选品与直播电商 GTM</span><span class="i-en">Xingsheng Plastics · AI Product Discovery &amp; Livestream GTM</span></h4>
+        <div class="f-body">
+          <div class="f-main">
+            <p>
+              <span class="i-zh">2023.02–2025.12，作为合伙人与产品经理，把一家传统塑料制品工厂的电商线做成「AI 辅助选品 → 快速原型 → 直播间反馈」的闭环：爬虫抓取淘宝 / 抖音的商品与评论，Claude Code 自动化文本去噪、主题聚类与痛点归因，按「区域偏好 × 季节性 × 价格分布」输出定位矩阵与卖点清单，锁定轻量化 SKU（客单价 145 元以下）。T0/T1 快速原型把新品从立项到上架由约两个月压到 25 天内；与 6 名抖音主播做实时市场测试，按 CTR / ATC / CVR / GPM 调整主推款与定价。</span>
+              <span class="i-en">Partner &amp; PM, 2023.02–2025.12. Turned a traditional plastics factory's e-commerce line into a loop of AI-assisted product discovery → rapid prototyping → livestream feedback: crawlers pull Taobao / Douyin listings and reviews; Claude Code automates text cleaning, topic clustering and pain-point attribution; a region × season × price-band framework yields a positioning matrix and selling-point list, targeting light SKUs under ¥145. T0/T1 prototyping cut new-product time to shelf from about two months to under 25 days; live market tests with six Douyin hosts tune the hero SKU and pricing on CTR / ATC / CVR / GPM.</span>
+            </p>
+            <ol class="loop" aria-label="选品到直播的反馈闭环 / discovery-to-livestream feedback loop">
+              <li><span class="i-zh">抓取</span><span class="i-en">Crawl</span></li>
+              <li><span class="i-zh">聚类 · 归因</span><span class="i-en">Cluster · attribute</span></li>
+              <li><span class="i-zh">定位矩阵</span><span class="i-en">Positioning</span></li>
+              <li><span class="i-zh">T0/T1 原型</span><span class="i-en">T0/T1 prototype</span></li>
+              <li><span class="i-zh">直播测试</span><span class="i-en">Live test</span></li>
+              <li class="back"><span class="i-zh">迭代</span><span class="i-en">Iterate</span></li>
+            </ol>
+          </div>
+          <dl class="facets">
+            <div><dt><span class="i-zh">问题</span><span class="i-en">Problem</span></dt><dd><span class="i-zh">生产什么、卖给谁、定价多少全凭经验；淘宝 / 抖音上的机会分散，人工浏览发现不了系统性的细分市场。</span><span class="i-en">What to make, whom to sell to and at what price ran on gut feel; opportunities on Taobao / Douyin were scattered and invisible to manual browsing.</span></dd></div>
+            <div><dt><span class="i-zh">做了什么</span><span class="i-en">Built</span></dt><dd><span class="i-zh">爬虫 + AI 选品 Agent、定位矩阵与卖点清单、T0/T1 原型机制、直播间指标回流与主推调整规则；本人核对客单价、毛利与 SKU 表现，跟踪备货、发货与回款。</span><span class="i-en">Crawler + AI discovery agent, positioning matrix and selling-point list, T0/T1 prototyping, a livestream metric loop with hero-SKU rules; I checked unit price, margin and SKU performance and tracked stocking, shipping and collections.</span></dd></div>
+            <div><dt><span class="i-zh">AI · 数据</span><span class="i-en">AI · Data</span></dt><dd><span class="i-zh">LLM 做文本去噪、聚类与归因；三维分析框架做定位；直播间指标回流驱动下一轮选品与定价。</span><span class="i-en">LLM for cleaning, clustering and attribution; a three-axis framework for positioning; livestream metrics feed the next round of discovery and pricing.</span></dd></div>
+            <div><dt><span class="i-zh">营销关联</span><span class="i-en">Marketing</span></dt><dd><span class="i-zh">选品即需求洞察，直播间是最快的创意与定价测试场；CTR / ATC / CVR / GPM 是这条业务线每天在看的指标。</span><span class="i-en">Discovery is demand insight; the livestream is the fastest creative and pricing test bed; CTR / ATC / CVR / GPM were the metrics this line watched every day.</span></dd></div>
+            <div class="edge"><dt><span class="i-zh">证据边界</span><span class="i-en">Boundary</span></dt><dd><span class="i-zh">家族企业内部数据，无公开仓库；围绕 SKU、定价、主播反馈与利润表现做经营复盘，经营数字不对外。</span><span class="i-en">Internal company data, no public repo; operating reviews ran on SKU, pricing, host feedback and profit performance, and the financials stay private.</span></dd></div>
+          </dl>
         </div>
-        <div class="tile" aria-hidden="true">🎬</div>
-        <h4>DJI Mimo「AI 一键成片」· <span class="i-zh">产品需求文档</span><span class="i-en">Product Requirements</span></h4>
-        <p>
-          <span class="i-zh">从自采 8,223 条 App Store 评论与 706 条 B 站评论定位痛点，到把「什么算剪砸了」写成 84 条可机械判定的验收：G1 能不能发布 / G2 设备遥测是否真被用上 / G3 你会不会不改一帧直接发出去，三级全过才算通过。MVP 只留「运动燃片」一个场景。<b>首轮评测尚未执行——文档给的是判据，不是战报。</b></span>
-          <span class="i-en">From 8,223 self-collected App Store reviews and 706 Bilibili comments to a written-down definition of failure: 84 mechanically checkable cases across three gates — G1 shippable / G2 is the device telemetry actually used / G3 would you post it without changing a frame. All three must pass. The MVP keeps exactly one scenario. <b>The first eval round has not been run — this is the protocol, not results.</b></span>
-        </p>
-        <p class="rationale"><span class="i-zh">用户在大疆拍、却把素材导去剪映剪——工作流断在出片这步，而这块能力目前由第三方承担。大疆手里有云台电机指令、IMU、逐帧主体轨迹和 GPS 速度曲线，<b>这些是纯视觉推断不出来的拍摄现场真值</b>。所以 AI 只放在感知与判断环节（分辨运镜与手抖、定位速度峰值），<b>核心剪辑仍是确定性流水线</b>，大模型只碰文案层。「什么算剪砸了」先写成 84 条可机械判定的验收。<span class="caveat">首轮评测尚未执行——这里给的是判据，不是战报。</span></span><span class="i-en">Users shoot on DJI and edit in CapCut: the workflow breaks at export, and that capability is currently outsourced. DJI holds gimbal motor commands, IMU, per-frame subject tracks and GPS speed — <b>ground truth no vision model can infer</b>. So AI sits only where perception and judgement are needed; <b>the editing core stays a deterministic pipeline</b>, with the LLM confined to copy. Failure was defined first: 84 mechanically checkable cases across three gates. <span class="caveat">The first eval round has not been run — this is the protocol, not results.</span></span></p>
-        <div class="chips"><span>PRD</span><span class="i-zh">一手用户研究</span><span class="i-en">Primary research</span><span class="i-zh">评测协议</span><span class="i-en">Eval protocol</span><span class="i-zh">软硬协同</span><span class="i-en">HW × SW</span></div>
-        <div class="figures"><b>8,223</b> <span class="i-zh">条自采评论</span><span class="i-en">reviews collected</span> · <b>84</b> <span class="i-zh">条分层评测用例</span><span class="i-en">stratified eval cases</span></div>
+        <div class="chips"><span class="i-zh">AI 选品</span><span class="i-en">AI discovery</span><span>GTM</span><span>CTR · ATC · CVR · GPM</span><span>Claude Code</span><span class="i-zh">直播电商</span><span class="i-en">Livestream commerce</span></div>
+        <div class="figures"><b>25</b> <span class="i-zh">天内上架（原约两个月）</span><span class="i-en">days to shelf (from ≈2 months)</span> · <b>6</b> <span class="i-zh">位主播实时测试</span><span class="i-en">hosts in live tests</span></div>
         <div class="card-links">
-          <a href="dji/" data-hover><span class="i-zh">读 PRD</span><span class="i-en">Read the PRD</span> →</a>
+          <span class="na"><span class="i-zh">内部项目 · 面谈可详述</span><span class="i-en">Internal project · details on request</span></span>
         </div>
       </article>
 
+      <!-- 2 · Agentic Data Platform -->
+      <article class="card" style="--tile:var(--wash-2)">
+        <div class="tile" aria-hidden="true">🧱</div>
+        <h4>Agentic Data Platform · <span class="i-zh">数据与 Agent 基础设施</span><span class="i-en">Data &amp; Agent Infrastructure</span></h4>
+        <p>
+          <span class="i-zh">一个由 LLM Agent 驱动的端到端数据平台：多源摄取 → dbt 版本化、带测试的 transform → DuckDB / MotherDuck / BigQuery 一条连接串可移植 → FastAPI 提供数据、血缘与指标接口。Agent 具备任务分解、tool calling、记忆、重试、评测与监控；附一个 Anthropic Economic Index 式模块，把 WildChat-1M 样本中的真实人机对话分类到 O*NET 式职业分类，分类器可插拔（本地 Ollama 或 Claude API）。</span>
+          <span class="i-en">An LLM-agent-driven data platform end to end: multi-source ingestion → versioned, tested dbt transforms → one connection string across DuckDB / MotherDuck / BigQuery → a FastAPI layer serving data, lineage and metrics. The agent handles task decomposition, tool calling, memory, retry, evaluation and monitoring; an Anthropic-Economic-Index-style module classifies a WildChat-1M sample of human–LLM conversations into an O*NET-style occupation taxonomy with a pluggable classifier (local Ollama or the Claude API).</span>
+        </p>
+        <dl class="facets">
+          <div><dt><span class="i-zh">问题</span><span class="i-en">Problem</span></dt><dd><span class="i-zh">异构公开数据到「可分析、可治理、可复现」的面板之间没有自动化管线；每换一次仓库就要重写一遍。</span><span class="i-en">No automated path from heterogeneous public sources to an analysis-ready, governed, reproducible panel; every warehouse change meant a rewrite.</span></dd></div>
+          <div><dt><span class="i-zh">做了什么</span><span class="i-en">Built</span></dt><dd><span class="i-zh">摄取 / transform / 校验 / 接口四层加 Agent 编排；从 dbt manifest 恢复列级血缘；18 项单元测试与 dbt 测试进 GitHub Actions CI；Docker 容器化。</span><span class="i-en">Four layers (ingest / transform / validate / serve) under agent orchestration; column-level lineage recovered from the dbt manifest; 18 unit tests plus dbt tests in GitHub Actions CI; a Docker image.</span></dd></div>
+          <div><dt><span class="i-zh">AI · 数据</span><span class="i-en">AI · Data</span></dt><dd><span class="i-zh">Agent 编排 dbt 与校验；SELECT-only SQL guard、幂等写入、熔断与 /metrics 指标。</span><span class="i-en">The agent orchestrates dbt and validation; SELECT-only SQL guard, idempotent writes, a circuit breaker and a /metrics endpoint.</span></dd></div>
+          <div><dt><span class="i-zh">营销关联</span><span class="i-en">Marketing</span></dt><dd><span class="i-zh">营销分析栈（事件流 → 仓库 → 指标 → 看板）要的正是这套「摄取 → 建模 → 校验 → 接口」骨架；BigQuery 已经是可切换的仓库目标。</span><span class="i-en">A marketing analytics stack (events → warehouse → metrics → dashboards) needs exactly this ingest → model → validate → serve skeleton; BigQuery is already a switchable target.</span></dd></div>
+          <div class="edge"><dt><span class="i-zh">证据边界</span><span class="i-en">Boundary</span></dt><dd><span class="i-zh">在公开数据集（WildChat-1M）上构建；尚未接 GA4 导出或广告平台 API。</span><span class="i-en">Built on public data (WildChat-1M); not yet wired to a GA4 export or an ads-platform API.</span></dd></div>
+        </dl>
+        <div class="chips"><span>dbt</span><span>DuckDB · BigQuery</span><span>FastAPI</span><span>LLM Agent</span><span>CI · Docker</span></div>
+        <div class="figures"><b>18</b> <span class="i-zh">项单元测试 + dbt 测试</span><span class="i-en">unit tests + dbt tests</span> · <b>3</b> <span class="i-zh">个仓库目标一条连接串</span><span class="i-en">warehouse targets, one connection string</span></div>
+        <div class="card-links">
+          <a href="https://github.com/Martin-cell-blip/agentic-data-platform" target="_blank" rel="noopener" data-hover>GitHub →</a>
+        </div>
+      </article>
+
+      <!-- 3 · DecisionOps AI -->
       <article class="card" style="--tile:var(--wash-1)">
         <div class="prev" data-prev="https://martin-cell-blip.github.io/decisionops-ai/"
              data-prev-title-zh="DecisionOps AI 在线演示预览" data-prev-title-en="DecisionOps AI live demo preview">
@@ -1482,23 +1594,53 @@ html[data-theme="nocturne"] .closer{
           <span class="prev-tag"><i class="dot" aria-hidden="true"></i><span class="i-zh">实时预览 ↗</span><span class="i-en">Live preview ↗</span></span>
         </div>
         <div class="tile" aria-hidden="true">🧭</div>
-        <h4>DecisionOps AI · <span class="i-zh">决策运营台</span><span class="i-en">Decision Ledger</span></h4>
+        <h4>DecisionOps AI · <span class="i-zh">人工确认的决策自动化</span><span class="i-en">Human-confirmed Decision Automation</span></h4>
         <p>
-          <span class="i-zh">双业务 Agent——结算风控与商家经营。规则引擎负责计算，大模型负责循证解释：每条建议必须携带证据引用；样本不足 30 单或 500 浏览时主动拒绝出建议，转人工审批。200 例固定种子评测接入 CI，字段来源全披露。</span>
-          <span class="i-en">Two business agents — settlement risk and merchant operations. The rules engine does the math; the LLM explains with evidence: every recommendation must carry citations; under 30 orders or 500 views it refuses to advise at all and hands off to human review. 200 fixed-seed eval cases wired into CI; full field-provenance disclosure.</span>
+          <span class="i-zh">双业务 Agent——结算风控与商家经营。规则引擎负责金额与判定，大模型只负责循证解释：每条建议必须带证据引用，引用 ID 必须在证据集内；样本不足 30 单或 500 浏览时拒绝出建议。除正常付款外的所有动作都进人工审批，系统不执行任何资金动作。200 例固定种子评测与 9 项测试接入 CI，字段来源全披露。</span>
+          <span class="i-en">Two business agents — settlement risk and merchant operations. The rules engine owns amounts and verdicts; the LLM only explains with evidence: every recommendation must cite evidence IDs that exist in the evidence set, and under 30 orders or 500 views it declines to advise. Every action except a routine payment goes to human approval, and the system never moves money. 200 fixed-seed eval cases and 9 tests run in CI, with full field provenance.</span>
         </p>
-        <p class="rationale"><span class="i-zh">看板不缺，缺的是「下一步动哪个 SKU、凭什么」。财务运营真正的痛点不是发现异常，而是<b>解释</b>异常——拒付或追回之前必须拿得出凭据。所以金额与判定交给规则引擎，必须可复算；<b>大模型只做规则写不出来的那件事</b>：把证据串成人能读的理由，并在样本不足时说清为什么不给建议。<b>它没有写权限。</b><span class="caveat">合成数据演示，无真实用户与业务收益。</span></span><span class="i-en">Dashboards are not scarce; knowing which SKU to act on and on what grounds is. The real pain is not spotting an exception but <b>explaining</b> it — you need evidence before you refuse or claw back a payment. So amounts and verdicts stay in the rules engine, recomputable; <b>the LLM does only what rules cannot</b>: turn evidence into a readable rationale, and say why it declines to advise on thin data. <b>It has no write access.</b> <span class="caveat">Synthetic-data demo — no real users or business outcomes.</span></span></p>
-        <div class="chips"><span>FastAPI</span><span class="i-zh">证据引用</span><span class="i-en">Evidence citations</span><span class="i-zh">数据不足拒答</span><span class="i-en">Graceful refusal</span><span>CI</span></div>
-        <div class="figures"><b>200</b> <span class="i-zh">例固定种子评测</span><span class="i-en">fixed-seed evals</span> · <b>112,650</b> <span class="i-zh">订单行</span><span class="i-en">order lines</span></div>
+        <dl class="facets">
+          <div><dt><span class="i-zh">问题</span><span class="i-en">Problem</span></dt><dd><span class="i-zh">看板不缺，缺的是「下一步动哪个 SKU、凭什么」；拒付或追回之前必须拿得出凭据。</span><span class="i-en">Dashboards are plentiful; what is missing is "which SKU to act on and on what grounds" — you need evidence before you refuse or claw back a payment.</span></dd></div>
+          <div><dt><span class="i-zh">做了什么</span><span class="i-en">Built</span></dt><dd><span class="i-zh">结算 Agent（7 类结算情形）与经营 Agent（扩量 / 修质量 / 提价实验 / 汰换评审），FastAPI 服务与在线演示。</span><span class="i-en">A settlement agent (7 settlement situations) and an operations agent (scale / fix quality / price experiment / delisting review), served over FastAPI with a live demo.</span></dd></div>
+          <div><dt><span class="i-zh">AI · 数据</span><span class="i-en">AI · Data</span></dt><dd><span class="i-zh">规则层可复算；LLM 输出须非空、至少一条引用且全在证据内，否则回退模板。千帆适配暴露引用合并问题，归一化修复后复测 6/6——修的是代码，没放宽校验。</span><span class="i-en">The rules layer is recomputable; LLM output must be non-empty and cite at least one evidence ID, all within the set, or it falls back to a template. A Qianfan port surfaced a citation-merge bug; fixed and retested 6/6 — the code moved, the check did not.</span></dd></div>
+          <div><dt><span class="i-zh">营销关联</span><span class="i-en">Marketing</span></dt><dd><span class="i-zh">「扩量 / 提价实验 / 汰换」就是增长与预算动作；审批门与拒答阈值是把 AI 放进营销运营的前提。</span><span class="i-en">Scale, price experiments and delisting are growth and budget actions; approval gates and refusal thresholds are the precondition for putting AI into marketing operations.</span></dd></div>
+          <div class="edge"><dt><span class="i-zh">证据边界</span><span class="i-en">Boundary</span></dt><dd><span class="i-zh">公开 Olist 数据加合成账单注入的演示：Agent 实跑 24 个卖家 / 181 SKU / 11,077 行订单与 30 个结算案例；无真实用户与业务收益。</span><span class="i-en">A demo on public Olist data with injected synthetic bills: the agents ran on 24 sellers / 181 SKUs / 11,077 order rows plus 30 settlement cases; no real users or business outcomes.</span></dd></div>
+        </dl>
+        <div class="chips"><span>FastAPI</span><span class="i-zh">证据引用</span><span class="i-en">Evidence citations</span><span class="i-zh">数据不足拒答</span><span class="i-en">Graceful refusal</span><span class="i-zh">人工审批</span><span class="i-en">Human approval</span><span>CI</span></div>
+        <div class="figures"><b>200</b> <span class="i-zh">例固定种子评测</span><span class="i-en">fixed-seed evals</span> · <b>0</b> <span class="i-zh">项自动资金动作</span><span class="i-en">automated money moves</span></div>
         <div class="card-links">
           <a href="https://martin-cell-blip.github.io/decisionops-ai/" target="_blank" rel="noopener" data-hover><span class="i-zh">在线演示</span><span class="i-en">Live demo</span> →</a>
           <a href="https://github.com/Martin-cell-blip/decisionops-ai" target="_blank" rel="noopener" data-hover>GitHub →</a>
         </div>
       </article>
 
+      <!-- 4 · Peak Calendar -->
+      <article class="card" style="--tile:var(--wash-4)">
+        <div class="tile" aria-hidden="true">🌅</div>
+        <h4>Peak Calendar · <span class="i-zh">能量感知日历（AI 原生原型）</span><span class="i-en">Energy-aware Calendar (AI-native prototype)</span></h4>
+        <p>
+          <span class="i-zh">2025.09–2026.02 独立完成的高保真可交互 Demo：用 Gemini、Cursor 与 Google AI Studio 以 Vibe Coding 的方式，短周期做出 React + TypeScript（Vite）前端，Tailwind 写样式。用模拟的生理准备度生成 24 小时能量曲线，映射成 5 级色标叠在逐小时日程上，日历从任务清单变成能量画布；任务按 1–5 认知负荷与时段能量算匹配度，精力余额超支即预警；Flow Mode 与晚间回顾构成「感知 → 规划 → 执行 → 复盘」闭环。</span>
+          <span class="i-en">A high-fidelity interactive demo built solo, 2025.09–2026.02, in a vibe-coding loop with Gemini, Cursor and Google AI Studio: a React + TypeScript (Vite) front end styled with Tailwind. A simulated readiness state generates a 24-hour energy curve, mapped to five colour levels and overlaid on the hourly schedule, so the calendar becomes an energy canvas; tasks carry a 1–5 cognitive load scored against the hour's energy, and an energy budget warns when the day is overbooked; Flow Mode and an evening recap close the sense → plan → execute → review loop.</span>
+        </p>
+        <dl class="facets">
+          <div><dt><span class="i-zh">问题</span><span class="i-en">Problem</span></dt><dd><span class="i-zh">日历只做线性时间填充，忽视生理能量波动；复盘功能流于形式。</span><span class="i-en">Calendars fill time linearly and ignore the body's energy curve; review features are perfunctory.</span></dd></div>
+          <div><dt><span class="i-zh">做了什么</span><span class="i-en">Built</span></dt><dd><span class="i-zh">产品定义、交互与视觉、前端实现与核心业务流验证，一个人完成。</span><span class="i-en">Product definition, interaction and visual design, front-end implementation and core-flow validation — one person.</span></dd></div>
+          <div><dt><span class="i-zh">AI · 数据</span><span class="i-en">AI · Data</span></dt><dd><span class="i-zh">AI 结对开发把「想法 → 可点的原型」压到短周期；能量曲线、匹配度与精力扣减都是显式规则，可调可查。</span><span class="i-en">AI pair-building shortens idea → clickable prototype; the energy curve, match score and energy budget are explicit rules, tunable and inspectable.</span></dd></div>
+          <div><dt><span class="i-zh">营销关联</span><span class="i-en">Marketing</span></dt><dd><span class="i-zh">营销工具常常在需求定型前就要先有可点的原型来对齐流程——这是我做内部工具原型的速度与方式。</span><span class="i-en">Marketing tools usually need a clickable prototype to settle the flow before the requirement is final — this is how fast, and how, I prototype internal tools.</span></dd></div>
+          <div class="edge"><dt><span class="i-zh">证据边界</span><span class="i-en">Boundary</span></dt><dd><span class="i-zh">Demo 阶段：无用户数据，生理数据为模拟值，可穿戴设备接入是设计目标，不写增长数字。</span><span class="i-en">Demo stage: no user data, biometrics are simulated, wearable integration is a design goal, no growth figures claimed.</span></dd></div>
+        </dl>
+        <div class="chips"><span>React · TypeScript</span><span>Vite · Tailwind</span><span>Vibe Coding</span><span>Gemini · Cursor</span></div>
+        <div class="figures"><b>5</b> <span class="i-zh">级能量色标</span><span class="i-en">energy levels</span> · <b>0 → 1</b> <span class="i-zh">独立交付</span><span class="i-en">solo delivery</span></div>
+        <div class="card-links">
+          <a href="https://github.com/Martin-cell-blip/peak-calendar" target="_blank" rel="noopener" data-hover>GitHub →</a>
+          <span class="na"><span class="i-zh">交互 Demo · 面谈可演示</span><span class="i-en">Interactive demo · shown on request</span></span>
+        </div>
+      </article>
+
+      <!-- 5 · 品类经营与促销情景模拟盘 -->
       <article class="card" style="--tile:var(--wash-3)">
         <div class="prev" data-prev="https://martin-cell-blip.github.io/category-management-sim/"
-             data-prev-title-zh="品类采销经营模拟盘看板预览" data-prev-title-en="Category Management Simulator dashboard preview">
+             data-prev-title-zh="品类经营与促销情景模拟盘看板预览" data-prev-title-en="Category, pricing &amp; promotion simulator dashboard preview">
           <span class="prev-skel" aria-hidden="true">
             <i></i><i></i><i></i><i></i>
             <b class="prev-msg"><span class="i-zh">预览加载中</span><span class="i-en">Loading preview</span></b>
@@ -1509,21 +1651,90 @@ html[data-theme="nocturne"] .closer{
           <span class="prev-tag"><i class="dot" aria-hidden="true"></i><span class="i-zh">实时预览 ↗</span><span class="i-en">Live preview ↗</span></span>
         </div>
         <div class="tile" aria-hidden="true">🛒</div>
-        <h4><span class="i-zh">品类采销经营模拟盘</span><span class="i-en">Category Management Simulator</span></h4>
+        <h4><span class="i-zh">品类经营与促销情景模拟盘</span><span class="i-en">Category, Pricing &amp; Promotion Simulator</span></h4>
         <p>
-          <span class="i-zh">基于 10 万+ 真实订单的采销决策闭环：品类结构 → 选品汰换 → 控价情景 → 大促复盘，四模块共用一套 GMV 口径。诊断出高价带以 25.8% SKU 贡献 62.6% GMV 的结构倒挂。</span>
-          <span class="i-en">A buying-and-merchandising loop over 100k+ real orders: structure → assortment → pricing → promotion review, four modules on one GMV definition. Surfaced a skew where 25.8% of SKUs drive 62.6% of GMV.</span>
+          <span class="i-zh">基于 10 万+ 条公开电商交易记录（112,650 条订单明细）的经营决策闭环：品类结构 → 选品汰换 → 控价情景 → 大促复盘（估算 ROI），四模块共用一套 GMV 口径，跨模块对账容差为 0。诊断出高价带以 25.8% 的 SKU 贡献 62.6% GMV 的结构倒挂；输出 374 个低效复核 / 汰换候选 SKU，静态情景下移除 15.6% 货盘对应约 9.6% 的历史 GMV。</span>
+          <span class="i-en">An operating-decision loop over 100k+ public e-commerce transaction records (112,650 order lines): structure → assortment → pricing scenarios → promotion review (estimated ROI), four modules on one GMV definition, cross-module reconciliation at zero tolerance. Surfaced a skew where 25.8% of SKUs drive 62.6% of GMV; flagged 374 low-efficiency review / delisting candidates — in a static scenario, removing 15.6% of the range corresponds to about 9.6% of historical GMV.</span>
         </p>
-        <p class="rationale"><span class="i-zh">品类结构、选品汰换、控价、大促复盘，在多数团队里是四张彼此对不上的表——<b>口径不统一，四个结论就无法互证</b>。这里<b>刻意不用大模型</b>：GMV、毛利与汰换影响都是确定性计算，交给模型只会让结果不可复算，判断力该花在定义口径和设约束上。四模块共用一套 GMV 口径，跨模块对账做成管线硬断言，校验失败即中止。<span class="caveat">数据为公开的 2016–2018 巴西 Olist 平台集，无成本与流量字段，结论只到方法论层。</span></span><span class="i-en">Structure, assortment, pricing and promotion review usually live in four spreadsheets that disagree — <b>without one shared definition they cannot corroborate each other</b>. There is <b>deliberately no LLM here</b>: GMV, margin and delisting impact are deterministic computations, and a model would only make them non-reproducible. Judgement belongs in defining the metric and setting constraints. Four modules share one GMV definition, with reconciliation as a hard pipeline assertion that halts on failure. <span class="caveat">Public 2016–2018 Brazilian Olist data, without cost or traffic fields; conclusions hold at the method level only.</span></span></p>
-        <div class="chips"><span>DuckDB SQL</span><span>Python</span><span class="i-zh">经营分析 · 定价</span><span class="i-en">Analytics · Pricing</span></div>
-        <div class="figures"><b>374 SKU</b> <span class="i-zh">汰换 · GMV 仅降 9.6%</span><span class="i-en">delisted · GMV down only 9.6%</span> · <span class="i-zh">对账容差</span><span class="i-en">recon tol.</span> <b>0</b></div>
+        <dl class="facets">
+          <div><dt><span class="i-zh">问题</span><span class="i-en">Problem</span></dt><dd><span class="i-zh">品类结构、汰换、控价、大促复盘在多数团队里是四张彼此对不上的表——口径不统一，四个结论就无法互证。</span><span class="i-en">Structure, assortment, pricing and promo review usually live in four spreadsheets that disagree — without one shared definition the four conclusions cannot corroborate each other.</span></dd></div>
+          <div><dt><span class="i-zh">做了什么</span><span class="i-en">Built</span></dt><dd><span class="i-zh">DuckDB SQL + Python 四模块管线，每条决策规则成文注明依据，成本率假设参数化并溯源；一键复现与 GitHub Pages 看板。</span><span class="i-en">A four-module DuckDB SQL + Python pipeline; every decision rule documented with its source; cost-rate assumptions parameterised and traced; one-command reproduction and a GitHub Pages dashboard.</span></dd></div>
+          <div><dt><span class="i-zh">AI · 数据</span><span class="i-en">AI · Data</span></dt><dd><span class="i-zh">刻意不用大模型——GMV、估算毛利与汰换影响都是确定性计算，交给模型只会让结果不可复算；判断力花在定义口径和设约束上。</span><span class="i-en">Deliberately no LLM: GMV, estimated margin and delisting impact are deterministic, and a model would only make them non-reproducible; judgement goes into definitions and constraints.</span></dd></div>
+          <div><dt><span class="i-zh">营销关联</span><span class="i-en">Marketing</span></dt><dd><span class="i-zh">大促复盘把归因上限写得很清楚——增量并非主要由降价贡献；这正是预算决策需要的增量与归因思维。</span><span class="i-en">The promotion review states its attribution ceiling plainly — the lift was not mainly driven by the price cut; exactly the incrementality and attribution thinking that budget decisions need.</span></dd></div>
+          <div class="edge"><dt><span class="i-zh">证据边界</span><span class="i-en">Boundary</span></dt><dd><span class="i-zh">公开的 2016–2018 巴西 Olist 数据，无成本与流量字段；毛利为估算，结论到方法论层。</span><span class="i-en">Public 2016–2018 Brazilian Olist data without cost or traffic fields; margin is estimated; conclusions hold at the method level.</span></dd></div>
+        </dl>
+        <div class="chips"><span>DuckDB SQL</span><span>Python</span><span class="i-zh">促销复盘 · 估算 ROI</span><span class="i-en">Promo review · est. ROI</span><span class="i-zh">定价情景</span><span class="i-en">Pricing scenarios</span></div>
+        <div class="figures"><b>374</b> <span class="i-zh">个汰换候选 SKU</span><span class="i-en">delisting candidates</span> · <span class="i-zh">对账容差</span><span class="i-en">recon tol.</span> <b>0</b></div>
         <div class="card-links">
           <a href="https://martin-cell-blip.github.io/category-management-sim/" target="_blank" rel="noopener" data-hover><span class="i-zh">研究看板</span><span class="i-en">Dashboard</span> →</a>
           <a href="https://github.com/Martin-cell-blip/category-management-sim" target="_blank" rel="noopener" data-hover>GitHub →</a>
         </div>
       </article>
+    </div>
+  </div>
 
-      <article class="card" style="--tile:var(--wash-2)">
+  <!-- Category 2 · More builds -->
+  <div class="cat">
+    <div class="cat-head" data-reveal>
+      <h3><span class="i-zh">更多构建</span><span class="i-en">More Builds</span></h3>
+      <span class="cat-count">4 <span class="i-zh">项</span><span class="i-en">builds</span></span>
+    </div>
+    <p class="cat-sub" data-reveal>
+      <span class="i-zh">人工确认的异常复核、规格驱动的增长 Agent、品类规模测算、AI 创意生成功能的产品定义——同一套「可核验」方法在另外四个场景里的落地。</span>
+      <span class="i-en">Human-confirmed exception review, a spec-driven growth agent, category sizing and the product definition of an AI creative feature — the same verifiability method in four more settings.</span>
+    </p>
+    <div class="cards quad">
+
+      <!-- 物流结算异常复核 -->
+      <article class="card mini" style="--tile:var(--wash-2)">
+        <div class="prev" data-prev="https://martin-cell-blip.github.io/logistics-settlement-recon/"
+             data-prev-title-zh="物流结算异常复核 Copilot 演示预览" data-prev-title-en="Settlement exception review copilot demo preview">
+          <span class="prev-skel" aria-hidden="true">
+            <i></i><i></i><i></i><i></i>
+            <b class="prev-msg"><span class="i-zh">预览加载中</span><span class="i-en">Loading preview</span></b>
+            <b class="prev-msg-alt"><span class="i-zh">预览未加载</span><span class="i-en">Preview not loaded</span></b>
+            <b class="prev-msg-off"><span class="i-zh">预览已关闭</span><span class="i-en">Preview off</span></b>
+          </span>
+          <span class="prev-hit" data-open="https://martin-cell-blip.github.io/logistics-settlement-recon/" aria-hidden="true" data-hover></span>
+          <span class="prev-tag"><i class="dot" aria-hidden="true"></i><span class="i-zh">实时预览 ↗</span><span class="i-en">Live preview ↗</span></span>
+        </div>
+        <div class="tile" aria-hidden="true">🧾</div>
+        <h4><span class="i-zh">物流结算异常复核 Copilot</span><span class="i-en">Settlement Exception Review Copilot</span></h4>
+        <p>
+          <span class="i-zh">订单 × 承运商账单 × 合同费率的三方对账，6 类异常自动分类；规则自动放行 86,094 / 99,418 条，13,324 条进人工复核队列，自动执行 0 条。模型只在配置了密钥时生成证据摘要，否则退回规则理由；人工决定写入 SQLite 事务（唯一键，冲突返回 409），运行清单与证据包记 SHA-256。召回 100% / 查准 99.955%，22 项测试。</span>
+          <span class="i-en">Three-way reconciliation of orders × carrier bills × contract rates with 6 auto-classified exception types; rules auto-pass 86,094 of 99,418 rows, 13,324 go to a human review queue, 0 are auto-executed. The model only drafts evidence summaries when a key is configured, otherwise the rule-based rationale stands; human decisions are SQLite transactions with unique keys (409 on conflict); run manifests and evidence packs carry SHA-256. Recall 100% / precision 99.955%, 22 tests.</span>
+        </p>
+        <dl class="facets">
+          <div><dt><span class="i-zh">营销关联</span><span class="i-en">Marketing</span></dt><dd><span class="i-zh">「自动放行 / 转人工 / 不自动执行」三档分流，是任何把 AI 接进预算或投放操作的工具都需要的骨架。</span><span class="i-en">The auto-pass / human-queue / never-auto-execute split is the skeleton any tool needs before AI touches budget or campaign operations.</span></dd></div>
+          <div class="edge"><dt><span class="i-zh">证据边界</span><span class="i-en">Boundary</span></dt><dd><span class="i-zh">公开 Olist 数据加合成账单注入真值；金额为巴西雷亚尔，不对外声称可追回金额。</span><span class="i-en">Public Olist data with injected synthetic bills; amounts in BRL; no recoverable-amount claim.</span></dd></div>
+        </dl>
+        <div class="chips"><span>DuckDB SQL</span><span class="i-zh">人工复核队列</span><span class="i-en">Human review queue</span><span>SHA-256</span><span class="i-zh">三级角色</span><span class="i-en">3 roles</span></div>
+        <div class="card-links">
+          <a href="https://martin-cell-blip.github.io/logistics-settlement-recon/" target="_blank" rel="noopener" data-hover><span class="i-zh">在线演示</span><span class="i-en">Live demo</span> →</a>
+          <a href="https://github.com/Martin-cell-blip/logistics-settlement-recon" target="_blank" rel="noopener" data-hover>GitHub →</a>
+        </div>
+      </article>
+
+      <!-- growth-agent -->
+      <article class="card mini" style="--tile:var(--wash-1)">
+        <div class="tile" aria-hidden="true">🌱</div>
+        <h4>growth-agent · <span class="i-zh">规格驱动的增长 Agent</span><span class="i-en">Spec-driven Growth Agent</span></h4>
+        <p>
+          <span class="i-zh">为一个零预算教育 SaaS 的海外自助获客漏斗搭的 Agent 系统，只有一条原则：Agent 只提案，管道才执行。需求先写成验收标准，每条验收标准对应一条评测用例；实验先预注册再上线，文件里明写它不是干净的 A/B、小样本比率只作方向参考。v0.1 是人工基线，没有 AI 模块在跑。</span>
+          <span class="i-en">An agent system for a zero-budget ed-tech SaaS's overseas self-serve funnel, built on one rule: agents propose, the pipeline disposes. Requirements are written as acceptance criteria, each mapped to an eval case; experiments are pre-registered before launch and state plainly that they are not a clean A/B and that small-n ratios are directional only. v0.1 is the manual baseline — no AI module is running.</span>
+        </p>
+        <dl class="facets">
+          <div><dt><span class="i-zh">营销关联</span><span class="i-en">Marketing</span></dt><dd><span class="i-zh">增长工具的纪律先于增长工具本身：声称可溯源、实验预注册、每个模块都要挣到一个 before / after 数字。</span><span class="i-en">The discipline of growth tooling comes before the tooling: traceable claims, pre-registered experiments, and every module must earn a before / after number.</span></dd></div>
+          <div class="edge"><dt><span class="i-zh">证据边界</span><span class="i-en">Boundary</span></dt><dd><span class="i-zh">系统公开、业务数据私有；实验结果未回填，不引用任何增长数字。</span><span class="i-en">System public, business data private; experiment results not yet filled in; no growth figures claimed.</span></dd></div>
+        </dl>
+        <div class="chips"><span class="i-zh">规格先行</span><span class="i-en">Spec-first</span><span class="i-zh">预注册实验</span><span class="i-en">Pre-registered</span><span>AC ↔ Eval</span><span>v0.1</span></div>
+        <div class="card-links">
+          <a href="https://github.com/Martin-cell-blip/growth-agent" target="_blank" rel="noopener" data-hover>GitHub →</a>
+        </div>
+      </article>
+
+      <!-- 家居日用品类行业研究 -->
+      <article class="card mini" style="--tile:var(--wash-4)">
         <div class="prev" data-prev="https://martin-cell-blip.github.io/category-management-sim/research/"
              data-prev-title-zh="家居日用品类行业研究报告预览" data-prev-title-en="Home &amp; Daily Goods industry study preview">
           <span class="prev-skel" aria-hidden="true">
@@ -1539,83 +1750,105 @@ html[data-theme="nocturne"] .closer{
         <div class="tile" aria-hidden="true">🏠</div>
         <h4><span class="i-zh">家居日用品类行业研究</span><span class="i-en">Home &amp; Daily Goods Industry Study</span></h4>
         <p>
-          <span class="i-zh">平台战略视角的七章行研：三锚点交叉测算品类约 2000 亿、可获得盘 240–300 亿；识别并校正咨询机构口径污染；结论——<b>份额行业而非增长行业</b>，大类分散但细分单品可集中。</span>
-          <span class="i-en">A seven-chapter study from a platform-strategy lens: the category triangulated at ≈¥200bn with a ¥24–30bn obtainable pool; corrected a consulting-firm definition contamination; verdict — <b>a share game, not a growth game</b>, with concentratable niches.</span>
+          <span class="i-zh">平台战略视角的七章行研：三锚点交叉测算品类约 2000 亿、可获得盘 240–300 亿；识别并校正咨询机构口径污染；结论——<b>份额行业而非增长行业</b>，大类分散但细分单品可集中。规模测算全程不用模型，AI 只用于检索与初筛，数字逐条人工核对并编号。</span>
+          <span class="i-en">A seven-chapter study from a platform-strategy lens: the category triangulated at ≈¥200bn with a ¥24–30bn obtainable pool; corrected a consulting-firm definition contamination; verdict — <b>a share game, not a growth game</b>, with concentratable niches. The sizing uses no model at all; AI only for retrieval and screening, every figure hand-checked and numbered.</span>
         </p>
-        <p class="rationale"><span class="i-zh">进一个陌生品类，先要回答的不是「多大」而是<b>「这是抢份额还是等增长」</b>——两者对应完全不同的打法。而现成报告的口径互相污染，直接引用等于把结论建在别人的定义上，所以<b>规模测算全程不用模型</b>：三个独立口径各算一遍再交叉，是为了让每一步都能被别人重算。AI 只用在检索与初筛，数字逐条人工核对并编号。<span class="caveat">60+ 条编号来源；6 组对不上的数字单列一章，其中 2 组至今未解决。</span></span><span class="i-en">Entering an unfamiliar category, the first question is not how big it is but <b>whether it is a share game or a growth game</b> — the two imply opposite strategies. Published reports contaminate each other's definitions, so citing them builds your conclusion on someone else's terms; <b>the sizing therefore uses no model at all</b>: three independent anchors computed separately and cross-checked, so every step can be recomputed. AI is used only for retrieval and screening. <span class="caveat">60+ numbered sources; six conflicting figures are listed in their own chapter, two still unresolved.</span></span></p>
-        <div class="chips"><span class="i-zh">平台战略</span><span class="i-en">Platform strategy</span><span class="i-zh">规模测算</span><span class="i-en">Market sizing</span><span class="i-zh">敏感性分析</span><span class="i-en">Sensitivity</span></div>
-        <div class="figures"><b><span class="i-zh">约 2000 亿</span><span class="i-en">≈¥200bn</span></b> <span class="i-zh">品类规模</span><span class="i-en">category</span> · <b><span class="i-zh">240–300 亿</span><span class="i-en">¥24–30bn</span></b> <span class="i-zh">可获得盘</span><span class="i-en">obtainable</span></div>
+        <dl class="facets">
+          <div><dt><span class="i-zh">营销关联</span><span class="i-en">Marketing</span></dt><dd><span class="i-zh">进一个品类先答「抢份额还是等增长」——两者对应完全不同的预算打法。</span><span class="i-en">Before entering a category, answer "share game or growth game" — the two imply opposite budget strategies.</span></dd></div>
+          <div class="edge"><dt><span class="i-zh">证据边界</span><span class="i-en">Boundary</span></dt><dd><span class="i-zh">60+ 条编号来源；6 组对不上的数字单列一章，其中 2 组至今未解决。</span><span class="i-en">60+ numbered sources; six conflicting figures get their own chapter, two still unresolved.</span></dd></div>
+        </dl>
+        <div class="chips"><span class="i-zh">市场测算</span><span class="i-en">Market sizing</span><span class="i-zh">敏感性分析</span><span class="i-en">Sensitivity</span><span class="i-zh">平台战略</span><span class="i-en">Platform strategy</span></div>
         <div class="card-links">
           <a href="https://martin-cell-blip.github.io/category-management-sim/research/" target="_blank" rel="noopener" data-hover><span class="i-zh">阅读报告</span><span class="i-en">Read the report</span> →</a>
         </div>
       </article>
-    </div>
-  </div>
 
-  <!-- More engineering experiments — 2026-08-18 清场：整块从首页移除
-       理由：① 用户裁决「作品集不是越多越好」，首页只留 DJI / DecisionOps / 模拟盘 / 行研 四件；
-             ② Bank Audit Hub 的作品链接与 E-PRJ-CONF 记录不一致（指向 recon 仓库），澄清前不得对外；
-             ③ 物流对账的头号卖点（四方对账 / 120 项测试 / 费率卡基准）仍在未 commit 的分支上，
-                公开仓库与讲稿对不上，push 前不引用。
-       两者都保留在垂直线材料里（物流对账＝京东物流岗主打，Bank Audit Hub＝邮储审计岗主打）。
-  <div class="cat">
-    <div class="cat-head" data-reveal>
-      <h3><span class="i-zh">更多工程实验</span><span class="i-en">More Engineering Experiments</span></h3>
-      <span class="cat-count">2 <span class="i-zh">项</span><span class="i-en">builds</span></span>
-    </div>
-    <p class="cat-sub" data-reveal>
-      <span class="i-zh">两个垂直场景的落地实验——物流结算与银行审计，验证同一套「可核验」方法能迁移到不同业务。</span>
-      <span class="i-en">Two vertical experiments — logistics settlement and bank audit — showing the same verifiability method transfers across domains.</span>
-    </p>
-    <div class="cards">
-      <article class="card mini" style="--tile:var(--wash-2)">
-        <div class="prev" data-prev="https://martin-cell-blip.github.io/logistics-settlement-recon/"
-             data-prev-title-zh="物流结算对账演示预览" data-prev-title-en="Settlement recon demo preview">
+      <!-- DJI Mimo PRD -->
+      <article class="card mini" style="--tile:var(--wash-3)">
+        <div class="prev" data-prev="dji/"
+             data-prev-title-zh="DJI Mimo 一键成片 PRD 预览" data-prev-title-en="DJI Mimo one-tap edit PRD preview">
           <span class="prev-skel" aria-hidden="true">
             <i></i><i></i><i></i><i></i>
             <b class="prev-msg"><span class="i-zh">预览加载中</span><span class="i-en">Loading preview</span></b>
             <b class="prev-msg-alt"><span class="i-zh">预览未加载</span><span class="i-en">Preview not loaded</span></b>
             <b class="prev-msg-off"><span class="i-zh">预览已关闭</span><span class="i-en">Preview off</span></b>
           </span>
-          <span class="prev-tag"><i class="dot" aria-hidden="true"></i><span class="i-zh">预览 · 不可交互</span><span class="i-en">Preview · static</span></span>
+          <span class="prev-hit" data-open="dji/" aria-hidden="true" data-hover></span>
+          <span class="prev-tag"><i class="dot" aria-hidden="true"></i><span class="i-zh">实时预览 ↗</span><span class="i-en">Live preview ↗</span></span>
         </div>
-        <div class="tile" aria-hidden="true">🧾</div>
-        <h4><span class="i-zh">物流结算对账 + 坏账预警</span><span class="i-en">Settlement Recon &amp; Bad-Debt Watch</span></h4>
+        <div class="tile" aria-hidden="true">🎬</div>
+        <h4>DJI Mimo「AI 一键成片」· <span class="i-zh">AI 创意生成的产品定义</span><span class="i-en">Defining an AI Creative Feature</span></h4>
         <p>
-          <span class="i-zh">订单 × 账单 × 合同的三方对账引擎，7 类异常自动分类；合成账单注入真值验证，查全率 99.9%；附账龄 / DSO / ECL 与 AI 复核 Agent。另有 63 条引用的配套行研（备索）。</span>
-          <span class="i-en">A three-way recon engine (orders × bills × contracts) with 7 auto-classified exception types; validated against injected ground truth at 99.9% recall; plus aging / DSO / ECL and an AI review agent. A 63-citation companion study available on request.</span>
+          <span class="i-zh">从自采 8,223 条 App Store 评论与 706 条 B 站评论定位痛点，到把「什么算剪砸了」写成 84 条可机械判定的验收：G1 能不能发布 / G2 设备遥测是否真被用上 / G3 你会不会不改一帧直接发出去。AI 只放在感知与判断环节，核心剪辑仍是确定性流水线，大模型只碰文案层。</span>
+          <span class="i-en">From 8,223 self-collected App Store reviews and 706 Bilibili comments to a written-down definition of failure: 84 mechanically checkable cases across three gates — G1 shippable / G2 is the device telemetry actually used / G3 would you post it without changing a frame. AI sits only where perception and judgement are needed; the editing core stays a deterministic pipeline, with the LLM confined to copy.</span>
         </p>
-        <div class="chips"><span>DuckDB SQL</span><span class="i-zh">账龄 · ECL</span><span class="i-en">Aging · ECL</span><span>AI Agent</span></div>
+        <dl class="facets">
+          <div><dt><span class="i-zh">营销关联</span><span class="i-en">Marketing</span></dt><dd><span class="i-zh">AI 创意生成功能先定义「什么算生成失败」再谈模型——与营销素材生成的验收逻辑相同。</span><span class="i-en">Define "what counts as a failed generation" before choosing the model — the same acceptance logic a marketing-creative generator needs.</span></dd></div>
+          <div class="edge"><dt><span class="i-zh">证据边界</span><span class="i-en">Boundary</span></dt><dd><span class="i-zh">首轮评测尚未执行——文档给的是判据，不是战报。</span><span class="i-en">The first eval round has not been run — this is the protocol, not results.</span></dd></div>
+        </dl>
+        <div class="chips"><span>PRD</span><span class="i-zh">一手用户研究</span><span class="i-en">Primary research</span><span class="i-zh">评测协议</span><span class="i-en">Eval protocol</span></div>
         <div class="card-links">
-          <a href="https://github.com/Martin-cell-blip/logistics-settlement-recon" target="_blank" rel="noopener" data-hover>GitHub →</a>
-        </div>
-      </article>
-
-      <article class="card mini" style="--tile:var(--wash-4)">
-        <div class="prev" data-prev="https://martin-cell-blip.github.io/bank-audit-hub/"
-             data-prev-title-zh="Bank Audit Hub 演示预览" data-prev-title-en="Bank Audit Hub demo preview">
-          <span class="prev-skel" aria-hidden="true">
-            <i></i><i></i><i></i><i></i>
-            <b class="prev-msg"><span class="i-zh">预览加载中</span><span class="i-en">Loading preview</span></b>
-            <b class="prev-msg-alt"><span class="i-zh">预览未加载</span><span class="i-en">Preview not loaded</span></b>
-            <b class="prev-msg-off"><span class="i-zh">预览已关闭</span><span class="i-en">Preview off</span></b>
-          </span>
-          <span class="prev-tag"><i class="dot" aria-hidden="true"></i><span class="i-zh">预览 · 不可交互</span><span class="i-en">Preview · static</span></span>
-        </div>
-        <div class="tile" aria-hidden="true">🏦</div>
-        <h4>Bank Audit Hub · <span class="i-zh">函证与审计中枢</span><span class="i-en">Confirmations Workbench</span></h4>
-        <p>
-          <span class="i-zh">银行审计函证协同平台：五状态看板 + 状态机拒绝非法流转；回函差异三分归因；存款函证覆盖率红线预警；询证函一键生成。FastAPI + DuckDB，一条命令运行。</span>
-          <span class="i-en">A bank-audit confirmations workbench: a five-state board whose state machine rejects illegal transitions; three-way discrepancy attribution; deposit-coverage red-line alerts; one-click letters. FastAPI + DuckDB, one command to run.</span>
-        </p>
-        <div class="chips"><span>FastAPI</span><span>DuckDB</span><span class="i-zh">内控状态机</span><span class="i-en">Control states</span></div>
-        <div class="card-links">
-          <a href="https://github.com/Martin-cell-blip/bank-audit-hub" target="_blank" rel="noopener" data-hover>GitHub →</a>
+          <a href="dji/" data-hover><span class="i-zh">读 PRD</span><span class="i-en">Read the PRD</span> →</a>
         </div>
       </article>
     </div>
   </div>
-  -->
+
+  <!-- Governance checklist (2026-10-14) -->
+  <div class="fit-panel gov-panel" data-stamp="GOVERNANCE" data-reveal>
+    <div class="fit-top">
+      <h3><span class="i-zh">AI 应用治理：我按这份清单构建</span><span class="i-en">AI governance: the checklist I build to</span></h3>
+      <p><span class="i-zh">六条原则。每条标明已经在哪个项目里落地；没有落地记录的，是我设计时的清单项，不是已交付的功能。</span><span class="i-en">Six principles. Each names the project where it is implemented; items without an implementation record are checklist items I design to, not shipped features.</span></p>
+    </div>
+    <div class="fit-grid gov-grid">
+      <div class="fit-card">
+        <b>01 · <span class="i-zh">最小权限</span><span class="i-en">Least privilege</span></b>
+        <p><span class="i-zh">模型只拿只读权限和决策所需的字段；写入、付款、发布一律不在模型手里。</span><span class="i-en">The model gets read-only access and only the fields a decision needs; writes, payments and publishing never sit with the model.</span></p>
+        <ul>
+          <li><span class="i-zh">DecisionOps：大模型无写权限，不执行资金动作</span><span class="i-en">DecisionOps: the LLM has no write access and never moves money</span></li>
+          <li><span class="i-zh">Agentic Data Platform：SELECT-only SQL guard</span><span class="i-en">Agentic Data Platform: SELECT-only SQL guard</span></li>
+        </ul>
+      </div>
+      <div class="fit-card">
+        <b>02 · <span class="i-zh">密钥与凭证</span><span class="i-en">API keys &amp; credentials</span></b>
+        <p><span class="i-zh">密钥只在运行环境，不进仓库、不进前端；没有密钥时系统退回规则路径，而不是报错或伪造输出。</span><span class="i-en">Keys live in the runtime environment, never in the repo or the client; without a key the system falls back to the rules path instead of failing or faking output.</span></p>
+        <ul>
+          <li><span class="i-zh">结算复核 Copilot：未配置密钥即停用模型，退回规则理由</span><span class="i-en">Settlement copilot: with no key configured the model is disabled and the rule rationale stands</span></li>
+        </ul>
+      </div>
+      <div class="fit-card">
+        <b>03 · <span class="i-zh">OAuth 与授权范围</span><span class="i-en">OAuth &amp; scopes</span></b>
+        <p><span class="i-zh">接平台 API 时只申请最窄的 scope，刷新令牌留在服务端，授权可撤销、可审计。</span><span class="i-en">When connecting a platform API, request the narrowest scope, keep refresh tokens server-side, make grants revocable and auditable.</span></p>
+        <ul>
+          <li class="check"><span class="i-zh">清单项——尚无项目接入 OAuth 平台</span><span class="i-en">Checklist item — no project connects to an OAuth platform yet</span></li>
+        </ul>
+      </div>
+      <div class="fit-card">
+        <b>04 · <span class="i-zh">操作日志与证据留痕</span><span class="i-en">Logs &amp; audit trail</span></b>
+        <p><span class="i-zh">每次运行有清单，每个决定有人、有时间、有依据；证据包可哈希校验，经办与复核分离。</span><span class="i-en">Every run has a manifest; every decision has an owner, a timestamp and grounds; evidence packs are hash-checkable; preparer and reviewer are separate people.</span></p>
+        <ul>
+          <li><span class="i-zh">结算复核 Copilot：运行清单与证据包记 SHA-256；人工决定为 SQLite 事务，冲突 409</span><span class="i-en">Settlement copilot: SHA-256 on manifests and evidence packs; human decisions as SQLite transactions, 409 on conflict</span></li>
+        </ul>
+      </div>
+      <div class="fit-card">
+        <b>05 · <span class="i-zh">人工确认</span><span class="i-en">Human confirmation</span></b>
+        <p><span class="i-zh">AI 排序、推荐、起草；凡是动钱、动量、动价的动作都经人确认，样本不足就拒答。</span><span class="i-en">AI ranks, recommends and drafts; anything that moves money, volume or price is confirmed by a person, and on thin data the system declines.</span></p>
+        <ul>
+          <li><span class="i-zh">DecisionOps：除正常付款外全部进审批；不足 30 单 / 500 浏览拒答</span><span class="i-en">DecisionOps: everything but a routine payment goes to approval; refuses under 30 orders / 500 views</span></li>
+          <li><span class="i-zh">结算复核：13,324 条转人工，自动执行 0 条</span><span class="i-en">Settlement copilot: 13,324 rows to humans, 0 auto-executed</span></li>
+        </ul>
+      </div>
+      <div class="fit-card">
+        <b>06 · <span class="i-zh">提示词注入与数据泄露</span><span class="i-en">Prompt injection &amp; data leakage</span></b>
+        <p><span class="i-zh">输出受合同约束——结构、引用、拒答；评测集里放注入条目；给模型的只有决策需要的证据字段。</span><span class="i-en">Outputs are contract-bound — structure, citations, refusal; an injection case sits in the eval set; the model only sees the evidence fields a decision needs.</span></p>
+        <ul>
+          <li><span class="i-zh">再做对：评测集含一条注入条目，合同违规即拒绝并重试</span><span class="i-en">redo-right: the eval set includes one injection item; contract violations are refused and retried</span> <a href="https://github.com/Martin-cell-blip/redo-right" target="_blank" rel="noopener" data-hover class="ref" style="border-bottom:1px solid var(--line-strong)">GitHub ↗</a></li>
+          <li><span class="i-zh">DecisionOps：引用 ID 必须全在证据集内，否则回退模板</span><span class="i-en">DecisionOps: citation IDs must all exist in the evidence set, or the output falls back to a template</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
   <div class="rule"></div>
 </section>
 
@@ -1623,64 +1856,93 @@ html[data-theme="nocturne"] .closer{
 <section class="sect" id="skills">
   <div class="sec-head" data-reveal>
     <span class="no">02 / 07 — <span class="i-zh">技能</span><span class="i-en">Skills</span></span>
-    <h2><span class="i-zh">工具与<em>方法</em></span><span class="i-en">Tools &amp; <em>Method</em></span></h2>
+    <h2><span class="i-zh">能力<em>地图</em></span><span class="i-en">Capability <em>Map</em></span></h2>
   </div>
   <p class="sec-sub" data-reveal>
-    <span class="i-zh">从需求到上线的完整链路：用户研究 → PRD → Agent 工作流 → 原型 → 评测。做完的东西都能被复跑、被追问。</span>
-    <span class="i-en">The full path from demand to launch: user research → PRD → agent workflow → prototype → evaluation. Everything I ship can be re-run and questioned.</span>
+    <span class="i-zh">分三层：已经在作品里有证据的，能直接迁移到营销分析与增长工具的，正在补齐的。每一条都指向上面的项目或下方简历里的经历，能被复跑、被追问。</span>
+    <span class="i-en">Three tiers: evidenced in work, transferable to marketing analytics and growth tooling, and currently being built. Every line points to a project above or an entry in the résumé below, and can be re-run and questioned.</span>
   </p>
-  <div class="skills-grid">
+
+  <div class="fit-panel cap-panel" data-stamp="CAPABILITY MAP" data-reveal style="margin-top:0">
+    <div class="fit-grid">
+      <div class="fit-card tier-have">
+        <b><span class="i-zh">已有证据</span><span class="i-en">Evidenced in work</span></b>
+        <ul>
+          <li><span class="i-zh"><strong>LLM Agent 工作流与评测</strong>：规则计算 + 循证解释、固定种子评测接 CI</span><span class="i-en"><strong>LLM agent workflows &amp; evals</strong>: rules + evidence-backed explanation, fixed-seed evals in CI</span> <span class="ref">→ DecisionOps · ADP</span></li>
+          <li><span class="i-zh"><strong>Python 数据管线与 SQL</strong>：DuckDB、dbt、FastAPI、Docker、GitHub Actions</span><span class="i-en"><strong>Python data pipelines &amp; SQL</strong>: DuckDB, dbt, FastAPI, Docker, GitHub Actions</span> <span class="ref">→ ADP · 模拟盘 · 结算复核</span></li>
+          <li><span class="i-zh"><strong>TypeScript / React 原型</strong>：AI 结对的短周期可点原型</span><span class="i-en"><strong>TypeScript / React prototyping</strong>: short-cycle clickable prototypes with AI pairing</span> <span class="ref">→ Peak Calendar</span></li>
+          <li><span class="i-zh"><strong>数据分析与口径对齐</strong>：20+ 张业务底表、36 万观测面板</span><span class="i-en"><strong>Data analysis &amp; definition alignment</strong>: 20+ base tables, a 360k-observation panel</span> <span class="ref">→ ByteDance · UCD</span></li>
+          <li><span class="i-zh"><strong>内部工具到可演示产品</strong>：对账复核台、决策台</span><span class="i-en"><strong>Internal tools to demoable products</strong>: reconciliation desk, decision desk</span> <span class="ref">→ 结算复核 · DecisionOps</span></li>
+          <li><span class="i-zh"><strong>人工确认机制</strong>：审批门、拒答阈值、自动执行为零</span><span class="i-en"><strong>Human-in-the-loop</strong>: approval gates, refusal thresholds, zero auto-execution</span> <span class="ref">→ DecisionOps · 结算复核</span></li>
+          <li><span class="i-zh"><strong>电商 GTM 与直播指标</strong>：选品、定价、CTR / ATC / CVR / GPM 闭环</span><span class="i-en"><strong>E-commerce GTM &amp; livestream metrics</strong>: discovery, pricing, the CTR / ATC / CVR / GPM loop</span> <span class="ref">→ 兴盛塑料</span></li>
+          <li><span class="i-zh"><strong>AI 高密度构建</strong>：Claude Code、Cursor、Codex 日常主力工具</span><span class="i-en"><strong>High-density AI building</strong>: Claude Code, Cursor and Codex as daily go-to tools</span> <span class="ref">→ 2025 年以来的项目 / projects since 2025</span></li>
+        </ul>
+      </div>
+      <div class="fit-card tier-transfer">
+        <b><span class="i-zh">可迁移基础</span><span class="i-en">Transferable foundation</span></b>
+        <ul>
+          <li><span class="i-zh"><strong>营销效果衡量</strong> ← 因果推断（DID / 事件研究，36 万观测面板）与大促复盘里写明的归因上限</span><span class="i-en"><strong>Marketing measurement</strong> ← causal inference (DID / event study on a 360k-observation panel) and the attribution ceiling stated in the promotion review</span></li>
+          <li><span class="i-zh"><strong>归因思维</strong> ← 跨部门指标口径对齐、三锚点交叉测算、口径污染校正</span><span class="i-en"><strong>Attribution thinking</strong> ← cross-team metric alignment, triple-anchor triangulation, definition-contamination fixes</span></li>
+          <li><span class="i-zh"><strong>预算与策略决策框架</strong> ← 预测 ≠ 决策：目标、约束、取舍、责任；控价与汰换情景</span><span class="i-en"><strong>Budget &amp; strategy framing</strong> ← Prediction ≠ Decision: objective, constraints, trade-offs, accountability; pricing and delisting scenarios</span></li>
+          <li><span class="i-zh"><strong>漏斗指标</strong> ← 直播闭环 CTR / ATC / CVR / GPM、10+ 核心运营指标的日常监测与异常预警</span><span class="i-en"><strong>Funnel metrics</strong> ← the livestream CTR / ATC / CVR / GPM loop, daily monitoring and anomaly alerts on 10+ core metrics</span></li>
+          <li><span class="i-zh"><strong>仓库与接口</strong> ← ADP 里 BigQuery 已是可切换的仓库目标，FastAPI 提供数据 API</span><span class="i-en"><strong>Warehouse &amp; APIs</strong> ← BigQuery is already a switchable target in ADP, with a FastAPI data layer</span></li>
+        </ul>
+      </div>
+      <div class="fit-card tier-build">
+        <b><span class="i-zh">正在补齐</span><span class="i-en">Currently extending into</span></b>
+        <ul>
+          <li><span class="i-zh"><strong>MMM 框架</strong>：Google Meridian · Meta Robyn · PyMC-Marketing</span><span class="i-en"><strong>MMM frameworks</strong>: Google Meridian · Meta Robyn · PyMC-Marketing</span></li>
+          <li><span class="i-zh"><strong>投放平台数据</strong>：Google Ads API · Meta Marketing API；已取得 Google Skillshop「AI-Powered Performance Ads」认证（2026.08）</span><span class="i-en"><strong>Paid-media data</strong>: Google Ads API · Meta Marketing API; Google Skillshop "AI-Powered Performance Ads" certified (Aug 2026)</span></li>
+          <li><span class="i-zh"><strong>GA4 · BigQuery 导出 · Looker</strong>：把 ADP 的骨架接到真实营销事件流</span><span class="i-en"><strong>GA4 · BigQuery export · Looker</strong>: wiring the ADP skeleton to a real marketing event stream</span></li>
+          <li><span class="i-zh"><strong>SEO / GEO 与创意生成流水线</strong>：用 DJI PRD 的「先定义失败」方法做素材生成验收</span><span class="i-en"><strong>SEO / GEO &amp; creative-generation pipelines</strong>: the "define failure first" method from the DJI PRD, applied to asset generation</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="skills-grid" style="margin-top:clamp(26px,4vh,44px)">
     <div class="skill" data-reveal>
       <span class="roman">I</span>
-      <h4><span class="i-zh">AI 产品与 Agent</span><span class="i-en">AI Product &amp; Agents</span></h4>
-      <span class="en-sub">FastAPI · Evals · CI</span>
+      <h4><span class="i-zh">LLM Agent 与 AI 工作流</span><span class="i-en">LLM Agents &amp; AI Workflow</span></h4>
+      <span class="en-sub">Agents · Evals · CI</span>
       <ul>
-        <li><span class="i-zh">双业务 Agent 架构：<b>规则引擎计算 + 大模型循证解释</b></span><span class="i-en">Two-agent architecture: <b>rules engine for math, LLM for evidence-backed explanation</b></span></li>
-        <li><span class="i-zh"><b>证据引用</b>强校验 · 数据不足拒答 · 人工审批兜底</span><span class="i-en">Strict <b>evidence citations</b> · graceful refusal · human-review fallback</span></li>
-        <li><span class="i-zh"><b>固定种子评测</b>（200 例）接入 GitHub Actions CI</span><span class="i-en"><b>Fixed-seed evals</b> (200 cases) wired into GitHub Actions CI</span></li>
-        <li><span class="i-zh">千帆适配实测暴露<b>引用合并降级</b>，归一化修复后复测 <b>6/6 通过</b>——修的是代码，没有放宽校验</span><span class="i-en">A Qianfan port surfaced a <b>citation-merge regression</b>; fixed by normalizing citations and retested <b>6/6</b> — the code moved, the check did not</span></li>
+        <li><span class="i-zh">双层架构：<b>规则引擎计算 + 大模型循证解释</b>，模型无写权限</span><span class="i-en">Two-layer architecture: <b>rules engine for math, LLM for evidence-backed explanation</b>, no write access for the model</span></li>
+        <li><span class="i-zh"><b>证据引用</b>强校验 · 数据不足拒答 · 人工审批兜底</span><span class="i-en">Strict <b>evidence citations</b> · graceful refusal · human-approval fallback</span></li>
+        <li><span class="i-zh"><b>固定种子评测</b>（200 例）接入 GitHub Actions CI；千帆适配暴露<b>引用合并降级</b>，归一化修复后复测 <b>6/6</b>——修的是代码，没有放宽校验</span><span class="i-en"><b>Fixed-seed evals</b> (200 cases) in GitHub Actions CI; a Qianfan port surfaced a <b>citation-merge regression</b>, fixed by normalising citations and retested <b>6/6</b> — the code moved, the check did not</span></li>
+        <li><span class="i-zh">Agent 编排数据管线：<b>任务分解 / tool calling / 记忆 / 重试 / 监控</b></span><span class="i-en">Agent-orchestrated data pipelines: <b>task decomposition / tool calling / memory / retry / monitoring</b></span></li>
       </ul>
     </div>
     <div class="skill" data-reveal>
       <span class="roman">II</span>
-      <h4><span class="i-zh">商业与战略分析</span><span class="i-en">Business &amp; Strategy</span></h4>
-      <span class="en-sub">Sizing · Pricing · Category P&amp;L</span>
+      <h4><span class="i-zh">营销分析与 GTM 决策</span><span class="i-en">Marketing Analytics &amp; GTM Decisioning</span></h4>
+      <span class="en-sub">Funnel metrics · Promo review · Sizing</span>
       <ul>
-        <li><span class="i-zh">品类结构 / 价格带 / 汰换 / 大促 ROI 的<b>经营决策闭环</b></span><span class="i-en">A full <b>operating loop</b>: structure, price bands, assortment, promo ROI</span></li>
-        <li><span class="i-zh"><b>三锚点市场测算</b> + 敏感性分析</span><span class="i-en"><b>Triple-anchor market sizing</b> with sensitivity analysis</span></li>
-        <li><span class="i-zh"><b>口径侦探</b>：识别并校正咨询机构口径污染</span><span class="i-en"><b>Definition detective</b>: catching &amp; correcting metric contamination</span></li>
-        <li><span class="i-zh">矛盾与缺口<b>显式披露</b>，不藏问题</span><span class="i-en">Contradictions &amp; gaps <b>disclosed</b>, never buried</span></li>
+        <li><span class="i-zh"><b>直播闭环</b>：CTR / ATC / CVR / GPM 驱动主推款与定价，6 名主播实时测试</span><span class="i-en"><b>Livestream loop</b>: CTR / ATC / CVR / GPM drive the hero SKU and pricing, live tests with six hosts</span></li>
+        <li><span class="i-zh"><b>大促复盘（估算 ROI）</b>与归因上限；控价情景与汰换候选，四模块一套 GMV 口径</span><span class="i-en"><b>Promotion review (estimated ROI)</b> with its attribution ceiling; pricing scenarios and delisting candidates on one GMV definition</span></li>
+        <li><span class="i-zh"><b>三锚点市场测算</b> + 敏感性分析；<b>口径侦探</b>：识别并校正咨询机构口径污染</span><span class="i-en"><b>Triple-anchor market sizing</b> with sensitivity analysis; <b>definition detective</b>: catching and correcting metric contamination</span></li>
+        <li><span class="i-zh"><b>因果推断</b>：DID / 事件研究，36 万观测面板——与营销增量测试同一套方法</span><span class="i-en"><b>Causal inference</b>: DID / event study on a 360k-observation panel — the same toolkit as marketing incrementality tests</span></li>
       </ul>
     </div>
     <div class="skill" data-reveal>
       <span class="roman">III</span>
-      <h4><span class="i-zh">数据分析与工程</span><span class="i-en">Data &amp; Engineering</span></h4>
-      <span class="en-sub">SQL · Python · Econometrics</span>
+      <h4><span class="i-zh">数据产品与工程</span><span class="i-en">Data Products &amp; Engineering</span></h4>
+      <span class="en-sub">Python · TypeScript · SQL</span>
       <ul>
-        <li><b>SQL (DuckDB)</b> · Python (pandas) · Excel <span class="i-zh">透视表</span><span class="i-en">pivots</span> · Power BI · Stata</li>
-        <li><span class="i-zh"><b>因果推断</b>：DID / 事件研究，保险政策 36 万观测面板</span><span class="i-en"><b>Causal inference</b>: DID / event study on a 360k-obs insurance-policy panel</span></li>
-        <li><span class="i-zh">财务与风控口径：三方对账 · 账龄 / ECL · 函证流程</span><span class="i-en">Finance &amp; risk fluency: three-way recon · aging / ECL · confirmations</span></li>
+        <li><b>Python</b> (pandas) · <b>SQL</b> (DuckDB) · dbt · FastAPI · Docker · GitHub Actions</li>
+        <li><span class="i-zh"><b>TypeScript / React / Tailwind</b> 原型（Vite），Gemini + Cursor + AI Studio 结对</span><span class="i-en"><b>TypeScript / React / Tailwind</b> prototypes (Vite), paired with Gemini + Cursor + AI Studio</span></li>
+        <li><span class="i-zh">仓库可移植：<b>DuckDB / MotherDuck / BigQuery</b> 一条连接串；列级血缘从 dbt manifest 恢复</span><span class="i-en">Warehouse-portable: <b>DuckDB / MotherDuck / BigQuery</b> on one connection string; column-level lineage from the dbt manifest</span></li>
+        <li><span class="i-zh">Excel 透视表 · Power BI · Stata；财务与风控口径：三方对账 · 账龄 / ECL</span><span class="i-en">Excel pivots · Power BI · Stata; finance and risk fluency: three-way recon · aging / ECL</span></li>
       </ul>
     </div>
     <div class="skill" data-reveal>
       <span class="roman">IV</span>
-      <h4><span class="i-zh">团队管理与交付</span><span class="i-en">Team &amp; Delivery</span></h4>
-      <span class="en-sub">Founder · Team Lead</span>
+      <h4><span class="i-zh">团队、交付与沟通</span><span class="i-en">Team, Delivery &amp; Communication</span></h4>
+      <span class="en-sub">Founder · Team lead · 300h teaching · Remote</span>
       <ul>
-        <li><span class="i-zh"><b>研学公司创业</b>：5 人团队，2 场活动约 500 人</span><span class="i-en"><b>Founded a study-tour company</b>: 5-person team, 2 programs for ~500 students</span></li>
-        <li><span class="i-zh">电商经营合伙人：<b>年度利润 +7%</b>（兴盛塑料）</span><span class="i-en">E-commerce operating partner: <b>annual profit +7%</b> (Xingsheng Plastics)</span></li>
-        <li><span class="i-zh">带领 13 人团队，落地 <b>25 场</b>校企活动</span><span class="i-en">Led a 13-person team through <b>25</b> campus-corporate events</span></li>
-        <li><span class="i-zh">两类团队要的不同：创业队对<b>经营结果</b>负责，项目队要在多场并行下<b>保住交付</b>；做法都是把目标拆成谁在何时交什么，再按复盘调整</span><span class="i-en">The two demand different things: a venture team answers for the <b>P&amp;L</b>, a project team has to <b>hold delivery</b> across parallel events; both come down to splitting a goal into who ships what by when, then adjusting on review</span></li>
-      </ul>
-    </div>
-    <div class="skill" data-reveal>
-      <span class="roman">V</span>
-      <h4><span class="i-zh">沟通与协作</span><span class="i-en">Communication &amp; Collaboration</span></h4>
-      <span class="en-sub">20+ base tables · 300h teaching</span>
-      <ul>
-        <li><span class="i-zh"><b>跨部门口径对齐</b>：20+ 张业务底表。同一个指标名，各方常常用着不同的定义、统计范围与算法；先把这三样对齐，再进入计算</span><span class="i-en"><b>Cross-team definition alignment</b> across 20+ base tables. One metric name often carries different definitions, scopes and formulas across teams; I settle all three before any computing starts</span></li>
-        <li><span class="i-zh"><b>300 小时</b>全英文授课，面向 300+ 学生</span><span class="i-en"><b>300 hours</b> teaching in English to 300+ students</span></li>
-        <li><span class="i-zh">中文母语，<b>英文工作流利</b>（TOEFL 102 / GRE 332）</span><span class="i-en">Native Mandarin, <b>professional English</b> (TOEFL 102 / GRE 332)</span></li>
+        <li><span class="i-zh"><b>研学公司创业</b>：5 人团队，2 场活动约 500 人；<b>带领 13 人团队</b>落地 25 场校企活动</span><span class="i-en"><b>Founded a study-tour company</b>: 5-person team, 2 programs for ~500 students; <b>led a 13-person team</b> through 25 campus-corporate events</span></li>
+        <li><span class="i-zh"><b>远程经营</b>：2024.08 起从都柏林远程参与兴盛塑料电商线，对结果负责</span><span class="i-en"><b>Remote operating</b>: worked on the Xingsheng e-commerce line remotely from Dublin from 2024.08, answering for results</span></li>
+        <li><span class="i-zh"><b>跨部门口径对齐</b>：20+ 张业务底表——同一个指标名，先对齐定义、范围与算法，再进入计算</span><span class="i-en"><b>Cross-team definition alignment</b> across 20+ base tables — one metric name, settle definition, scope and formula before computing</span></li>
+        <li><span class="i-zh"><b>300 小时</b>全英文授课，面向 300+ 学生；中文母语，<b>英文工作流利</b>（TOEFL 102 / GRE 332）</span><span class="i-en"><b>300 hours</b> teaching in English to 300+ students; native Mandarin, <b>professional English</b> (TOEFL 102 / GRE 332)</span></li>
       </ul>
     </div>
   </div>
@@ -1712,8 +1974,8 @@ html[data-theme="nocturne"] .closer{
         <span class="i-en">I've done data analytics at <b>ByteDance</b> and <b>CICC</b>. That work pushed my centre of gravity one step upstream of the analysis: find the hypothesis a business problem actually needs tested, then let the data carry the decision.</span>
       </p>
       <p data-reveal>
-        <span class="i-zh">我关注能被验证、也能落地的业务问题：品类怎么选、价格怎么定、风险怎么识别，以及 AI 怎样提高决策效率。围绕这些问题，我独立完成了 <b>DecisionOps AI</b>、<b>电商经营决策模拟盘</b>和<b>平台战略研究</b>，把需求拆解、数据分析、模型评测与产品上线连成一条链。</span>
-        <span class="i-en">I focus on business questions that can be verified and shipped: which assortment to carry, how to price, how to spot risk, and how AI can raise decision efficiency. Around these I independently built <b>DecisionOps AI</b>, an <b>e-commerce decision simulator</b> and a <b>platform-strategy study</b>, joining requirement breakdown, data analysis, model evaluation and product launch into one chain.</span>
+        <span class="i-zh">我关注能被验证、也能落地的营销与经营问题：选什么品、定什么价、预算加在哪、哪一步该让人确认，以及 AI 怎样把这些判断做成团队能接手的工具。围绕这些问题，我主导了<b>兴盛塑料的 AI 选品与直播 GTM 闭环</b>，并独立完成了 <b>Agentic Data Platform</b>、<b>DecisionOps AI</b> 与 <b>Peak Calendar</b>，把需求拆解、数据管线、Agent 工作流、评测与上线连成一条链。</span>
+        <span class="i-en">I focus on marketing and operating questions that can be verified and shipped: what to stock, how to price, where the next unit of budget goes, which step a human must confirm — and how AI turns those judgements into tools a team can take over. Around them I led <b>Xingsheng's AI product-discovery and livestream GTM loop</b> and built, on my own, the <b>Agentic Data Platform</b>, <b>DecisionOps AI</b> and <b>Peak Calendar</b>, joining requirement breakdown, data pipelines, agent workflows, evaluation and launch into one chain.</span>
       </p>
       <p data-reveal>
         <span class="i-zh">我也带过团队：<b>5 人团队</b>运营研学公司，按财务 / 市场 / 履约 / 客服分工；<b>13 人团队</b>落地 <b>25 场</b>校企活动。带团队教给我的，是把一个目标翻译成别人能接手的事：交付什么、谁负责、什么时候完成。</span>
@@ -1749,7 +2011,7 @@ html[data-theme="nocturne"] .closer{
              data-alt-en="University College Dublin, Belfield campus — the lake and the Arts Block" />
       </figure>
       <div class="edu-body">
-        <span class="edu-yr">2024.09 – 2026.12 · Dublin</span>
+        <span class="edu-yr">2024.09 – 2027.03 · Dublin</span>
         <h3><span class="i-zh">都柏林大学 UCD</span><span class="i-en">University College Dublin</span></h3>
         <p class="edu-deg"><span class="i-zh">经济学文学硕士 · 全额奖学金</span><span class="i-en">MA Economics · Full scholarship</span></p>
       </div>
@@ -1818,7 +2080,7 @@ html[data-theme="nocturne"] .closer{
         <div class="edu">
           <b><span class="i-zh">都柏林大学 UCD</span><span class="i-en">University College Dublin</span></b>
           <span><span class="i-zh">经济学文学硕士 · 全额奖学金</span><span class="i-en">MA Economics · Full scholarship</span></span>
-          <small>2024.09 – 2026.12 · Dublin</small>
+          <small>2024.09 – 2027.03 · Dublin</small>
         </div>
         <div class="edu">
           <b><span class="i-zh">约翰·霍普金斯大学 JHU</span><span class="i-en">Johns Hopkins University</span></b>
@@ -1833,9 +2095,9 @@ html[data-theme="nocturne"] .closer{
       </div>
       <div>
         <h5><span class="i-zh">技能</span><span class="i-en">Skills</span></h5>
-        <div class="cv-line"><span class="i-zh">FastAPI · OpenAI / ERNIE · 证据引用与数据不足拒答 · 固定种子评测 · GitHub Actions CI</span><span class="i-en">FastAPI · OpenAI / ERNIE · evidence citations &amp; graceful refusal · fixed-seed evals · GitHub Actions CI</span></div>
-        <div class="cv-line"><span class="i-zh">SQL (DuckDB) · Python (pandas) · Excel 透视表 · Power BI · Stata</span><span class="i-en">SQL (DuckDB) · Python (pandas) · Excel pivots · Power BI · Stata</span></div>
-        <div class="cv-line"><span class="i-zh">品类经营 · 定价 · 三锚点测算 · 对账 / 账龄 / ECL</span><span class="i-en">Category P&amp;L · pricing · market sizing · recon / aging / ECL</span></div>
+        <div class="cv-line"><span class="i-zh">LLM Agent 工作流 · FastAPI · 证据引用与数据不足拒答 · 固定种子评测 · 人工审批 · GitHub Actions CI</span><span class="i-en">LLM agent workflows · FastAPI · evidence citations &amp; graceful refusal · fixed-seed evals · human approval · GitHub Actions CI</span></div>
+        <div class="cv-line"><span class="i-zh">Python (pandas) · TypeScript / React · SQL (DuckDB) · dbt · Excel 透视表 · Power BI · Stata</span><span class="i-en">Python (pandas) · TypeScript / React · SQL (DuckDB) · dbt · Excel pivots · Power BI · Stata</span></div>
+        <div class="cv-line"><span class="i-zh">直播指标 CTR / CVR / GPM · 促销复盘（估算 ROI）与定价情景 · 市场测算 · 对账 / 账龄 / ECL</span><span class="i-en">Livestream metrics CTR / CVR / GPM · promo review (est. ROI) &amp; pricing scenarios · market sizing · recon / aging / ECL</span></div>
         <div class="cv-line"><span class="i-zh">TOEFL 102 · GRE 332</span><span class="i-en">TOEFL 102 · GRE 332</span></div>
       </div>
     </aside>
@@ -1845,8 +2107,8 @@ html[data-theme="nocturne"] .closer{
       <div>
         <h5><span class="i-zh">个人概述</span><span class="i-en">Profile</span></h5>
         <p style="font-size:.92rem;color:var(--ink-soft);max-width:70ch">
-          <span class="i-zh">应用经济学背景的 AI 产品与经营分析候选人：独立完成 DecisionOps AI（双业务 Agent）、电商经营决策模拟盘与平台战略行业研究；两段大厂 / 头部机构数据分析实习（字节跳动、中金）；近三年电商经营合伙人经历（兴盛塑料）与研学公司创业经历；擅长用 SQL / Python / AI Agent 把人工重复流程自动化，单轮验证周期从 2–3 天压缩至 3–5 小时。</span>
-          <span class="i-en">Applied-economics-trained AI-product and business-analytics candidate: independently built DecisionOps AI (two business agents), an e-commerce decision simulator and a platform-strategy industry study; data-analytics internships at ByteDance and CICC; nearly three years as an e-commerce operating partner (Xingsheng Plastics) plus a study-tour startup; automates repetitive workflows with SQL / Python / AI agents, cutting one verification round from 2–3 days to 3–5 hours.</span>
+          <span class="i-zh">应用经济学背景的 AI 原生构建者，方向是营销分析、增长工具与决策自动化：主导兴盛塑料 AI 选品与直播电商 GTM 闭环，独立完成 Agentic Data Platform、DecisionOps AI、Peak Calendar 与品类经营模拟盘；两段数据分析实习（字节跳动、中金）；近三年电商经营合伙人（兴盛塑料）与研学公司创业经历；用 Python / TypeScript、SQL 与 Claude Code 等 AI Agent 工具把人工流程做成可复算、带人工确认的工具。</span>
+          <span class="i-en">Applied-economics-trained, AI-native builder focused on marketing analytics, growth tooling and decision automation: led Xingsheng's AI product-discovery and livestream GTM loop and built, solo, the Agentic Data Platform, DecisionOps AI, Peak Calendar and a category-management simulator; data-analytics internships at ByteDance and CICC; nearly three years as an e-commerce operating partner (Xingsheng Plastics) plus a study-tour startup; turns manual workflows into recomputable, human-confirmed tools with Python / TypeScript, SQL and agent tooling such as Claude Code.</span>
         </p>
       </div>
 
@@ -1859,20 +2121,20 @@ html[data-theme="nocturne"] .closer{
             <time>2024.09 – <span class="i-zh">至今</span><span class="i-en">present</span> · Dublin</time>
           </header>
           <ul>
-            <li><span class="i-zh"><b>AI 提效落地：</b>搭建双 AI Agent 协作工作流（执行 + 独立评审），自动化「数字-代码」溯源审计与报告生成，单轮端到端验证从 2–3 天压缩至 3–5 小时。</span><span class="i-en"><b>AI in production:</b> built a dual-agent workflow (builder + independent reviewer) automating number-to-code provenance audits and reporting — one verification round cut from 2–3 days to 3–5 hours.</span></li>
+            <li><span class="i-zh"><b>研究自动化与质量门禁：</b>搭建执行 + 独立评审的双 Agent 工作流，24 项自动检查与 31 项回归测试全过才放行；约 230 个论文数字逐项对到代码输出，当天修复 12 项。</span><span class="i-en"><b>Research automation &amp; quality gate:</b> built a builder + independent-reviewer agent workflow; 24 automated checks and 31 regression tests gate every release; ~230 paper figures traced to code output, 12 fixed the same day.</span></li>
             <li><span class="i-zh"><b>数据建模：</b>基于 OpenFEMA 保单 + 房产成交 + HMDA 贷款数据构建区域×季度面板（36 万观测），定义「保费冲击强度」指标并统一口径（DID + 事件研究）。</span><span class="i-en"><b>Modeling:</b> built a region × quarter panel (360k obs) from OpenFEMA policies, property transactions and HMDA loans; defined a premium-shock metric with unified definitions (DID + event study).</span></li>
-            <li><span class="i-zh"><b>教学与沟通：</b>面向 300+ 学生讲授微观经济学（累计 300 小时，全英文），率先实践 AI 辅助教学。</span><span class="i-en"><b>Teaching:</b> taught microeconomics to 300+ students (300 hours, in English); an early adopter of AI-assisted teaching.</span></li>
+            <li><span class="i-zh"><b>教学与沟通：</b>面向 300+ 学生讲授微观经济学（累计 300 小时，全英文），将 AI 辅助教学引入课堂。</span><span class="i-en"><b>Teaching:</b> taught microeconomics to 300+ students (300 hours, in English); brought AI-assisted teaching into the classroom.</span></li>
           </ul>
         </div>
         <div class="xp">
           <span class="node"></span>
           <header>
             <h6><span class="i-zh">兴盛塑料 <span>— 合伙人 &amp; 产品经理（电商经营）</span></span><span class="i-en">Xingsheng Plastics <span>— Partner &amp; PM, E-commerce</span></span></h6>
-            <time><span class="i-zh">2023.02 – 2025.12 · 廊坊（2024.09 起远程）</span><span class="i-en">2023.02 – 2025.12 · Langfang (remote from 2024.09)</span></time>
+            <time><span class="i-zh">2023.02 – 2025.12 · 廊坊（2024.08 起远程）</span><span class="i-en">2023.02 – 2025.12 · Langfang (remote from 2024.08)</span></time>
           </header>
           <ul>
-            <li><span class="i-zh"><b>经营与选品：</b>主导淘宝 / 抖音渠道的 AI 辅助选品与款式迭代，年度利润提升约 7%（近 20 万元）。</span><span class="i-en"><b>Operations &amp; assortment:</b> led AI-assisted product selection and iteration on Taobao / Douyin, lifting annual profit by ~7% (≈¥200k).</span></li>
-            <li><span class="i-zh"><b>渠道与交付：</b>搭建 6 名主播的直播销售体系，并将打样—报价周期压缩至 12 天内。</span><span class="i-en"><b>Channels &amp; delivery:</b> built a six-host livestream sales channel and cut the sample-to-quote cycle to within 12 days.</span></li>
+            <li><span class="i-zh"><b>AI 选品与经营：</b>主导淘宝 / 抖音渠道的 AI 辅助选品与款式迭代（爬虫 + Claude Code 聚类归因 → 定位矩阵与卖点清单），核对客单价、毛利与 SKU 表现，跟踪备货、发货与回款，围绕 SKU、定价、主播反馈与利润表现做经营复盘。</span><span class="i-en"><b>AI discovery &amp; operations:</b> led AI-assisted product selection and iteration on Taobao / Douyin (crawler + Claude Code clustering and attribution → positioning matrix and selling-point list); checked unit price, margin and SKU performance, tracked stocking, shipping and collections, and ran operating reviews on SKU, pricing, host feedback and profit performance.</span></li>
+            <li><span class="i-zh"><b>直播 GTM：</b>搭建 6 名主播的直播销售体系，按 CTR / ATC / CVR / GPM 调整主推款与定价；T0/T1 快速原型把新品从立项到上架由约两个月压到 25 天内。</span><span class="i-en"><b>Livestream GTM:</b> built a six-host livestream sales channel tuned on CTR / ATC / CVR / GPM; T0/T1 prototyping cut new-product time to shelf from about two months to under 25 days.</span></li>
           </ul>
         </div>
         <div class="xp">
@@ -1890,7 +2152,7 @@ html[data-theme="nocturne"] .closer{
           <span class="node"></span>
           <header>
             <h6><span class="i-zh">字节跳动 <span>— 数据分析实习</span></span><span class="i-en">ByteDance <span>— Data Analytics Intern</span></span></h6>
-            <time>2019.09 – 2019.11 · Beijing</time>
+            <time>2019.04 – 2019.07 · Beijing</time>
           </header>
           <ul>
             <li><span class="i-zh"><b>指标监控与异常预警：</b>日常跟踪 DAU 等 10+ 核心运营指标，负责异常数据预警与复核，输出动态数据摘要。</span><span class="i-en"><b>Metric monitoring:</b> tracked 10+ core metrics (incl. DAU), owned anomaly alerts and re-checks, and delivered rolling data digests.</span></li>
@@ -1902,8 +2164,10 @@ html[data-theme="nocturne"] .closer{
       <div>
         <h5><span class="i-zh">项目经历</span><span class="i-en">Projects</span></h5>
         <ul class="xp cv-projects" style="border-left:none;padding-left:0;margin-left:0">
-          <li><span class="i-zh"><b>DecisionOps AI</b> — 双业务 Agent（结算风控 + 商家经营）：规则引擎计算、大模型循证解释；200 例固定种子评测接入 CI。</span><span class="i-en"><b>DecisionOps AI</b> — two business agents (settlement risk + merchant ops): rules engine for math, LLM for evidence-backed explanation; 200 fixed-seed evals in CI.</span> <a href="https://github.com/Martin-cell-blip/decisionops-ai" target="_blank" rel="noopener" data-hover>repo ↗</a></li>
-          <li><span class="i-zh"><b>电商经营决策模拟盘</b> — 品类结构 / 汰换 / 定价 / 大促四模块闭环，GMV 跨模块对账容差 0。</span><span class="i-en"><b>Category Management Sim</b> — structure / assortment / pricing / promotion loop with zero-tolerance GMV reconciliation.</span> <a href="https://github.com/Martin-cell-blip/category-management-sim" target="_blank" rel="noopener" data-hover>repo ↗</a></li>
+          <li><span class="i-zh"><b>Agentic Data Platform</b> — LLM Agent 编排的端到端数据平台：摄取 → dbt → DuckDB / MotherDuck / BigQuery → FastAPI；SELECT-only SQL guard，18 项单元测试 + dbt 测试进 CI。</span><span class="i-en"><b>Agentic Data Platform</b> — an LLM-agent-orchestrated data platform: ingest → dbt → DuckDB / MotherDuck / BigQuery → FastAPI; SELECT-only SQL guard, 18 unit tests + dbt tests in CI.</span> <a href="https://github.com/Martin-cell-blip/agentic-data-platform" target="_blank" rel="noopener" data-hover>repo ↗</a></li>
+          <li><span class="i-zh"><b>DecisionOps AI</b> — 双业务 Agent（结算风控 + 商家经营）：规则引擎计算、大模型循证解释，除正常付款外全部进人工审批；200 例固定种子评测接入 CI。</span><span class="i-en"><b>DecisionOps AI</b> — two business agents (settlement risk + merchant ops): rules engine for math, LLM for evidence-backed explanation, human approval for everything but routine payments; 200 fixed-seed evals in CI.</span> <a href="https://github.com/Martin-cell-blip/decisionops-ai" target="_blank" rel="noopener" data-hover>repo ↗</a></li>
+          <li><span class="i-zh"><b>Peak Calendar</b> — 能量感知日历高保真 Demo（2025.09–2026.02）：React / TypeScript / Tailwind（Vite），Gemini + Cursor + AI Studio 结对；模拟准备度 → 24 小时能量曲线 → 5 级色标叠在日程上。</span><span class="i-en"><b>Peak Calendar</b> — energy-aware calendar demo (2025.09–2026.02): React / TypeScript / Tailwind (Vite), paired with Gemini + Cursor + AI Studio; simulated readiness → 24-hour energy curve → five colour levels over the schedule.</span> <a href="https://github.com/Martin-cell-blip/peak-calendar" target="_blank" rel="noopener" data-hover>repo ↗</a></li>
+          <li><span class="i-zh"><b>品类经营与促销情景模拟盘</b> — 品类结构 / 汰换 / 定价 / 大促复盘四模块闭环，GMV 跨模块对账容差 0。</span><span class="i-en"><b>Category, Pricing &amp; Promotion Simulator</b> — structure / assortment / pricing / promotion-review loop with zero-tolerance GMV reconciliation.</span> <a href="https://github.com/Martin-cell-blip/category-management-sim" target="_blank" rel="noopener" data-hover>repo ↗</a></li>
           <li><span class="i-zh"><b>家居日用品类行业研究</b> — 平台战略视角七章行研，60+ 编号溯源来源。</span><span class="i-en"><b>Home &amp; Daily Goods study</b> — seven chapters from a platform-strategy lens, 60+ numbered sources.</span> <a href="https://martin-cell-blip.github.io/category-management-sim/research/" target="_blank" rel="noopener" data-hover><span class="i-zh">报告</span><span class="i-en">report</span> ↗</a></li>
           <li><span class="i-zh"><b>DJI Mimo「AI 一键成片」PRD</b> — 自采 8,223 条 App Store + 706 条 B 站评论定位需求；84 条分层评测用例、三级判定协议。</span><span class="i-en"><b>DJI Mimo one-tap edit PRD</b> — demand grounded in 8,223 self-collected App Store reviews and 706 Bilibili comments; 84 stratified eval cases across a three-gate protocol.</span> <a href="dji/" data-hover><span class="i-zh">读 PRD</span><span class="i-en">read</span> ↗</a></li>
         </ul>
@@ -1988,7 +2252,7 @@ html[data-theme="nocturne"] .closer{
     </h2>
 
     <p class="closer-lede">
-      <span class="ln"><span class="i-zh">我正在寻找 2027 届管培生与 AI 产品岗位。</span><span class="i-en">I'm looking for 2027 graduate-programme and AI product roles.</span></span>
+      <span class="ln"><span class="i-zh">我在找把 AI、数据与工程用在营销与经营决策上的岗位：AI marketing operations、growth tooling、marketing analytics automation——远程优先，中英文皆可。</span><span class="i-en">I'm looking for roles that put AI, data and engineering to work on marketing and operating decisions — AI marketing operations, growth tooling, marketing analytics automation. Remote first; Chinese or English.</span></span>
       <span class="ln"><span class="i-zh">如果你也关心预测之后的那一步——目标、约束与责任怎么落到一个具体决定上，欢迎来聊聊。</span><span class="i-en">If you also care about the step after the prediction — how objectives, constraints and accountability land on one concrete decision — let's talk.</span></span>
     </p>
 
