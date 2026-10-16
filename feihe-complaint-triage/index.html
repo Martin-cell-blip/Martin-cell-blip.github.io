@@ -191,7 +191,7 @@ td.empty p{margin:0 0 var(--sp-3)}
       <h1>公开投诉分拣台</h1>
       <p class="lede">把一周新增的公开投诉分到质量安全、活动权益、订单发货，附原文依据，标出需人工复核的条目，导出核查清单。</p>
     </div>
-    <p class="tag"><b>离线演示</b> · 个人概念验证 · 非飞鹤官方工具</p>
+    <p class="tag"><b>离线演示</b> · 个人概念验证 · 公开数据</p>
   </div>
 </header>
 
@@ -200,7 +200,7 @@ td.empty p{margin:0 0 var(--sp-3)}
     <div class="start">
       <div class="panel">
         <h2>用示例数据看一遍流程</h2>
-        <p class="muted">41 条黑猫投诉公开样本：飞鹤星飞帆系列，2026-07-15 至 10-15。分类和依据由 Claude 预先生成，页面不会实时调用模型。</p>
+        <p class="muted">41 条黑猫投诉公开样本：飞鹤星飞帆系列，2026-07-15 至 10-15。分类与依据由 Claude 离线预生成，页面不实时调用模型。</p>
         <div><button type="button" class="btn primary lg" id="btn-sample">载入示例数据（41 条）</button></div>
         <ul class="sources" aria-label="分类来源说明">
           <li><span class="src ai">离线预生成</span>示例原文：Claude 预先生成的分类与依据</li>
@@ -247,7 +247,7 @@ td.empty p{margin:0 0 var(--sp-3)}
 
     <div class="tablewrap" id="content" tabindex="-1">
       <table>
-        <caption>参考标签待人工复核；AI 结果为离线预测，未按人工答案调整。分类只用于分派，不判断责任、不判断异物成分、不提供喂养或医疗建议。</caption>
+        <caption>参考标签待人工复核；AI 结果为离线预测，未按人工答案调整。</caption>
         <thead><tr>
           <th scope="col">单号 / 日期</th><th scope="col">依据与投诉原文</th><th scope="col" class="col-cat">分类</th>
           <th scope="col" class="col-rev">人工复核</th><th scope="col" class="col-st">状态</th>
@@ -256,7 +256,7 @@ td.empty p{margin:0 0 var(--sp-3)}
       </table>
     </div>
     <div class="foot">
-      <p>导出包含当前数据的全部记录，不受筛选影响；需复核与质量安全的条目排在前面。页面上的修改不会自动保存，请导出 CSV 留存。数据来自黑猫投诉公开页面（未登录、未保存昵称），摘要可能被平台截断；样本占比不代表整体投诉率。</p>
+      <p>导出包含当前数据的全部记录，不受筛选影响；需复核与质量安全的条目排在前面。页面上的修改不会自动保存，请导出 CSV 留存。数据来自黑猫投诉公开列表（未登录采集，未保存昵称），部分摘要被平台截断。</p>
     </div>
   </section>
 </main>
