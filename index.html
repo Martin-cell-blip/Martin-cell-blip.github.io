@@ -1511,6 +1511,63 @@ html[data-theme="nocturne"] .closer{
     <span class="i-en">Five flagship builds across five businesses — e-commerce product discovery and livestream GTM, data and agent infrastructure, settlement and operating decisions, a consumer health product, category and promotion management. Data, rules and decision targets differ; the method does not: work out who decides and which metrics actually move the outcome, then choose the data, the model, and the step a human must confirm.</span>
   </p>
 
+  <!-- Category 0 · Latest case (2026-10-16 加入：飞鹤公开投诉分拣，个人概念验证) -->
+  <div class="cat">
+    <div class="cat-head" data-reveal>
+      <h3><span class="i-zh">最新案例</span><span class="i-en">Latest Case</span></h3>
+      <span class="cat-count">2026.10</span>
+    </div>
+    <p class="cat-sub" data-reveal>
+      <span class="i-zh">一个使用者、一个时刻、一个任务：用公开数据把一个小 AI 场景从选题、数据分析、AI 与规则对比，一路做到成本测算和可操作的演示。</span>
+      <span class="i-en">One user, one moment, one task: a small AI use case taken from scoping and data analysis, through an AI-versus-rules comparison, to a cost model and a working demo — all on public data.</span>
+    </p>
+    <div class="cards flagship">
+      <article class="card featured" style="--tile:var(--wash-1);grid-column:1/-1">
+        <div class="tile" aria-hidden="true">🍼</div>
+        <h4><span class="i-zh">飞鹤星飞帆 · 公开投诉分拣（AI 小场景概念验证）</span><span class="i-en">Feihe Starship · Public-Complaint Triage (a small AI use case, proof of concept)</span></h4>
+        <div class="f-body">
+          <div class="f-main">
+            <div class="prev" data-prev="feihe-complaint-triage/"
+                 data-prev-title-zh="飞鹤公开投诉分拣台演示预览" data-prev-title-en="Feihe public-complaint triage demo preview">
+              <span class="prev-skel" aria-hidden="true">
+                <i></i><i></i><i></i><i></i>
+                <b class="prev-msg"><span class="i-zh">预览加载中</span><span class="i-en">Loading preview</span></b>
+                <b class="prev-msg-alt"><span class="i-zh">预览未加载</span><span class="i-en">Preview not loaded</span></b>
+                <b class="prev-msg-off"><span class="i-zh">预览已关闭</span><span class="i-en">Preview off</span></b>
+              </span>
+              <span class="prev-hit" data-open="feihe-complaint-triage/" aria-hidden="true" data-hover></span>
+              <span class="prev-tag"><i class="dot" aria-hidden="true"></i><span class="i-zh">实时预览 ↗</span><span class="i-en">Live preview ↗</span></span>
+            </div>
+            <p>
+              <span class="i-zh">先研读飞鹤的公开业务与 AI 实践，再把范围收窄到一件事：每周一，专员把新增的公开投诉分到质量安全、活动权益、订单发货三类，每条附逐字原文依据，标出需要人工优先核查的条目，导出核查清单。采集星飞帆系列 41 条黑猫投诉公开记录，用 SQL 与 Python 清洗、分类、聚合；以关键词规则为基线对比 AI，定位规则调序引发的新误判，结论是「规则兜底高风险，AI 负责其余分拣与摘依据」。</span>
+              <span class="i-en">Starting from Feihe's public business and AI disclosures, the scope was cut to a single job: every Monday a specialist sorts new public complaints into quality &amp; safety, promotions &amp; entitlements, and orders &amp; shipping, attaches a verbatim quote as evidence, flags what needs priority human review, and exports a checklist. 41 public complaint records for the Starship line were cleaned, classified and aggregated with SQL and Python; AI was compared against a keyword-rule baseline, exposing new errors that rule reordering creates. The design call: rules guard the high-risk cases, AI handles the rest of the triage and the quoting.</span>
+            </p>
+            <ol class="loop" aria-label="投诉分拣流程 / complaint triage flow">
+              <li><span class="i-zh">导入投诉</span><span class="i-en">Import</span></li>
+              <li><span class="i-zh">分类 · 依据</span><span class="i-en">Classify · quote</span></li>
+              <li><span class="i-zh">人工修改</span><span class="i-en">Human edit</span></li>
+              <li><span class="i-zh">导出清单</span><span class="i-en">Export</span></li>
+              <li class="back"><span class="i-zh">按类分派</span><span class="i-en">Route</span></li>
+            </ol>
+          </div>
+          <dl class="facets">
+            <div><dt><span class="i-zh">问题</span><span class="i-en">Problem</span></dt><dd><span class="i-zh">一条投诉常同时写着异物、客服推诿和赔偿诉求，该交给质量、活动还是电商运营，不同的人判断不同；写到食用后症状的信号，可能跟着活动投诉一起流走。</span><span class="i-en">One complaint often mixes a foreign object, a service brush-off and a compensation demand, so who should own it varies by reader; a mention of symptoms after feeding can slip away inside a promotion complaint.</span></dd></div>
+            <div><dt><span class="i-zh">做了什么</span><span class="i-en">Built</span></dt><dd><span class="i-zh">问题定义与范围压缩、SQL／Python 分析、规则与 AI 对比评测、主指标「一次派对率」与三条质量约束、Excel 单位经济测算，以及可操作的单页演示。</span><span class="i-en">Problem definition and scoping, SQL / Python analysis, a rules-versus-AI evaluation, a primary metric ("routed right first time") with three quality guardrails, a unit-economics model in Excel, and a working one-page demo.</span></dd></div>
+            <div><dt><span class="i-zh">AI · 数据</span><span class="i-en">AI · Data</span></dt><dd><span class="i-zh">AI 只做一件事：类别、逐字原文依据、是否需要复核；不补全原文没写的信息，不判断异物成分，不给喂养建议。演示中示例为离线预生成结果，新粘贴的文本只走关键词规则并强制复核。</span><span class="i-en">AI does one job: category, a verbatim quote, and whether a human should review — no filling in what the text does not say, no judging what a foreign object is, no feeding advice. In the demo the sample results are pre-generated offline; newly pasted text runs only through keyword rules and is always flagged for review.</span></dd></div>
+            <div><dt><span class="i-zh">商业判断</span><span class="i-en">Business case</span></dt><dd><span class="i-zh">按每周约 3 条的公开投诉量，单独做不划算，盈亏平衡约每周 20 条；建议作为现有智能体平台的附加能力，扩展到电商差评或工单后再试点，并写明继续与停止条件。</span><span class="i-en">At about 3 public complaints a week a standalone tool does not pay; break-even is around 20 a week. Recommended as an add-on to an existing agent platform, piloted only once e-commerce reviews or tickets are in scope, with explicit continue / stop criteria.</span></dd></div>
+            <div class="edge"><dt><span class="i-zh">证据边界</span><span class="i-en">Boundary</span></dt><dd><span class="i-zh">个人概念验证：基于黑猫投诉公开数据，未与飞鹤合作，未接入内部数据或系统，演示页不是飞鹤官方工具。</span><span class="i-en">A personal proof of concept on public complaint data: no partnership with Feihe, no internal data or systems, and the demo is not an official Feihe tool.</span></dd></div>
+          </dl>
+        </div>
+        <div class="chips"><span class="i-zh">问题定义</span><span class="i-en">Problem definition</span><span>SQL · Python</span><span class="i-zh">规则基线评测</span><span class="i-en">Rule-baseline eval</span><span class="i-zh">单位经济</span><span class="i-en">Unit economics</span><span class="i-zh">人工复核</span><span class="i-en">Human review</span></div>
+        <div class="figures"><b>41</b> <span class="i-zh">条公开投诉</span><span class="i-en">public complaints</span> · <span class="i-zh">盈亏平衡约</span><span class="i-en">break-even ≈</span> <b>20</b> <span class="i-zh">条 / 周</span><span class="i-en">a week</span></div>
+        <div class="card-links">
+          <a href="feihe-complaint-triage/" data-hover><span class="i-zh">在线演示</span><span class="i-en">Live demo</span> →</a>
+          <a href="feihe-complaint-triage/case.pdf" data-hover><span class="i-zh">案例文档（PDF）</span><span class="i-en">Case study (PDF, Chinese)</span> →</a>
+        </div>
+      </article>
+    </div>
+  </div>
+
   <!-- Category 1 · Representative projects (2026-10-14 重排：面向 AI marketing ops / growth tooling) -->
   <div class="cat">
     <div class="cat-head" data-reveal>
